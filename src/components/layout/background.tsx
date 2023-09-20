@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import SmallScreenBackground from "@/../public/background/background.png";
-import LargeScreenBackground from "@/../public/background/background2.png";
+import LargeScreenBackground from "@/../public/background/background3.png";
 
 const Background = () => {
   return (
