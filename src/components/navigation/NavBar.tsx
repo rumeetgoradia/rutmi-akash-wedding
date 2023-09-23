@@ -12,7 +12,7 @@ const NavBar = () => {
   return (
     <nav
       className={cn(
-        "flex w-full flex-nowrap justify-between gap-4",
+        "flex w-full flex-nowrap justify-between gap-4 bg-background",
         // "text-sm",
         figtree.className,
       )}
