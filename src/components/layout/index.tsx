@@ -1,9 +1,7 @@
-import Navigation from "@/components/navigation";
-import BackgroundImage from "@/components/background/BackgroundBase";
-import Footer from "./Footer";
-import Header from "./Header";
-import BackgroundAdornments from "@/components/background/BackgroundAdornments";
 import Background from "@/components/background";
+import Navigation from "@/components/navigation";
+import Footer from "./Footer";
+import Header from "./header";
 
 const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   return (

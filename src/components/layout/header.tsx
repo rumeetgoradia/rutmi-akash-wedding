@@ -4,6 +4,7 @@ import { meddon } from "@/app/fonts";
 import { cn } from "@/lib/utils";
 import TopBackground from "@/../public/background/top-removebg-preview.png";
 import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -18,15 +19,17 @@ const Header = () => {
           style={{ objectFit: "cover" }}
         />
       </div>
-      <h1
-        className={cn(
-          meddon.className,
-          "w-full text-center text-5xl leading-[1.4] text-secondary md:text-6xl md:text-foreground",
-          "relative z-[12] px-8",
-        )}
-      >
-        Rutmi & Akash
-      </h1>
+      <Link passHref href="/" title="Home">
+        <h1
+          className={cn(
+            meddon.className,
+            "w-full text-center text-5xl leading-[1.4] text-secondary md:text-6xl md:text-foreground",
+            "relative z-[12] px-8",
+          )}
+        >
+          Rutmi & Akash
+        </h1>
+      </Link>
     </div>
   );
 };
