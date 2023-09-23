@@ -1,7 +1,15 @@
-export type NavRoute = {
-  title: string;
-  path: string;
-};
+export type NavRoute = { path: string } & (
+  | {
+      shortName: string;
+      longName: string;
+      title?: never;
+    }
+  | {
+      title: string;
+      shortName?: never;
+      longName?: never;
+    }
+);
 
 export const NAV_ROUTES: NavRoute[] = [
   {
@@ -9,23 +17,37 @@ export const NAV_ROUTES: NavRoute[] = [
     path: "/",
   },
   {
-    title: "Story",
+    shortName: "Story",
+    longName: "Our Story",
     path: "/story",
   },
   {
-    title: "Schedule",
-    path: "/schedule",
-  },
-  {
-    title: "Family",
+    shortName: "Family",
+    longName: "The Family",
     path: "/family",
   },
   {
-    title: "Wedding Party",
+    longName: "The Wedding Party",
+    shortName: "Wedding Party",
     path: "/weddingparty",
   },
   {
-    title: "Travel",
+    longName: "Schedule of Events",
+    shortName: "Schedule",
+    path: "/schedule",
+  },
+  {
+    shortName: "Travel",
+    longName: "Travel & Accommodations",
     path: "/travel",
+  },
+  {
+    title: "Registry",
+    path: "/registry",
+  },
+  {
+    shortName: "Moments",
+    longName: "Our Moments",
+    path: "/moments",
   },
 ];

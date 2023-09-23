@@ -12,12 +12,13 @@ const NavBar = () => {
   return (
     <nav
       className={cn(
-        "flex w-full flex-nowrap justify-between gap-4 bg-background",
-        // "text-sm",
+        "flex w-full flex-nowrap justify-between gap-4 bg-background text-sm",
         figtree.className,
       )}
     >
-      {NAV_ROUTES.map(({ title, path }) => {
+      {NAV_ROUTES.map((navRoute) => {
+        const { path } = navRoute;
+        const title = navRoute.title || navRoute.shortName;
         return (
           <Link
             href={path}

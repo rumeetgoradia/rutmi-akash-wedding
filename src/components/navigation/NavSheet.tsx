@@ -54,7 +54,9 @@ const NavSheet = () => {
           </SheetTitle>
         </SheetHeader>
         <nav className="flex w-full flex-grow flex-col gap-2">
-          {NAV_ROUTES.map(({ title, path }) => {
+          {NAV_ROUTES.map((navRoute) => {
+            const { path } = navRoute;
+            const title = navRoute.title || navRoute.longName;
             return (
               <SheetClose
                 asChild

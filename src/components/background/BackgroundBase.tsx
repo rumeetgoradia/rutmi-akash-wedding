@@ -3,7 +3,7 @@
 import BackgroundImage from "public/background/background.png";
 import Image from "next/image";
 
-const Background = () => {
+const BackgroundBase = () => {
   return (
     <div className="fixed h-[100vh] w-full">
       <Image
@@ -18,4 +18,4 @@ const Background = () => {
   );
 };
 
-export default Background;
+export default BackgroundBase;
