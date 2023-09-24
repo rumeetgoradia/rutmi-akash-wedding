@@ -5,9 +5,11 @@ import { meddon, notoSerif } from "@/app/fonts";
 import Countdown from "@/components/home/countdown";
 
 export default function Home() {
+  const WEDDING_DATE = new Date("2024-05-25T09:00:00.000-04:00");
+
   return (
-    <div className="mx-auto w-full max-w-screen-md">
-      <div className="w-full ">
+    <div className="w-full">
+      <div className="w-full">
         <Image
           src={LandingImage}
           alt="Rutmi & Akash"
@@ -16,18 +18,12 @@ export default function Home() {
         />
       </div>
       <div className="mx-auto flex w-full max-w-screen-sm flex-col items-center gap-8 bg-background px-8 py-12">
-        <h2
-          className={cn(meddon.className, "text-center text-2xl lg:text-4xl")}
-        >
-          Pompton Plains, NJ
-        </h2>
+        <h2 className={cn(meddon.className, "header")}>Pompton Plains, NJ</h2>
         <div className="flex w-full flex-col items-center gap-4 lg:gap-6">
-          <h2
-            className={cn(meddon.className, "text-center text-xl lg:text-2xl")}
-          >
+          <h2 className={cn(meddon.className, "header")}>
             Saturday, May 25, 2024
           </h2>
-          <Countdown date={new Date("2024-05-25T09:00:00.000-04:00")} />
+          <Countdown date={WEDDING_DATE} />
         </div>
         <p
           className={cn(

@@ -11,7 +11,7 @@ const Footer = () => {
     <div
       className={cn(
         notoSerif.className,
-        "flex w-full items-center justify-center p-8 text-primary",
+        "flex w-full items-center justify-center bg-background p-8 text-primary",
       )}
     >
       <Link

@@ -26,10 +26,15 @@
   }
 
   .bg-primary-ghost {
-    @apply bg-primary/10
+    @apply bg-primary/10;
   }
 
   .bg-secondary-ghost {
-    @apply bg-secondary/10
+    @apply bg-secondary/10;
+  }
+
+  .header {
+    font-family: var(--font-meddon);
+    @apply text-center text-3xl lg:text-4xl;
   }
 }
