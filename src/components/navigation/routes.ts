@@ -29,7 +29,7 @@ export const NAV_ROUTES: NavRoute[] = [
   {
     longName: "The Wedding Party",
     shortName: "Wedding Party",
-    path: "/weddingparty",
+    path: "/wedding-party",
   },
   {
     longName: "Schedule of Events",

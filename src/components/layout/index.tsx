@@ -12,6 +12,7 @@ const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
       <main
         className={cn(
           "z-100 relative w-full",
+          figtree.className,
           meddon.variable,
           figtree.variable,
           notoSerif.variable,

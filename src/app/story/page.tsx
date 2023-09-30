@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function Story() {
   return (
-    <div className="flex w-full flex-col gap-12 pt-12">
+    <div className="flex w-full flex-col gap-12 max-md:pt-12">
       {STORY_CONTENT.map(({ title, image, description }, index) => (
         <div className="flex w-full flex-col gap-6" key={`our-story-${title}`}>
           <h2 className="header">{title}</h2>

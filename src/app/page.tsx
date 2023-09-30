@@ -17,7 +17,7 @@ export default function Home() {
           className="w-full"
         />
       </div>
-      <div className="mx-auto flex w-full max-w-screen-sm flex-col items-center gap-8 bg-background px-8 py-12">
+      <div className="mx-auto flex w-full max-w-screen-sm flex-col items-center gap-8 bg-background py-12">
         <h2 className={cn(meddon.className, "header")}>Pompton Plains, NJ</h2>
         <div className="flex w-full flex-col items-center gap-4 lg:gap-6">
           <h2 className={cn(meddon.className, "header")}>
