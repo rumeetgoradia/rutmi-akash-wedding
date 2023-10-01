@@ -1,24 +1,30 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  name: "party",
-  title: "Party",
+  name: "event",
+  title: "Event",
   type: "document",
   fields: [
     defineField({
-      name: "displayName",
-      title: "Display Name",
+      name: "title",
+      title: "Title",
       type: "string",
     }),
     defineField({
       name: "description",
       title: "Description",
-      type: "description",
+      type: "text",
     }),
     defineField({
       name: "dateTime",
       title: "Date & Time",
       type: "datetime",
+    }),
+    defineField({
+      name: "location",
+      title: "Location",
+      type: "reference",
+      to: { type: "address" },
     }),
     defineField({
       name: "dressCode",

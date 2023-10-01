@@ -28,7 +28,7 @@ export default function Home() {
         <p
           className={cn(
             notoSerif.className,
-            "text-center font-light leading-[1.8] tracking-wider lg:pt-12",
+            "text-center font-light leading-[1.8] lg:pt-12",
           )}
         >
           We can&apos;t wait to share our special day with you! Please navigate
