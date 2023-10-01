@@ -1,4 +1,3 @@
-import NextAuthProvider from "@/lib/auth/Provider";
 import TrpcProvider from "@/lib/trpc/Provider";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -19,11 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <NextAuthProvider>
-          <TrpcProvider>
-            <Layout>{children}</Layout>
-          </TrpcProvider>
-        </NextAuthProvider>
+        <TrpcProvider>
+          <Layout>{children}</Layout>
+        </TrpcProvider>
       </body>
     </html>
   );

@@ -1,11 +1,9 @@
 import { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
-import { getUserAuth } from "../auth/utils";
+import { client as sanityClient } from "@/lib/sanity/client";
 
 export async function createContext(opts?: FetchCreateContextFnOptions) {
-const { session } = await getUserAuth();
-
   return {
-     session: session,
+    sanityClient,
     headers: opts && Object.fromEntries(opts.req.headers),
   };
 }
