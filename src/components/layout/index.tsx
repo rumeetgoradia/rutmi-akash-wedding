@@ -6,29 +6,27 @@ import { cn } from "@/lib/utils";
 import { figtree, meddon, notoSerif } from "@/app/fonts";
 
 const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
-  return (
-    <>
-      <Background />
-      <main
-        className={cn(
-          "z-100 relative w-full",
-          figtree.className,
-          meddon.variable,
-          figtree.variable,
-          notoSerif.variable,
-        )}
-      >
-        <div className="relative mx-auto flex min-h-[100vh] w-full max-w-screen-md flex-col items-start md:gap-8 md:bg-background md:px-8">
-          <Header />
-          <Navigation />
-          <div className="w-full flex-grow bg-background max-md:px-8">
-            {children}
-          </div>
-          <Footer />
-        </div>
-      </main>
-    </>
-  );
+	return (
+		<>
+			<Background />
+			<main
+				className={cn(
+					"z-100 relative w-full",
+					figtree.className,
+					meddon.variable,
+					figtree.variable,
+					notoSerif.variable
+				)}
+			>
+				<div className="relative mx-auto flex min-h-[100vh] w-full max-w-screen-md flex-col items-start md:gap-8 md:bg-background md:px-8">
+					<Header />
+					<Navigation />
+					<div className="w-full flex-grow bg-background">{children}</div>
+					<Footer />
+				</div>
+			</main>
+		</>
+	);
 };
 
 export default Layout;

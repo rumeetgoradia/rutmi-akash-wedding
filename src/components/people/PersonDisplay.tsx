@@ -8,14 +8,12 @@ export type Person = {
   name: string;
   role: string;
   image: StaticImageData;
-  fact?: string;
 };
 
 export const PersonDisplay: React.FC<Person> = ({
   name,
   role,
-  image,
-  fact,
+  image
 }) => {
   return (
     <div className="flex w-full flex-col items-center">
@@ -32,11 +30,6 @@ export const PersonDisplay: React.FC<Person> = ({
         {name}
       </div>
       <div className={"text-center font-light max-md:text-sm"}>{role}</div>
-      {fact && (
-        <div className={"text-center text-xs font-light md:text-sm"}>
-          {fact}
-        </div>
-      )}
     </div>
   );
 };
