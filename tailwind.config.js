@@ -1,12 +1,9 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: ["class"],
+const config = {
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
   theme: {
     container: {
       center: true,
@@ -16,6 +13,12 @@ module.exports = {
       },
     },
     extend: {
+      colors: {
+        background: "rgb(var(--background))",
+        foreground: "rgb(var(--foreground))",
+        primary: "rgb(var(--primary))",
+        secondary: "rgb(var(--secondary))",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: 0 },
@@ -34,3 +37,4 @@ module.exports = {
   },
   plugins: [require("tailwindcss-animate")],
 }
+export default config
