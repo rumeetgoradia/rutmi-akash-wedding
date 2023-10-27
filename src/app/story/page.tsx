@@ -3,31 +3,33 @@ import { Metadata } from "next";
 import STORY_CONTENT from "./content";
 import { cn } from "@/lib/utils";
 import { notoSerif } from "@/app/fonts";
-import LandingImage from "public/home/home.jpeg";
+import LandingImage from "public/home/landing.jpeg";
 import { Content } from "@/components/layout/Content";
 
 export const metadata: Metadata = {
 	title: "Our Story — Rutmi & Akash",
-	description:
-		"Celebrating the union of Rutmi Goradia and Akash Patel — May 25, 2024.",
 };
 
 export default function Story() {
 	return (
-		<Content hero={LandingImage}>
-			<div className="flex w-full flex-col gap-12 max-md:pt-12">
+		<Content hero={LandingImage} title="Our Story">
+			<div className="flex w-full flex-col gap-12">
 				{STORY_CONTENT.map(({ title, image, description }, index) => (
 					<div
 						className="flex w-full flex-col gap-6"
 						key={`our-story-${title}`}
 					>
-						<h2 className="header">{title}</h2>
-						<Image
-							src={image}
-							alt={title}
-							placeholder="blur"
-							className="w-full"
-						/>
+						<h2 className="font-meddon text-3xl md:text-4xl">{title}</h2>
+						<div className="relative w-full h-[460px]">
+							<Image
+								src={image}
+								alt={title}
+								fill
+								placeholder="blur"
+								objectFit="cover"
+								objectPosition="contain"
+							/>
+						</div>
 						<div className="flex w-full flex-col gap-3">
 							{description.map((desc) => (
 								<p

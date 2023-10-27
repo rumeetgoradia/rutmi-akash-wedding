@@ -1,5 +1,5 @@
 import Image from "next/image";
-import LandingImage from "public/home/home.jpeg";
+import LandingImage from "public/home/Landing.jpeg";
 import { cn } from "@/lib/utils";
 import { meddon, notoSerif } from "@/app/fonts";
 import Countdown from "@/components/home/countdown";
@@ -10,9 +10,11 @@ export default function Home() {
 
 	return (
 		<Content hero={LandingImage}>
-			<h2 className={"header"}>Pompton Plains, NJ</h2>
+			<h2 className="font-meddon text-3xl md:text-4xl">Pompton Plains, NJ</h2>
 			<div className="flex w-full flex-col items-center gap-4 lg:gap-6">
-				<h2 className={"header"}>Saturday, May 25, 2024</h2>
+				<h2 className="font-meddon text-3xl md:text-4xl">
+					Saturday, May 25, 2024
+				</h2>
 				<Countdown date={WEDDING_DATE} />
 			</div>
 			<p

@@ -3,8 +3,22 @@ import Shivani from "public/wedding-party/Shivani.jpeg";
 import Parita from "public/wedding-party/Parita.jpeg";
 import Kanika from "public/wedding-party/Kanika.jpeg";
 import Disha from "public/wedding-party/Disha.jpeg";
+import Aksu from "public/wedding-party/Aksu.jpeg";
+import Anastasia from "public/wedding-party/Anastasia.jpeg";
+import Harsh from "public/wedding-party/Harsh.jpeg";
+import Jaltej from "public/wedding-party/Jaltej.jpeg";
+import Karan from "public/wedding-party/Karan.jpeg";
+import Kishan from "public/wedding-party/Kishan.png";
+import Manish from "public/wedding-party/Manish.jpg";
+import Mihir from "public/wedding-party/Mihir.png";
+import Mohit from "public/wedding-party/Mohit.jpeg";
+import Paulomi from "public/wedding-party/Paulomi.jpeg";
+import Ravi from "public/wedding-party/Ravi.jpg";
+import Rubal from "public/wedding-party/Rubal.jpg";
+import Shivam from "public/wedding-party/Shivam.jpg";
+import Vikash from "public/wedding-party/Vikash.jpg";
 
-export const WEDDING_PARTY: (Person & { bio: string[] })[] = [
+export const WEDDING_PARTY: Person[] = [
 	{
 		name: "Shivani Patel",
 		role: "Maid of Honor",
@@ -17,7 +31,7 @@ export const WEDDING_PARTY: (Person & { bio: string[] })[] = [
 	{
 		name: "Vikash Patel",
 		role: "Best Man",
-		image: Shivani,
+		image: Vikash,
 		bio: [""],
 	},
 	{
@@ -28,20 +42,20 @@ export const WEDDING_PARTY: (Person & { bio: string[] })[] = [
 	},
 	{
 		name: "Shivam Patel",
-		role: "Best Man",
-		image: Shivani,
+		role: "Groomsman",
+		image: Shivam,
 		bio: [""],
 	},
 	{
 		name: "Anastasia Ambrosio",
 		role: "Bridesmaid",
-		image: Shivani,
+		image: Anastasia,
 		bio: [""],
 	},
 	{
 		name: "Ravi Patel",
-		role: "Best Man",
-		image: Shivani,
+		role: "Groomsman",
+		image: Ravi,
 		bio: [""],
 	},
 	{
@@ -56,11 +70,17 @@ export const WEDDING_PARTY: (Person & { bio: string[] })[] = [
 		],
 	},
 	{
-		name: "Sparky",
-		role: "Ring Bearer / Guest of Honor",
-		image: Shivani,
+		name: "Rubal Last",
+		role: "Groomsman",
+		image: Rubal,
 		bio: [""],
 	},
+	// {
+	// 	name: "Sparky",
+	// 	role: "Ring Bearer / Guest of Honor",
+	// 	image: Shivani,
+	// 	bio: [""],
+	// },
 	{
 		name: "Kanika Gupta",
 		role: "Bridesmaid",
@@ -73,6 +93,12 @@ export const WEDDING_PARTY: (Person & { bio: string[] })[] = [
 		],
 	},
 	{
+		name: "Aksu Last",
+		role: "Groomsman",
+		image: Aksu,
+		bio: [""],
+	},
+	{
 		name: "Parita Patel",
 		role: "Bridesmaid",
 		image: Parita,
@@ -82,9 +108,56 @@ export const WEDDING_PARTY: (Person & { bio: string[] })[] = [
 		],
 	},
 	{
+		name: "Harsh Last",
+		role: "Groomsman",
+		image: Harsh,
+		bio: [""],
+	},
+	{
 		name: "Paulomi Gohel",
 		role: "Bridesmaid",
-		image: Shivani,
+		image: Paulomi,
+		bio: [
+			"I can't help but reflect on the incredible memories that have shaped my bond with Rutmi. She has been there with me through thick and thin, from those early days when we giggled and cried over critically “trashy” romcoms to our teenage years when she taught me how to hide all of our shopping bags from our dads, deal with the unfortunate realities of the teenage Indian unibrow/mustache situation, and navigate finding myself and true friends in the scary world of middle school and highschool.",
+			"She's been the driving force behind some of my fondest memories.We used to spend hours together, microwaving quesadillas (our signature dish), creating hilarious music videos, and dreaming big about our futures. Back then, little did we know that one day, Rutmi would be stepping into a new chapter of her life as a beautiful bride.",
+			"But what Rutmi truly taught me goes beyond cooking or shopping. She taught me the importance of having that one person who's always there for you, no matter the distance or time apart. Our love has remained constant, our bond unbreakable.",
+			"As we have been approaching this day, I can't help but feel excited about the new memories I will create with her and her wonderful new husband. We'll keep indulging in our cheesy traditions, making music videos, and now, we'll dream about our future with our extended family and hopefully mini versions of ourselves.",
+		],
+	},
+	{
+		name: "Jaltej Last",
+		role: "Groomsman",
+		image: Jaltej,
+		bio: [""],
+	},
+	{
+		name: "Mihir Last",
+		role: "Groomsman",
+		image: Mihir,
+		bio: [""],
+	},
+	{
+		name: "Karan Last",
+		role: "Groomsman",
+		image: Karan,
+		bio: [""],
+	},
+	{
+		name: "Kishan Last",
+		role: "Groomsman",
+		image: Kishan,
+		bio: [""],
+	},
+	{
+		name: "Manish Last",
+		role: "Groomsman",
+		image: Manish,
+		bio: [""],
+	},
+	{
+		name: "Mohit Last",
+		role: "Groomsman",
+		image: Mohit,
 		bio: [""],
 	},
 ];
