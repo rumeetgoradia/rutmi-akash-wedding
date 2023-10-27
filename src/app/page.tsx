@@ -1,5 +1,5 @@
 import Image from "next/image";
-import LandingImage from "public/home/Landing.jpeg";
+import LandingImage from "public/home/landing.jpeg";
 import { cn } from "@/lib/utils";
 import { meddon, notoSerif } from "@/app/fonts";
 import Countdown from "@/components/home/countdown";
