@@ -1,5 +1,6 @@
-import TrpcProvider from "@/lib/trpc/Provider";
+import { TRPCReactProvider } from "@/trpc/react";
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "./globals.css";
 
 import Layout from "@/components/layout";
@@ -18,9 +19,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <TrpcProvider>
+        <TRPCReactProvider headers={headers()}>
           <Layout>{children}</Layout>
-        </TrpcProvider>
+        </TRPCReactProvider>
       </body>
     </html>
   );

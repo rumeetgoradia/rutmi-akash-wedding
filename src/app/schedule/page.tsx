@@ -1,5 +1,17 @@
-import Image from "next/image";
+import { Content } from "@/components/layout/Content";
+import { Metadata } from "next";
+import LandingImage from "public/home/landing.jpeg";
+
+const TITLE = "Schedule of Events";
+
+export const metadata: Metadata = {
+  title: `${TITLE} — Rutmi & Akash`,
+};
 
 export default function Schedule() {
-	return <main>schedule</main>;
+  return (
+    <Content hero={LandingImage} title={TITLE}>
+      schedule
+    </Content>
+  );
 }

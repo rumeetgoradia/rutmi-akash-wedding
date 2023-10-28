@@ -6,9 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:generate": "drizzle-kit generate:pg",
+    "db:push": "drizzle-kit push:pg",
+    "db:introspect": "drizzle-kit introspect:pg"
   },
   "dependencies": {
+    "@auth/drizzle-adapter": "^0.3.5",
+    "@neondatabase/serverless": "^0.6.0",
     "@radix-ui/react-dialog": "^1.0.5",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.16.7",
@@ -24,6 +29,7 @@
     "autoprefixer": "10.4.15",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
+    "drizzle-orm": "^0.28.6",
     "eslint": "8.49.0",
     "eslint-config-next": "13.5.1",
     "lucide-react": "^0.284.0",
@@ -45,8 +51,14 @@
   },
   "devDependencies": {
     "dotenv": "^16.3.1",
+    "drizzle-kit": "^0.19.13",
     "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.5.5",
     "tsx": "^3.13.0"
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ]
   }
 }
