@@ -3,10 +3,10 @@ import { env } from "@/env.mjs";
 import "dotenv/config";
 
 export default {
-  schema: "./src/db/schema.ts",
+  schema: "./src/server/db/schema.ts",
   driver: "pg",
   out: "./drizzle",
   dbCredentials: {
-    connectionString: process.env.DRIZZLE_DATABASE_URL!,
+    connectionString: env.DATABASE_URL,
   },
 } satisfies Config;
