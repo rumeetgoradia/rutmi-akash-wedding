@@ -40,8 +40,6 @@
 
   .font-noto {
     font-family: var(--font-notoSerif);
-    line-height: 1.8;
-    font-weight: 300;
   }
 
   .font-figtree {

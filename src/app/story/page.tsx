@@ -36,7 +36,7 @@ export default function Story() {
               {description.map((desc) => (
                 <p
                   key={`our-story-${title}-${desc}`}
-                  className="font-noto md:text-md text-sm"
+                  className="font-noto md:text-md text-sm font-light leading-[1.8]"
                 >
                   {desc}
                 </p>

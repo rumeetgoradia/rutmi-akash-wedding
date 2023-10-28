@@ -16,15 +16,17 @@ export type Address = {
   city: string;
   state: string;
   zipCode: string;
+  googleMaps: string;
 };
 
-const ADDRESSES: { [key: string]: Address } = {
+export const ADDRESSES: Record<string, Address> = {
   goradia: {
     title: "The Goradia Residence",
     street: ["240 Midwood Way"],
     city: "Colonia",
     state: "NJ",
     zipCode: "07067",
+    googleMaps: "https://maps.app.goo.gl/iuTGSHTsd4tZeiV8A",
   },
   patel: {
     title: "The Patel Residence",
@@ -32,6 +34,7 @@ const ADDRESSES: { [key: string]: Address } = {
     city: "Iselin",
     state: "NJ",
     zipCode: "08830",
+    googleMaps: "https://maps.app.goo.gl/rqFT9pb3Q2rCzaat7",
   },
   ukrainian: {
     title: "Ukrainian Cultural Center",
@@ -39,13 +42,15 @@ const ADDRESSES: { [key: string]: Address } = {
     city: "Somerset",
     state: "NJ",
     zipCode: "08873",
+    googleMaps: "https://maps.app.goo.gl/3a7x6wN37nYuMs446",
   },
-  hanover: {
+  hotel: {
     title: "Hanover Marriot",
     street: ["1401 NJ-10 East"],
     city: "Whippany",
     state: "NJ",
     zipCode: "07891",
+    googleMaps: "https://maps.app.goo.gl/LBFys454JM3Dqgm86",
   },
   legacy: {
     title: "The Legacy Castle",
@@ -53,6 +58,7 @@ const ADDRESSES: { [key: string]: Address } = {
     city: "Pompton Plains",
     state: "NJ",
     zipCode: "07444",
+    googleMaps: "https://maps.app.goo.gl/51iYeGQTduRmGfTW8",
   },
 };
 
@@ -150,7 +156,7 @@ export const EVENTS: { [K in (typeof eventIds)[number]]: Event } = {
   haldi: {
     title: "Haldi",
     time: new Date("2024-05-24T16:00"),
-    location: ADDRESSES.hanover,
+    location: ADDRESSES.hotel,
     dressCode: { primary: "Indian Semi-formal", note: "Please wear yellow!" },
     description: [
       "During the Haldi ceremony, the couple's relatives and friends come together to apply turmeric paste (haldi) on the bride and groom's face and body. It is believed that this will prevent evil spirits from harming the to-be-wed couple. Additionally, turmeric's bright yellow color is highly auspicious. Smearing the couple with turmeric paste is a way to bless the couple with prosperity! This is followed by food, fun, and dancing.",
@@ -160,7 +166,7 @@ export const EVENTS: { [K in (typeof eventIds)[number]]: Event } = {
   "welcome-dinner": {
     title: "Welcome Dinner",
     time: new Date("2024-05-24T19:00"),
-    location: ADDRESSES.hanover,
+    location: ADDRESSES.hotel,
     dressCode: { primary: "Business Casual" },
     description: [
       "Dolor nisi magna est proident ea do aliquip. Cillum sunt duis enim commodo ipsum exercitation fugiat quis. Est veniam consequat consectetur tempor minim ea minim occaecat eiusmod pariatur cupidatat. Voluptate et adipisicing labore sint est minim minim. Dolore id exercitation anim esse. Ea sunt ullamco dolor ea reprehenderit labore consequat Lorem veniam tempor anim laborum deserunt mollit. Cupidatat proident nostrud laborum veniam sit dolor dolore adipisicing elit elit id non deserunt.",
@@ -183,7 +189,7 @@ export const EVENTS: { [K in (typeof eventIds)[number]]: Event } = {
   reception: {
     title: "Reception",
     time: new Date("2024-05-25T18:30"),
-    location: ADDRESSES.legacy,
+    location: ADDRESSES.hotel,
     dressCode: {
       primary: "Indian or Western Formal",
     },
@@ -195,7 +201,7 @@ export const EVENTS: { [K in (typeof eventIds)[number]]: Event } = {
   "post-wedding": {
     title: "Post-Wedding Breakfast",
     time: new Date("2024-05-26T09:00"),
-    location: ADDRESSES.hanover,
+    location: ADDRESSES.hotel,
     dressCode: {
       primary: "Casual",
     },

@@ -3,6 +3,7 @@ import { PersonDisplay } from "@/components/people/PersonDisplay";
 import { Metadata } from "next";
 import LandingImage from "public/home/landing.jpeg";
 import { WEDDING_PARTY } from "./content";
+import { PersonBioDialog } from "@/components/people/PersonBioDialog";
 
 const TITLE = "The Wedding Party";
 
@@ -15,7 +16,7 @@ export default function WeddingParty() {
     <Content hero={LandingImage} title={TITLE}>
       <div className="grid w-full grid-cols-2 gap-4 md:gap-6">
         {WEDDING_PARTY.map((weddingPartyMember) => (
-          <PersonDisplay
+          <PersonBioDialog
             {...weddingPartyMember}
             key={`wedding-party-${weddingPartyMember.name}`}
           />
