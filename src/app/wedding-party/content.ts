@@ -1,4 +1,4 @@
-import { type PersonWithBio } from "@/components/people";
+import { type PersonWithBio, PersonWithTagline } from "@/components/people";
 
 import Shivani from "public/wedding-party/Shivani.jpeg";
 import Parita from "public/wedding-party/Parita.jpeg";
@@ -18,8 +18,9 @@ import Ravi from "public/wedding-party/Ravi.jpg";
 import Rubal from "public/wedding-party/Rubal.jpg";
 import Shivam from "public/wedding-party/Shivam.jpg";
 import Vikash from "public/wedding-party/Vikash.jpg";
+import Deepesh from "public/wedding-party/Deepesh.jpeg";
 
-export const WEDDING_PARTY: PersonWithBio[] = [
+export const BRIDE_WEDDING_PARTY: PersonWithBio[] = [
   {
     name: "Shivani Patel",
     role: "Maid of Honor",
@@ -30,34 +31,12 @@ export const WEDDING_PARTY: PersonWithBio[] = [
     ],
   },
   {
-    name: "Mihir Last",
-    role: "Groomsman",
-    image: Mihir,
-    bio: [""],
-  },
-  {
-    name: "Anima Anwar",
-    role: "Bridesmaid",
-    image: Shivani,
-    bio: [""],
-  },
-  {
-    name: "Shivam Patel",
-    role: "Groomsman",
-    image: Shivam,
-    bio: [""],
-  },
-  {
     name: "Anastasia Ambrosio",
     role: "Bridesmaid",
     image: Anastasia,
-    bio: [""],
-  },
-  {
-    name: "Ravi Patel",
-    role: "Groomsman",
-    image: Ravi,
-    bio: [""],
+    bio: [
+      "Hey everyone, I'm Anastasia. Rutmi and I are cowboys together at the infamous Barn. In layman's terms, we are co-residents at St. Barnabas. We have been trauma bonded since intern year, but it goes deeper than that. We understand each other and have each other's backs at all times. However, as a native Long Islander, I will never miss an opportunity to Jersey- shame Rutmi, and vice versa. I'm A Long Island Italian girl to the core, a huge Mets fan and I love music. I do not hike or run- another thing Rutmi and I do not have in common, but sometimes commonalities are overrated. I love my girl, and I am psyched to be part of this journey. Also excited to be part of a new group of friends. I'm easy to pick out, I'm the….one with the glasses.",
+    ],
   },
   {
     name: "Disha Aya",
@@ -71,18 +50,6 @@ export const WEDDING_PARTY: PersonWithBio[] = [
     ],
   },
   {
-    name: "Rubal Last",
-    role: "Groomsman",
-    image: Rubal,
-    bio: [""],
-  },
-  // {
-  // 	name: "Sparky",
-  // 	role: "Ring Bearer / Guest of Honor",
-  // 	image: Shivani,
-  // 	bio: [""],
-  // },
-  {
     name: "Kanika Gupta",
     role: "Bridesmaid",
     image: Kanika,
@@ -94,12 +61,6 @@ export const WEDDING_PARTY: PersonWithBio[] = [
     ],
   },
   {
-    name: "Aksu Last",
-    role: "Groomsman",
-    image: Aksu,
-    bio: [""],
-  },
-  {
     name: "Parita Patel",
     role: "Bridesmaid",
     image: Parita,
@@ -107,12 +68,6 @@ export const WEDDING_PARTY: PersonWithBio[] = [
       "Hey, it's Parita! I'm a Jersey girl at heart who was raised in a small town in Georgia. I love reading, cooking and traveling. I also have major geography struggles. I once met the governor of Missouri on a plane and asked him where Missouri was while we were in St. Louis.",
       "I met Rutmi when Akash was ready to get the older cousin stamp of approval and introduced us at Tacoria! That was the beginning of many good memories together. But my favorite was definitely when Rutmi fought me every step of the way while I was helping Akash plan the proposal, from the adventurous blue nail with ring finger accent to her blue Abercrombie backyard BBQ vibe dress.",
     ],
-  },
-  {
-    name: "Harsh Last",
-    role: "Groomsman",
-    image: Harsh,
-    bio: [""],
   },
   {
     name: "Paulomi Gohel",
@@ -125,35 +80,79 @@ export const WEDDING_PARTY: PersonWithBio[] = [
       "As we have been approaching this day, I can't help but feel excited about the new memories I will create with her and her wonderful new husband. We'll keep indulging in our cheesy traditions, making music videos, and now, we'll dream about our future with our extended family and hopefully mini versions of ourselves.",
     ],
   },
+];
+
+export const GROOM_WEDDING_PARTY: PersonWithTagline[] = [
   {
-    name: "Jaltej Last",
+    name: "Shivam Patel",
+    role: "Best Man",
+    image: Shivam,
+    tagline: "The Gucci Guy",
+  },
+  {
+    name: "Ravi Patel",
+    role: "Best Man",
+    image: Ravi,
+    tagline: "The Bar Guy",
+  },
+  {
+    name: "Akash Patel",
+    role: "Groomsman",
+    image: Aksu,
+    tagline: "The Questionable Guy",
+  },
+  {
+    name: "Deepesh Lad",
+    role: "Groomsman",
+    image: Deepesh,
+    tagline: "The Gas Guy",
+  },
+  {
+    name: "Harsh Last",
+    role: "Groomsman",
+    image: Harsh,
+    tagline: "The Supplement Guy",
+  },
+  {
+    name: "Jaltej Patel",
     role: "Groomsman",
     image: Jaltej,
-    bio: [""],
+    tagline: "The Taco Bell Guy",
   },
-
   {
-    name: "Karan Last",
+    name: "Karan Patel",
     role: "Groomsman",
     image: Karan,
-    bio: [""],
+    tagline: "The Back Insurance Guy",
   },
   {
-    name: "Kishan Last",
+    name: "Kishan Patel",
     role: "Groomsman",
     image: Kishan,
-    bio: [""],
+    tagline: "The Family Guy",
   },
   {
-    name: "Manish Last",
+    name: "Manish Kakadiya",
     role: "Groomsman",
     image: Manish,
-    bio: [""],
+    tagline: "The Grammar Guy",
   },
   {
-    name: "Mohit Last",
+    name: "Mihir Kasvala",
+    role: "Groomsman",
+    image: Mihir,
+    tagline: "The Fatherly Advice Guy",
+  },
+  {
+    name: "Mohit Dhanani",
     role: "Groomsman",
     image: Mohit,
-    bio: [""],
+    tagline: "The Monkey Guy",
+  },
+  {
+    name: "Rubal Vekariya",
+    role: "Groomsman",
+    image: Rubal,
+    tagline: "The Pet Giraffe Guy",
   },
 ];

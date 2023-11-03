@@ -9,3 +9,5 @@ export type Person = {
 export type PersonWithBio = Person & {
   bio: string[];
 };
+
+export type PersonWithTagline = Person & { tagline: string };

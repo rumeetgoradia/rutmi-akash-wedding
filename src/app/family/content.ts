@@ -1,5 +1,7 @@
-import { Person } from "@/components/people/PersonDisplay";
+import { type Person } from "@/components/people";
 import Rumeet from "public/family/Rumeet.jpeg";
+import Arvind from "public/family/Arvind.jpg";
+import Henaxi from "public/family/Henaxi.jpg";
 import Daarsh from "public/family/Daarsh.jpeg";
 import Umesh from "public/family/Umesh.jpeg";
 import Vikash from "public/family/Vikash.jpeg";
@@ -9,7 +11,7 @@ export const FAMILY: Person[] = [
   {
     name: "Arvind Patel",
     role: "Father of the Groom",
-    image: Rumeet,
+    image: Arvind,
   },
   {
     name: "Umesh Goradia",
@@ -17,9 +19,9 @@ export const FAMILY: Person[] = [
     image: Umesh,
   },
   {
-    name: "Hinaxi Patel",
+    name: "Henaxi Patel",
     role: "Mother of the Groom",
-    image: Rumeet,
+    image: Henaxi,
   },
   {
     name: "Rita Goradia",
