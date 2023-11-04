@@ -3,6 +3,7 @@ import LandingImage from "public/home/landing.jpeg";
 import { IMAGES } from "./content";
 import { Content } from "@/components/layout/Content";
 import Image from "next/image";
+import MomentDisplay from "@/components/moments/MomentDisplay";
 
 const TITLE = "Our Moments";
 
@@ -17,12 +18,7 @@ export default function Moments() {
         {IMAGES.map((image, index) => {
           return (
             <div className="masonry-img w-full" key={image.src}>
-              <Image
-                src={image}
-                alt={`Our Moments - ${index + 1}`}
-                placeholder="blur"
-                sizes="300px"
-              />
+              <MomentDisplay img={image} alt={`Our Moments - ${index + 1}`} />
             </div>
           );
         })}
