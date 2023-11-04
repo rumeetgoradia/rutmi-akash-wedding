@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { Metadata } from "next";
 import STORY_CONTENT from "./content";
-import { cn } from "@/lib/utils";
-import { notoSerif } from "@/app/fonts";
 import LandingImage from "public/home/landing.jpeg";
 import { Content } from "@/components/layout/Content";
 
