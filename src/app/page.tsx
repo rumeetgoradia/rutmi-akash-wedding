@@ -4,7 +4,7 @@ import LandingImage from "public/home/landing.jpeg";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "The Wedding Party — Rutmi & Akash",
+  title: "Rutmi & Akash",
 };
 
 export default function WeddingParty() {
