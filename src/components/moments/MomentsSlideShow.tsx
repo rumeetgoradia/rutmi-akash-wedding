@@ -26,7 +26,7 @@ const MomentsSlideshow: React.FC<{
   };
 
   return (
-    <Slider {...settings} className="max-w-[300px] md:max-w-screen-md">
+    <Slider {...settings} className="flex w-full items-center justify-center">
       {/* @ts-ignore */}
       {images.map((image, index) => {
         return (
@@ -34,8 +34,8 @@ const MomentsSlideshow: React.FC<{
             src={image}
             alt={getAlt(index) + " Slideshow"}
             placeholder="blur"
+            sizes="80vw"
             key={image.src}
-            className="h-auto max-h-[80vh] w-auto max-w-[80vw]"
           />
         );
       })}

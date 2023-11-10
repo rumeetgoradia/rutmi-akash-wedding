@@ -42,12 +42,10 @@ const MomentsGrid: React.FC<{ images: StaticImageData[] }> = ({ images }) => {
                 <Dialog.Content
                   className={cn(
                     "DialogContent",
-                    "fixed left-1/2 top-1/2 z-[10000] -translate-x-1/2 -translate-y-1/2 overflow-hidden p-4 outline-none",
+                    "fixed left-1/2 top-1/2 z-[10000] flex w-full -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden p-4 outline-none md:max-w-screen-md",
                   )}
                 >
-                  <div>
-                    <MomentsSlideshow images={orderedImages} getAlt={getAlt} />
-                  </div>
+                  <MomentsSlideshow images={orderedImages} getAlt={getAlt} />
                 </Dialog.Content>
               </Dialog.Portal>
             </Dialog.Root>
