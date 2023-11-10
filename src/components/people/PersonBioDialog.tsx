@@ -23,8 +23,8 @@ export const PersonBioDialog: React.FC<PersonWithBio> = ({
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="DialogOverlay fixed left-0 top-0 z-[9999] h-[100vh] w-[100vw] bg-foreground/50" />
-        <Dialog.Content className="DialogContent fixed left-1/2 top-1/2 z-[10000] max-h-[80vh] w-[90vw] max-w-screen-sm -translate-x-1/2 -translate-y-1/2 overflow-auto shadow-md shadow-black/50 sm:w-[400px]">
-          <div className="relative flex w-full flex-col gap-4 bg-background p-6">
+        <Dialog.Content className="DialogContent fixed left-1/2 top-1/2 z-[10000] max-h-[80vh] w-[90vw] max-w-screen-sm -translate-x-1/2 -translate-y-1/2 overflow-auto bg-background shadow-md shadow-black/50 sm:w-[400px]">
+          <div className="relative flex w-full flex-col gap-3 bg-background p-6">
             <div className="flex w-full flex-col items-center">
               <div className="relative aspect-square w-full">
                 <Image

@@ -8,7 +8,6 @@ import MomentsSlideshow from "./MomentsSlideShow";
 
 const MomentsGrid: React.FC<{ images: StaticImageData[] }> = ({ images }) => {
   const [orderedImages, setOrderedImages] = useState<StaticImageData[]>(images);
-  const [open, setOpen] = useState<boolean>(false);
 
   const getAlt = (index: number) => {
     return `Our Moments - ${index + 1}`;
