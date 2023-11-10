@@ -108,7 +108,7 @@ export const GROOM_WEDDING_PARTY: PersonWithTagline[] = [
     tagline: "The Gas Guy",
   },
   {
-    name: "Harsh Last",
+    name: "Harsh Bhanderi",
     role: "Groomsman",
     image: Harsh,
     tagline: "The Supplement Guy",
