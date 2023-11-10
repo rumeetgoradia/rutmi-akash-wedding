@@ -5,6 +5,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import Image, { StaticImageData } from "next/image";
 import { useState } from "react";
 import MomentsSlideshow from "./MomentsSlideShow";
+import { Cross2Icon } from "@radix-ui/react-icons";
 
 const MomentsGrid: React.FC<{ images: StaticImageData[] }> = ({ images }) => {
   const [orderedImages, setOrderedImages] = useState<StaticImageData[]>(images);
@@ -47,6 +48,14 @@ const MomentsGrid: React.FC<{ images: StaticImageData[] }> = ({ images }) => {
                 >
                   <MomentsSlideshow images={orderedImages} getAlt={getAlt} />
                 </Dialog.Content>
+                {/* <Dialog.Close asChild>
+                  <button
+                    className="IconButton absolute right-8 top-8 z-[100002] cursor-pointer rounded-full bg-black/50 p-2 text-background outline-none"
+                    aria-label="Close"
+                  >
+                    <Cross2Icon className="h-4 w-4" />
+                  </button>
+                </Dialog.Close> */}
               </Dialog.Portal>
             </Dialog.Root>
           </div>

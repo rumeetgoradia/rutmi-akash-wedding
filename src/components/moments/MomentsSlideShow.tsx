@@ -20,7 +20,6 @@ const MomentsSlideshow: React.FC<{
     swipe: false,
     swipeToSlide: false,
     fade: true,
-    pauseOnHover: true,
     adaptiveHeight: true,
     arrows: false,
   };
@@ -34,7 +33,7 @@ const MomentsSlideshow: React.FC<{
             src={image}
             alt={getAlt(index) + " Slideshow"}
             placeholder="blur"
-            sizes="80vw"
+            sizes="60vw"
             key={image.src}
           />
         );

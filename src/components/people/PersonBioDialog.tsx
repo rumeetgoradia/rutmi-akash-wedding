@@ -65,15 +65,15 @@ export const PersonBioDialog: React.FC<PersonWithBio> = ({
                 </p>
               ))}
             </div>
-            <Dialog.Close asChild>
-              <button
-                className="IconButton absolute right-8 top-8 rounded-full bg-black/50 p-2 text-background"
-                aria-label="Close"
-              >
-                <Cross2Icon className="h-4 w-4" />
-              </button>
-            </Dialog.Close>
           </div>
+          <Dialog.Close asChild>
+            <button
+              className="IconButton absolute right-8 top-8 rounded-full bg-black/50 p-2 text-background outline-none"
+              aria-label="Close"
+            >
+              <Cross2Icon className="h-4 w-4" />
+            </button>
+          </Dialog.Close>
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>

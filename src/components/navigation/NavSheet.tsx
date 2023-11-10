@@ -32,6 +32,7 @@ const NavSheet = () => {
             "text-xs font-light uppercase",
             "bg-background hover:shadow-md",
             "fixed left-6 top-6 z-50",
+            "shadow-sm",
             "transition-shadow",
           )}
         >
