@@ -2,9 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import * as Dialog from "@radix-ui/react-dialog";
-import { AnimatePresence, motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import MomentsSlideshow from "./MomentsSlideShow";
 
 const MomentsGrid: React.FC<{ images: StaticImageData[] }> = ({ images }) => {

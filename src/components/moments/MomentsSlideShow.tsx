@@ -1,13 +1,8 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import * as Dialog from "@radix-ui/react-dialog";
-import { AnimatePresence, motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
-import { useEffect, useRef, useState } from "react";
 import type { Settings } from "react-slick";
 import Slider from "react-slick";
-import { start } from "repl";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
