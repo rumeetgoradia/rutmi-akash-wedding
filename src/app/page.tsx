@@ -1,7 +1,7 @@
 import Countdown from "@/components/home/countdown";
 import { Content } from "@/components/layout/Content";
-import LandingImage from "public/home/landing.jpeg";
 import { Metadata } from "next";
+import LandingImage from "public/home/landing.jpeg";
 
 export const metadata: Metadata = {
   title: "Rutmi & Akash",
