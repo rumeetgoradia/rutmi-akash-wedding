@@ -1,16 +1,12 @@
+import { relations } from "drizzle-orm";
 import {
-  timestamp,
-  pgTable,
-  text,
-  primaryKey,
-  integer,
   boolean,
   index,
   pgEnum,
-  unique,
+  pgTable,
+  primaryKey,
+  text,
 } from "drizzle-orm/pg-core";
-import type { AdapterAccount } from "@auth/core/adapters";
-import { relations } from "drizzle-orm";
 
 export const guests = pgTable(
   "guest",
@@ -18,7 +14,8 @@ export const guests = pgTable(
     id: text("id").notNull().primaryKey(),
     firstName: text("first_name").notNull(),
     lastName: text("last_name").notNull(),
-    email: text("email"),
+    title: text("title"),
+    suffix: text("suffix"),
     isAdmin: boolean("is_admin").default(false),
     partyId: text("party_id")
       .notNull()
@@ -31,6 +28,7 @@ export const guests = pgTable(
     };
   },
 );
+export type Guest = typeof guests.$inferSelect;
 
 export const guestRelations = relations(guests, ({ one }) => ({
   parties: one(parties, {
@@ -55,6 +53,7 @@ export const eventEnum = pgEnum("event", [
 export const parties = pgTable("party", {
   id: text("id").notNull().primaryKey(),
   label: text("label").notNull(),
+  email: text("email"),
 });
 
 export const partyRelations = relations(parties, ({ many }) => ({
@@ -82,49 +81,5 @@ export const allowedEventsForPartiesRelations = relations(
       fields: [allowedEventsForParties.partyId],
       references: [parties.id],
     }),
-  }),
-);
-
-// Auth stuff
-
-export const accounts = pgTable(
-  "account",
-  {
-    userId: text("userId")
-      .notNull()
-      .references(() => guests.id, { onDelete: "cascade" }),
-    type: text("type").$type<AdapterAccount["type"]>().notNull(),
-    provider: text("provider").notNull(),
-    providerAccountId: text("providerAccountId").notNull(),
-    refresh_token: text("refresh_token"),
-    access_token: text("access_token"),
-    expires_at: integer("expires_at"),
-    token_type: text("token_type"),
-    scope: text("scope"),
-    id_token: text("id_token"),
-    session_state: text("session_state"),
-  },
-  (account) => ({
-    compoundKey: primaryKey(account.provider, account.providerAccountId),
-  }),
-);
-
-export const sessions = pgTable("session", {
-  sessionToken: text("sessionToken").notNull().primaryKey(),
-  userId: text("userId")
-    .notNull()
-    .references(() => guests.id, { onDelete: "cascade" }),
-  expires: timestamp("expires", { mode: "date" }).notNull(),
-});
-
-export const verificationTokens = pgTable(
-  "verificationToken",
-  {
-    identifier: text("identifier").notNull(),
-    token: text("token").notNull(),
-    expires: timestamp("expires", { mode: "date" }).notNull(),
-  },
-  (vt) => ({
-    compoundKey: primaryKey(vt.identifier, vt.token),
   }),
 );

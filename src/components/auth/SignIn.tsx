@@ -1,24 +1,26 @@
 "use client";
-import { useSession, signIn, signOut } from "next-auth/react";
+
+import { api } from "@/trpc/react";
 import { Button } from "../ui/button";
 
 export default function SignIn() {
-  const { data: session, status } = useSession();
+  const signIn = api.auth.signIn.useMutation({
+    onSuccess: (data) => console.log({ data }),
+  });
 
-  if (status === "loading") return <div>Loading...</div>;
+  const handleSignIn = () => {
+    const response = signIn.mutate({
+      firstName: "rumeet",
+      lastName: "goradia",
+      password: "password",
+    });
+    console.log({ response });
+  };
 
-  if (session) {
-    return (
-      <>
-        Signed in as {session.user?.email} <br />
-        <Button variant={"destructive"} onClick={() => signOut()}>Sign out</Button>
-      </>
-    );
-  }
   return (
     <>
       Not signed in <br />
-      <Button onClick={() => signIn()}>Sign in</Button>
+      <Button onClick={handleSignIn}>Sign in</Button>
     </>
   );
 }

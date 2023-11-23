@@ -1,7 +1,9 @@
 import { eventEnum } from "@/server/db/schema";
 
+const eventIds = [...eventEnum.enumValues] as const;
+
 export type Event = {
-  // id: string;
+  id: (typeof eventIds)[number];
   title: string;
   time: Date;
   dressCode: { primary: string; note?: string };
@@ -62,10 +64,9 @@ export const ADDRESSES: Record<string, Address> = {
   },
 };
 
-const eventIds = [...eventEnum.enumValues] as const;
-
-export const EVENTS: { [K in (typeof eventIds)[number]]: Event } = {
-  "pre-wedding": {
+export const EVENTS: Event[] = [
+  {
+    id: "pre-wedding",
     title: "Bride's Pre-Wedding Vidhis",
     time: new Date("2024-05-11T09:00"),
     dressCode: { primary: "Traditional Indian" },
@@ -94,9 +95,10 @@ export const EVENTS: { [K in (typeof eventIds)[number]]: Event } = {
       },
     ],
   },
-  "chandlo-matli": {
+  {
+    id: "chandlo-matli",
     title: "Chandlo Matli",
-    time: new Date("2023-05-15T15:00"),
+    time: new Date("2024-05-15T15:00"),
     location: {
       start: ADDRESSES.goradia,
       end: ADDRESSES.patel,
@@ -106,7 +108,8 @@ export const EVENTS: { [K in (typeof eventIds)[number]]: Event } = {
       "During this ceremony, the father of the bride along with four male relatives visits the groom's place with a steel container (\"matli\") full of sweets and gifts for the groom and his family. He then applies a chandlo to the center of the groom's forehead and gives him the matli and monetary gifts. This acknowledges the formal seal of acceptance of the relationship between both the families.",
     ],
   },
-  "pre-wedding-cont": {
+  {
+    id: "pre-wedding-cont",
     title: "Bride's Pre-Wedding Vidhis (cont.)",
     time: new Date("2024-05-18T09:00"),
     location: ADDRESSES.goradia,
@@ -132,7 +135,8 @@ export const EVENTS: { [K in (typeof eventIds)[number]]: Event } = {
       },
     ],
   },
-  mehndi: {
+  {
+    id: "mehndi",
     title: "Mehndi",
     time: new Date("2024-05-22T18:00"),
     location: ADDRESSES.goradia,
@@ -142,7 +146,8 @@ export const EVENTS: { [K in (typeof eventIds)[number]]: Event } = {
       "At the mehndi party, you can expect to get intricate henna designs placed on your hands and/or feet alongside the bride!",
     ],
   },
-  "garba-sangeet": {
+  {
+    id: "garba-sangeet",
     title: "Garba & Sangeet",
     time: new Date("2024-05-23T18:00"),
     location: ADDRESSES.ukrainian,
@@ -153,17 +158,19 @@ export const EVENTS: { [K in (typeof eventIds)[number]]: Event } = {
       "Get your dancing feet and colorful clothes ready for this spirited night of dancing!",
     ],
   },
-  haldi: {
+  {
+    id: "haldi",
     title: "Haldi",
-    time: new Date("2024-05-24T16:00"),
-    location: ADDRESSES.hotel,
+    time: new Date("2024-05-24T10:00"),
+    location: ADDRESSES.goradia,
     dressCode: { primary: "Indian Semi-formal", note: "Please wear yellow!" },
     description: [
       "During the Haldi ceremony, the couple's relatives and friends come together to apply turmeric paste (haldi) on the bride and groom's face and body. It is believed that this will prevent evil spirits from harming the to-be-wed couple. Additionally, turmeric's bright yellow color is highly auspicious. Smearing the couple with turmeric paste is a way to bless the couple with prosperity! This is followed by food, fun, and dancing.",
       "During the Haldi, expect to get your hands dirty and feet moving!",
     ],
   },
-  "welcome-dinner": {
+  {
+    id: "welcome-dinner",
     title: "Welcome Dinner",
     time: new Date("2024-05-24T19:00"),
     location: ADDRESSES.hotel,
@@ -173,7 +180,8 @@ export const EVENTS: { [K in (typeof eventIds)[number]]: Event } = {
       "Ut ad sit dolore cupidatat consequat et in. Et dolor eiusmod mollit culpa veniam culpa quis culpa mollit enim incididunt. Dolor cillum sunt deserunt quis eu non eiusmod velit commodo.",
     ],
   },
-  wedding: {
+  {
+    id: "wedding",
     title: "Wedding",
     time: new Date("2024-05-25T08:00"),
     location: ADDRESSES.legacy,
@@ -186,7 +194,8 @@ export const EVENTS: { [K in (typeof eventIds)[number]]: Event } = {
       "Ut ad sit dolore cupidatat consequat et in. Et dolor eiusmod mollit culpa veniam culpa quis culpa mollit enim incididunt. Dolor cillum sunt deserunt quis eu non eiusmod velit commodo.",
     ],
   },
-  reception: {
+  {
+    id: "reception",
     title: "Reception",
     time: new Date("2024-05-25T18:30"),
     location: ADDRESSES.hotel,
@@ -198,7 +207,8 @@ export const EVENTS: { [K in (typeof eventIds)[number]]: Event } = {
       "Ut ad sit dolore cupidatat consequat et in. Et dolor eiusmod mollit culpa veniam culpa quis culpa mollit enim incididunt. Dolor cillum sunt deserunt quis eu non eiusmod velit commodo.",
     ],
   },
-  "post-wedding": {
+  {
+    id: "post-wedding",
     title: "Post-Wedding Breakfast",
     time: new Date("2024-05-26T09:00"),
     location: ADDRESSES.hotel,
@@ -210,4 +220,40 @@ export const EVENTS: { [K in (typeof eventIds)[number]]: Event } = {
       "Ut ad sit dolore cupidatat consequat et in. Et dolor eiusmod mollit culpa veniam culpa quis culpa mollit enim incididunt. Dolor cillum sunt deserunt quis eu non eiusmod velit commodo.",
     ],
   },
+];
+
+const getGroupedEvents = (
+  events: Event[],
+): { [k: string]: { date: Date; events: Event[] } } => {
+  let groupedEvents: { [k: string]: { date: Date; events: Event[] } } = {};
+
+  EVENTS.forEach((event) => {
+    const time = event.time;
+    const dateString = `${time.getDate()}-${time.getMonth()}-${time.getFullYear()}`;
+    const group = groupedEvents[dateString];
+
+    if (group) {
+      group.events.push(event);
+    } else {
+      const date = new Date(event.time);
+      date.setHours(0, 0, 0, 0);
+      groupedEvents = {
+        ...groupedEvents,
+        [dateString]: {
+          date,
+          events: [event],
+        },
+      };
+    }
+
+    Object.values(groupedEvents).forEach((group) =>
+      group.events.sort((a, b) =>
+        a.time < b.time ? -1 : a.time === b.time ? 0 : 1,
+      ),
+    );
+  });
+
+  return groupedEvents;
 };
+
+export const GROUPED_EVENTS = getGroupedEvents(EVENTS);

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Rutmi & Akash",
 };
 
-export default function WeddingParty() {
+export default function Home() {
   const WEDDING_DATE = new Date("2024-05-25T09:00:00.000-04:00");
 
   return (

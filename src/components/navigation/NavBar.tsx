@@ -1,10 +1,10 @@
 "use client";
 
+import { figtree } from "@/app/fonts";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_ROUTES } from "./routes";
-import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { figtree } from "@/app/fonts";
 
 const NavBar = () => {
   const currentPath = usePathname();
@@ -12,7 +12,7 @@ const NavBar = () => {
   return (
     <nav
       className={cn(
-        "flex w-full flex-nowrap justify-between gap-4 bg-background text-sm",
+        "text-md flex w-full flex-nowrap justify-between gap-2 bg-background",
         figtree.className,
       )}
     >
@@ -23,10 +23,11 @@ const NavBar = () => {
           <Link
             href={path}
             className={cn(
-              "rounded-sm px-2 py-1",
+              "rounded-sm py-1 pl-2 pr-[calc(0.5rem-0.05em)] font-light tracking-wider",
               currentPath === path && "bg-foreground-ghost",
               "hover:bg-foreground-ghost transition-colors",
             )}
+            title={title}
             key={`navbar-${title}`}
           >
             {title}

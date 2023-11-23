@@ -1,6 +1,7 @@
 import { TRPCReactProvider } from "@/trpc/react";
 import type { Metadata } from "next";
-import { headers } from "next/headers";
+import { cookies } from "next/headers";
+
 import "./globals.css";
 
 import Layout from "@/components/layout";
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
     "Celebrating the union of Rutmi Goradia and Akash Patel — May 25, 2024.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -19,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <TRPCReactProvider headers={headers()}>
+        <TRPCReactProvider cookies={cookies().toString()}>
           <Layout>{children}</Layout>
         </TRPCReactProvider>
       </body>
