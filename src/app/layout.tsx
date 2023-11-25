@@ -6,10 +6,18 @@ import "./globals.css";
 
 import Layout from "@/components/layout";
 
+const title = "Rutmi & Akash";
+const description =
+  "Celebrating the union of Rutmi Goradia and Akash Patel — May 25, 2024.";
+
 export const metadata: Metadata = {
-  title: "Rutmi & Akash",
-  description:
-    "Celebrating the union of Rutmi Goradia and Akash Patel — May 25, 2024.",
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    images: "https://www.rutmiandakash.com/home/landing.jpeg",
+  },
 };
 
 export default async function RootLayout({
