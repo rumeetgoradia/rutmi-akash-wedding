@@ -3,7 +3,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 type GuestStore = {
-  guest: Guest | null;
+  guest?: Guest;
   signIn: (guest: Guest) => void;
   signOut: () => void;
 };
@@ -11,14 +11,12 @@ type GuestStore = {
 export const useGuestStore = create<GuestStore>()(
   persist(
     (set, get) => ({
-      guest: null,
+      guest: undefined,
       signIn: (guest) => set({ guest }),
-      signOut: () => set({ guest: null }),
+      signOut: () => set({ guest: undefined }),
     }),
     {
       name: "guest-storage",
-      partialize: (state) =>
-        state.guest ? { guest: { id: state.guest.id } } : { guest: null },
     },
   ),
 );

@@ -1,6 +1,7 @@
 "use client";
 
 import { figtree, meddon, notoSerif } from "@/app/fonts";
+import SignOut from "@/components/auth/SignOut";
 import Background from "@/components/background";
 import Navigation from "@/components/navigation";
 import { cn } from "@/lib/utils";
@@ -15,7 +16,7 @@ const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   if (!guest && pathname !== "/login") {
     redirect("/login");
-  }
+  } 
 
   return (
     <>
@@ -33,6 +34,7 @@ const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
           <Header />
           <Navigation />
           <div className="w-full flex-grow bg-background">{children}</div>
+          <SignOut />
           <Footer />
         </div>
       </main>

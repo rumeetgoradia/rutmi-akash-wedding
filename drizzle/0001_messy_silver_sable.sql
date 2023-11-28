@@ -1,0 +1,1 @@
+ALTER TABLE "party" ALTER COLUMN "phone" SET DATA TYPE text;

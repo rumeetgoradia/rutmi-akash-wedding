@@ -1,9 +1,9 @@
 import { eventEnum } from "@/server/db/schema";
 
-const eventIds = [...eventEnum.enumValues] as const;
+export const EVENT_IDS = [...eventEnum.enumValues] as const;
 
 export type Event = {
-  id: (typeof eventIds)[number];
+  id: (typeof EVENT_IDS)[number];
   title: string;
   time: Date;
   dressCode: { primary: string; note?: string };

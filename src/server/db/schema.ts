@@ -5,13 +5,14 @@ import {
   pgEnum,
   pgTable,
   primaryKey,
+  serial,
   text,
 } from "drizzle-orm/pg-core";
 
 export const guests = pgTable(
   "guest",
   {
-    id: text("id").notNull().primaryKey(),
+    id: serial("id").primaryKey(),
     firstName: text("first_name").notNull(),
     lastName: text("last_name").notNull(),
     title: text("title"),
@@ -38,6 +39,7 @@ export const guestRelations = relations(guests, ({ one }) => ({
 }));
 
 export const eventEnum = pgEnum("event", [
+  "housewarming",
   "pre-wedding",
   "chandlo-matli",
   "pre-wedding-cont",
@@ -51,9 +53,10 @@ export const eventEnum = pgEnum("event", [
 ]);
 
 export const parties = pgTable("party", {
-  id: text("id").notNull().primaryKey(),
+  id: text("id").primaryKey(),
   label: text("label").notNull(),
   email: text("email"),
+  phone: text("phone"),
 });
 
 export const partyRelations = relations(parties, ({ many }) => ({
@@ -70,7 +73,7 @@ export const allowedEventsForParties = pgTable(
     event: eventEnum("event").notNull(),
   },
   (aefp) => ({
-    pk: primaryKey(aefp.partyId, aefp.event),
+    pk: primaryKey({ columns: [aefp.partyId, aefp.event] }),
   }),
 );
 

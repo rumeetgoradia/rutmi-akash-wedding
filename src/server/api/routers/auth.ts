@@ -1,31 +1,27 @@
-import { z } from "zod";
-
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { Guest, guests, parties } from "@/server/db/schema";
 import { sql } from "drizzle-orm";
 
-const trimString = (u: unknown) => (typeof u === "string" ? u.trim() : u);
+import { env } from "@/env.mjs";
+import { SignInInputSchema } from "@/server/api/routers/auth.schema";
 
 export const authRouter = createTRPCRouter({
   signIn: publicProcedure
-    .input(
-      z.object({
-        firstName: z.string(),
-        lastName: z.string(),
-        email: z.string().email().optional(),
-        password: z.string(),
-      }),
-    )
+    .input(SignInInputSchema)
     .mutation(
       async ({
         ctx: { db },
-        input: { firstName, lastName, email, password },
-      }) => {
-        // TODO check password
+        input: { firstName, lastName, email, password, phone, specifierType },
+      }): Promise<
+        { error: SignInError; guest?: never } | { error?: never; guest: Guest }
+      > => {
+        if (password.trim() !== env.SITE_PASSWORD) {
+          return { error: { code: "WRONG_PASSWORD" } };
+        }
 
         try {
           const { rows: foundGuests } = await db.execute(
-            email
+            specifierType === "email" && email
               ? sql`
           select * from ${guests} join ${parties} on ${guests.partyId} = ${
             parties.id
@@ -36,7 +32,18 @@ export const authRouter = createTRPCRouter({
             lower(${guests.lastName}) = lower(${lastName.trim()})
           and 
             lower(${parties.email} = lower(${email.trim()}))`
-              : sql`
+              : specifierType === "phone" && phone
+                ? sql`
+          select * from ${guests} join ${parties} on ${guests.partyId} = ${
+            parties.id
+          } 
+          where 
+            lower(${guests.firstName}) = lower(${firstName.trim()})
+          and 
+            lower(${guests.lastName}) = lower(${lastName.trim()})
+          and 
+            ${parties.phone} = ${phone.replace(/[^0-9]/g, '')}`
+                : sql`
           select * from ${guests} 
           where 
             lower(${guests.firstName}) = lower(${firstName.trim()})
@@ -45,25 +52,42 @@ export const authRouter = createTRPCRouter({
           `,
           );
 
-          console.log("finished query");
-          console.log(foundGuests);
-
           if (foundGuests.length === 1) {
-            const user = foundGuests[0] as Guest;
-            console.log("returning user");
-            return user;
+            const sqlGuest = foundGuests[0] as {"first_name": string, "last_name": string, id: number, "party_id": string, suffix: string | null, title: string | null}
+            return { guest: {
+              firstName: sqlGuest['first_name'],
+              lastName: sqlGuest['last_name'],
+              isAdmin: null,
+              id: sqlGuest['id'],
+              partyId: sqlGuest['party_id'],
+              suffix: sqlGuest['suffix'],
+              title: sqlGuest['title']
+            } };
           } else if (foundGuests.length > 1) {
-            // Ask for email
-            return null;
+            return { error: { code: "TOO_MANY_USERS_FOUND" } };
           } else {
-            return null;
+            return { error: { code: "NO_USER_FOUND" } };
           }
         } catch (e) {
-          // TODO handle error
-          console.log("here is auth error!", e);
-          // Return bad errro
-          return null;
+          return {
+            error: {
+              code: "INTERNAL_SERVER_ERROR",
+              cause:
+                e instanceof Error
+                  ? e.message
+                  : "Something went wrong on the server.",
+            },
+          };
         }
       },
     ),
 });
+
+export type SignInError = {
+  code:
+    | "WRONG_PASSWORD"
+    | "NO_USER_FOUND"
+    | "TOO_MANY_USERS_FOUND"
+    | "INTERNAL_SERVER_ERROR";
+  cause?: string;
+};

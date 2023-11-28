@@ -1,7 +1,7 @@
+import { Toaster } from "@/components/ui/toaster";
 import { TRPCReactProvider } from "@/trpc/react";
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-
 import "./globals.css";
 
 import Layout from "@/components/layout";
@@ -29,6 +29,7 @@ export default async function RootLayout({
     <html lang="en">
       <body>
         <TRPCReactProvider cookies={cookies().toString()}>
+          <Toaster />
           <Layout>{children}</Layout>
         </TRPCReactProvider>
       </body>
