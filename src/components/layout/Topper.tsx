@@ -6,7 +6,7 @@ import { useGuestStore } from "@/store/guest";
 import Image from "next/image";
 import Link from "next/link";
 
-const Header = () => {
+const Topper = () => {
   const { guest } = useGuestStore();
 
   return (
@@ -48,4 +48,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Topper;
