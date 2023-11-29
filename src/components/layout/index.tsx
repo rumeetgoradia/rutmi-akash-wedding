@@ -2,12 +2,12 @@
 
 import { figtree, meddon, notoSerif } from "@/app/fonts";
 import Background from "@/components/background";
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
 import Navigation from "@/components/navigation";
 import { cn } from "@/lib/utils";
 import { useGuestStore, useHydration } from "@/store/guest";
 import { redirect, usePathname } from "next/navigation";
-import Footer from "./Footer";
-import Header from "./Header";
 
 const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { guest } = useGuestStore();

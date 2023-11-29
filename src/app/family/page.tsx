@@ -1,9 +1,8 @@
+import { Content } from "@/components/layout/Content";
 import { PersonDisplay } from "@/components/people/PersonDisplay";
-import Image from "next/image";
+import { Metadata } from "next";
 import LandingImage from "public/family/Landing.jpeg";
 import { FAMILY } from "./content";
-import { Content } from "@/components/layout/Content";
-import { Metadata } from "next";
 
 const TITLE = "The Family";
 
