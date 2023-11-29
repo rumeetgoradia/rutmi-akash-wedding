@@ -17,22 +17,27 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Spinner } from "@/components/ui/spinner";
 import { useToast } from "@/components/ui/use-toast";
 import { SignInInputSchema } from "@/server/api/routers/auth.schema";
 import { useGuestStore } from "@/store/guest";
 import { api } from "@/trpc/react";
 import { SignInInputs } from "@/trpc/shared";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { redirect } from "next/navigation";
+import { redirect, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function SignIn() {
   const { guest, signIn } = useGuestStore();
+  const searchParams = useSearchParams();
 
   if (guest) {
-    redirect("/");
+    const pathname = searchParams.get("pathname");
+    if (pathname) {
+      redirect(pathname);
+    } else {
+      redirect("/");
+    }
   }
 
   const { toast } = useToast();
@@ -112,7 +117,7 @@ export default function SignIn() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
-        className="grid w-full max-w-screen-sm grid-cols-6 gap-4"
+        className="grid w-full grid-cols-6 gap-4"
       >
         <FormField
           control={form.control}
@@ -229,7 +234,18 @@ export default function SignIn() {
           disabled={loading}
           className="font-figtree col-span-6 mt-2 rounded-sm bg-primary/70 text-sm uppercase tracking-widest text-background transition-[background-color,opacity] hover:bg-primary/100 "
         >
-          {loading ? <Spinner /> : "Enter"}
+          {loading ? (
+            <div
+              className="inline-block h-6 w-6 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+              role="status"
+            >
+              <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                Loading...
+              </span>
+            </div>
+          ) : (
+            "Enter"
+          )}
         </Button>
       </form>
     </Form>

@@ -1,22 +1,23 @@
 "use client";
 
 import { figtree, meddon, notoSerif } from "@/app/fonts";
-import SignOut from "@/components/auth/SignOut";
 import Background from "@/components/background";
 import Navigation from "@/components/navigation";
 import { cn } from "@/lib/utils";
-import { useGuestStore } from "@/store/guest";
+import { useGuestStore, useHydration } from "@/store/guest";
 import { redirect, usePathname } from "next/navigation";
 import Footer from "./Footer";
 import Header from "./Header";
 
 const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { guest } = useGuestStore();
+  const hydrated = useHydration();
+
   const pathname = usePathname();
 
-  if (!guest && pathname !== "/login") {
-    redirect("/login");
-  } 
+  if (hydrated && !guest && pathname !== "/login") {
+    redirect(`/login?pathname=${pathname}`);
+  }
 
   return (
     <>
@@ -34,7 +35,7 @@ const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
           <Header />
           <Navigation />
           <div className="w-full flex-grow bg-background">{children}</div>
-          <SignOut />
+          {/* <SignOut /> */}
           <Footer />
         </div>
       </main>

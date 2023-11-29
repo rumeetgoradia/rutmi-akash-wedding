@@ -1,3 +1,4 @@
+import { eventsRouter } from "@/server/api/routers/events";
 import { createTRPCRouter } from "@/server/api/trpc";
 import { authRouter } from "./routers/auth";
 
@@ -8,6 +9,7 @@ import { authRouter } from "./routers/auth";
  */
 export const appRouter = createTRPCRouter({
   auth: authRouter,
+  events: eventsRouter,
 });
 
 // export type definition of API

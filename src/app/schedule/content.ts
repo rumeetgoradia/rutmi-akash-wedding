@@ -1,13 +1,14 @@
 import { eventEnum } from "@/server/db/schema";
 
 export const EVENT_IDS = [...eventEnum.enumValues] as const;
+export type EventId = (typeof EVENT_IDS)[number];
 
 export type Event = {
-  id: (typeof EVENT_IDS)[number];
+  id: EventId;
   title: string;
   time: Date;
   dressCode: { primary: string; note?: string };
-  location: Address | { start: Address; end: Address };
+  location: { start: Address; end?: Address };
   description?: string[];
   subevents?: { title: string; description: string[] }[];
 };
@@ -70,7 +71,7 @@ export const EVENTS: Event[] = [
     title: "Bride's Pre-Wedding Vidhis",
     time: new Date("2024-05-11T09:00"),
     dressCode: { primary: "Traditional Indian" },
-    location: ADDRESSES.goradia,
+    location: { start: ADDRESSES.goradia },
     description: [
       "This is a day full of religious pre-wedding prayer ceremonies (pujas) to prepare the bride for her new role as a wife. This day will invite the bride's close family to celebrate the following pujas: Grah Shanti, Ganesh Sthapna, Randal Puja, and the Goyni.",
     ],
@@ -112,7 +113,7 @@ export const EVENTS: Event[] = [
     id: "pre-wedding-cont",
     title: "Bride's Pre-Wedding Vidhis (cont.)",
     time: new Date("2024-05-18T09:00"),
-    location: ADDRESSES.goradia,
+    location: { start: ADDRESSES.goradia },
     dressCode: { primary: "Traditional Indian" },
     subevents: [
       {
@@ -139,7 +140,7 @@ export const EVENTS: Event[] = [
     id: "mehndi",
     title: "Mehndi",
     time: new Date("2024-05-22T18:00"),
-    location: ADDRESSES.goradia,
+    location: { start: ADDRESSES.goradia },
     dressCode: { primary: "Indian Semi-formal" },
     description: [
       "In the Hindu tradition, mehndi is part of the Solah Shringar, or sixteen bridal adornments, which is a ritual for the beautification of the bride from head to toe at the time of their wedding. In these days, both the bride and the groom often partake in the Mehndi party, with their families coming together to bless the couple before their marriage.",
@@ -150,7 +151,7 @@ export const EVENTS: Event[] = [
     id: "garba-sangeet",
     title: "Garba & Sangeet",
     time: new Date("2024-05-23T18:00"),
-    location: ADDRESSES.ukrainian,
+    location: { start: ADDRESSES.ukrainian },
     dressCode: { primary: "Indian Semi-formal" },
     description: [
       'The sangeet, which means "sung together", is essentially a pre-wedding party where families come together to sing, dance, and celebrate the wedding festivities to come. In Gujarati culture, this function also entails garba/raas, a type of high-energy Gujarati folk dance.',
@@ -162,7 +163,7 @@ export const EVENTS: Event[] = [
     id: "haldi",
     title: "Haldi",
     time: new Date("2024-05-24T10:00"),
-    location: ADDRESSES.goradia,
+    location: { start: ADDRESSES.goradia },
     dressCode: { primary: "Indian Semi-formal", note: "Please wear yellow!" },
     description: [
       "During the Haldi ceremony, the couple's relatives and friends come together to apply turmeric paste (haldi) on the bride and groom's face and body. It is believed that this will prevent evil spirits from harming the to-be-wed couple. Additionally, turmeric's bright yellow color is highly auspicious. Smearing the couple with turmeric paste is a way to bless the couple with prosperity! This is followed by food, fun, and dancing.",
@@ -173,7 +174,7 @@ export const EVENTS: Event[] = [
     id: "welcome-dinner",
     title: "Welcome Dinner",
     time: new Date("2024-05-24T19:00"),
-    location: ADDRESSES.hotel,
+    location: { start: ADDRESSES.hotel },
     dressCode: { primary: "Business Casual" },
     description: [
       "Dolor nisi magna est proident ea do aliquip. Cillum sunt duis enim commodo ipsum exercitation fugiat quis. Est veniam consequat consectetur tempor minim ea minim occaecat eiusmod pariatur cupidatat. Voluptate et adipisicing labore sint est minim minim. Dolore id exercitation anim esse. Ea sunt ullamco dolor ea reprehenderit labore consequat Lorem veniam tempor anim laborum deserunt mollit. Cupidatat proident nostrud laborum veniam sit dolor dolore adipisicing elit elit id non deserunt.",
@@ -184,7 +185,7 @@ export const EVENTS: Event[] = [
     id: "wedding",
     title: "Wedding",
     time: new Date("2024-05-25T08:00"),
-    location: ADDRESSES.legacy,
+    location: { start: ADDRESSES.legacy },
     dressCode: {
       primary: "Indian Formal",
       note: "Please do NOT wear red or black!",
@@ -198,7 +199,7 @@ export const EVENTS: Event[] = [
     id: "reception",
     title: "Reception",
     time: new Date("2024-05-25T18:30"),
-    location: ADDRESSES.hotel,
+    location: { start: ADDRESSES.hotel },
     dressCode: {
       primary: "Indian or Western Formal",
     },
@@ -211,7 +212,7 @@ export const EVENTS: Event[] = [
     id: "post-wedding",
     title: "Post-Wedding Breakfast",
     time: new Date("2024-05-26T09:00"),
-    location: ADDRESSES.hotel,
+    location: { start: ADDRESSES.hotel },
     dressCode: {
       primary: "Casual",
     },
@@ -222,12 +223,16 @@ export const EVENTS: Event[] = [
   },
 ];
 
-const getGroupedEvents = (
-  events: Event[],
+export const getGroupedEvents = (
+  eventIds: EventId[],
 ): { [k: string]: { date: Date; events: Event[] } } => {
   let groupedEvents: { [k: string]: { date: Date; events: Event[] } } = {};
 
   EVENTS.forEach((event) => {
+    if (!eventIds.includes(event.id)) {
+      return;
+    }
+
     const time = event.time;
     const dateString = `${time.getDate()}-${time.getMonth()}-${time.getFullYear()}`;
     const group = groupedEvents[dateString];
@@ -255,5 +260,3 @@ const getGroupedEvents = (
 
   return groupedEvents;
 };
-
-export const GROUPED_EVENTS = getGroupedEvents(EVENTS);

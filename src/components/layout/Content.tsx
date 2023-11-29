@@ -19,7 +19,7 @@ const Content: React.FC<{
           style={{ objectFit: "cover" }}
         />
         {title && (
-          <div className="absolute left-0 top-0 flex h-full w-full items-center justify-center bg-foreground/70 p-6 text-background transition-opacity group-hover:opacity-100 md:opacity-80">
+          <div className="absolute left-0 top-0 flex h-full w-full select-none items-center justify-center bg-foreground/70 p-6 text-background transition-opacity group-hover:opacity-100 md:opacity-80">
             <h2 className="font-meddon text-4xl !leading-[1.3] lg:text-6xl">
               {title}
             </h2>
