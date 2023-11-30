@@ -28,7 +28,7 @@ import { useForm } from "react-hook-form";
 export default function SignIn() {
   return (
     <div className="flex w-full flex-col gap-8">
-      <div className="flex w-full items-center justify-center max-md:mt-8">
+      <div className="flex w-full items-center justify-center ">
         <Image src={Flower} alt="flower" className="h-20 w-auto" priority />
       </div>
       <div className="font-noto w-full text-center font-light leading-[1.8] [text-wrap:balance]">
@@ -107,15 +107,17 @@ const SignInForm = () => {
                 <div className="mb-4 text-lg font-medium">
                   We couldn&apos;t find you.
                 </div>
-                <div className="mb-2">
+                <div className="mb-3">
                   There are not any registered guests with the information you
                   entered. Please check your input or try again with the
                   information of someone else in your party.
                 </div>
                 <div>
                   Please feel free to{" "}
-                  <a href={`mailto:${EMAIL_ADDRESS}`}>contract us</a> for some
-                  extra help!
+                  <a href={`mailto:${EMAIL_ADDRESS}`} className="underline">
+                    contact us
+                  </a>{" "}
+                  for some extra help!
                 </div>
               </div>
             ),
@@ -219,10 +221,10 @@ const SignInForm = () => {
                         className="grid grid-cols-2 gap-4"
                       >
                         {multipleFoundGuests.map(({ guest, party }) => {
-                          console.log({ guest: guest.id, field: field.value });
+                          // console.log({ guest: guest.id, field: field.value });
                           return (
                             <FormItem
-                              className="col-span-2 flex w-full space-x-3 space-y-0 p-4 md:col-span-1"
+                              className="col-span-2 flex w-full space-x-3 space-y-0 px-4 py-1 md:col-span-1"
                               key={guest.id}
                             >
                               <FormControl>

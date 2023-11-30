@@ -1,8 +1,8 @@
-import Image from "next/image";
-import { Metadata } from "next";
-import STORY_CONTENT from "./content";
-import LandingImage from "public/home/landing.jpeg";
 import { Content } from "@/components/layout/Content";
+import { Metadata } from "next";
+import Image from "next/image";
+import LandingImage from "public/story/Landing.jpeg";
+import STORY_CONTENT from "./content";
 
 const TITLE = "Our Story";
 

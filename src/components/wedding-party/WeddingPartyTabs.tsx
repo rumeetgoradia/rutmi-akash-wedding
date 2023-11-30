@@ -1,13 +1,12 @@
 "use client";
 
+import { PersonWithTagline, type PersonWithBio } from "@/components/people";
 import { PersonBioDialog } from "@/components/people/PersonBioDialog";
-import { Tabs } from "@/components/ui/tabs";
-import { TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
-import { type PersonWithBio, PersonWithTagline } from "@/components/people";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { PersonDisplay } from "@/components/people/PersonDisplay";
 import { PersonTaglineDisplay } from "@/components/people/PersonTaglineDisplay";
+import { Tabs } from "@/components/ui/tabs";
+import { cn } from "@/lib/utils";
+import { TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
+import { useState } from "react";
 
 const values = ["bride", "groom"] as const;
 

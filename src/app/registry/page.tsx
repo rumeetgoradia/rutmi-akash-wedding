@@ -2,7 +2,8 @@ import { Content } from "@/components/layout/Content";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import LandingImage from "public/home/landing.jpeg";
+import Flower from "public/flower.png";
+import LandingImage from "public/registry/Landing.jpeg";
 import { FUNDS } from "./content";
 
 const TITLE = "Registry";
@@ -14,16 +15,21 @@ export const metadata: Metadata = {
 export default function Registry() {
   return (
     <Content title={TITLE} hero={LandingImage}>
-      <div className="flex w-full flex-col gap-4 sm:gap-6">
-        <p className="font-noto text-center font-light leading-[1.8]">
-          Your presence is enough of a gift for us! However, for those of you
-          who would like to give some more, we are accepting cash/check gifts or
-          donations to one of our two life funds below. We appreciate anything
-          you give!
-        </p>
-        <p className="font-noto mb-2 text-center font-light leading-[1.8]">
-          Please note: No boxed gifts.
-        </p>
+      <div className="flex w-full flex-col gap-8">
+        <div className="flex w-full items-center justify-center">
+          <Image src={Flower} alt="flower" className="h-20 w-auto" priority />
+        </div>
+        <div className="flex w-full flex-col gap-4 [text-wrap:balance]">
+          <p className="font-noto text-center font-light leading-[1.8]">
+            Your presence is enough of a gift for us! However, for those of you
+            who would like to give some more, we are accepting cash/check gifts
+            or donations to one of our two life funds below. We appreciate
+            anything you give!
+          </p>
+          <p className="font-noto mb-2 text-center font-light leading-[1.8]">
+            Please note: No boxed gifts.
+          </p>
+        </div>
         <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
           {FUNDS.map(({ title, image, url }) => (
             <Link

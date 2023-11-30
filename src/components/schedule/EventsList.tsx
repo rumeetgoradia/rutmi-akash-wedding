@@ -15,7 +15,7 @@ export const EventsList = () => {
 
   if (!guest || isLoading || !allowedEvents) {
     return (
-      <div className="flex w-full justify-center lg:pt-16">
+      <div className="flex w-full justify-center">
         <div
           className="inline-block h-44 w-44 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
           role="status"
