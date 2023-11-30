@@ -1,4 +1,8 @@
+"use client";
+
+import SignIn from "@/components/layout/SignIn";
 import { cn } from "@/lib/utils";
+import { useGuestStore, useHydration } from "@/store/guest";
 import Image, { StaticImageData } from "next/image";
 
 const Content: React.FC<{
@@ -6,6 +10,9 @@ const Content: React.FC<{
   title?: string;
   children: React.ReactNode;
 }> = ({ hero, title, children }) => {
+  const { guest } = useGuestStore();
+  const hydrated = useHydration();
+
   return (
     <div className="w-full">
       <div className="group relative aspect-video w-full overflow-hidden">
@@ -27,7 +34,22 @@ const Content: React.FC<{
         )}
       </div>
       <div className="mx-auto flex w-full max-w-screen-md flex-col items-center gap-8 bg-background py-12 max-md:px-8 md:pt-16">
-        {children}
+        {guest ? (
+          children
+        ) : hydrated ? (
+          <SignIn />
+        ) : (
+          <div className="flex w-full justify-center lg:pt-16">
+            <div
+              className="inline-block h-44 w-44 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+              role="status"
+            >
+              <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
+                Loading...
+              </span>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

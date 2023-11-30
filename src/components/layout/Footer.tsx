@@ -21,7 +21,7 @@ const Footer = () => {
           <p className="font-noto text-sm text-primary">{EMAIL_ADDRESS}</p>
         </Link>
       </div>
-      {guest && (
+      {guest ? (
         <div className="font-figtree select-none text-sm opacity-50 transition-opacity hover:opacity-100">
           Not {guest.firstName} {guest.lastName}?{" "}
           <span
@@ -32,6 +32,8 @@ const Footer = () => {
             Log in again.
           </span>
         </div>
+      ) : (
+        <div className="h-[20px] w-full" />
       )}
     </div>
   );

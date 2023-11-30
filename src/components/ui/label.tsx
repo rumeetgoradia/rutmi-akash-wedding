@@ -19,7 +19,7 @@ const Label = React.forwardRef<
     ref={ref}
     className={cn(
       labelVariants(),
-      "font-figtree text-sm font-light uppercase tracking-widest",
+      "font-figtree  uppercase tracking-widest",
       className,
     )}
     {...props}

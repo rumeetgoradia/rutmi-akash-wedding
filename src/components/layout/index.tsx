@@ -7,7 +7,7 @@ import Topper from "@/components/layout/Topper";
 import Navigation from "@/components/navigation";
 import { cn } from "@/lib/utils";
 import { useGuestStore, useHydration } from "@/store/guest";
-import { redirect, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
   const { guest } = useGuestStore();
@@ -15,9 +15,9 @@ const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   const pathname = usePathname();
 
-  if (hydrated && !guest && pathname !== "/login") {
-    redirect(`/login?pathname=${pathname}`);
-  }
+  // if (hydrated && !guest && pathname !== "/login") {
+  //   redirect(`/login?pathname=${pathname}`);
+  // }
 
   return (
     <>

@@ -52,6 +52,8 @@ export const eventEnum = pgEnum("event", [
   "post-wedding",
 ]);
 
+export type Party = typeof parties.$inferSelect;
+
 export const parties = pgTable("party", {
   id: text("id").primaryKey(),
   label: text("label").notNull(),

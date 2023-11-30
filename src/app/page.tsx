@@ -19,7 +19,7 @@ export default function Home() {
         </h2>
         <Countdown date={WEDDING_DATE} />
       </div>
-      <p className="font-noto text-center font-light leading-[1.8] lg:pt-12">
+      <p className="font-noto text-center font-light leading-[1.8] [text-wrap:balance] lg:pt-12">
         We can&apos;t wait to share our special day with you! Please navigate
         our website to learn more about our story and upcoming nuptials.
       </p>

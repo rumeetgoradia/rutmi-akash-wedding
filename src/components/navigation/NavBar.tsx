@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_ROUTES } from "./routes";
 
-const NavBar = () => {
+const NavBar: React.FC<{ disabled?: boolean }> = ({ disabled }) => {
   const currentPath = usePathname();
 
   return (
@@ -25,7 +25,8 @@ const NavBar = () => {
             className={cn(
               "rounded-sm py-1 pl-2 pr-[calc(0.5rem-0.05em)] font-light tracking-wider",
               currentPath === path && "bg-foreground-ghost",
-              "hover:bg-foreground-ghost transition-colors",
+              "hover:bg-foreground-ghost transition-[color,background-color,opacity]",
+              disabled && "pointer-events-none opacity-30",
             )}
             title={title}
             key={`navbar-${title}`}

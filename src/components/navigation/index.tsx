@@ -7,17 +7,11 @@ import NavSheet from "./NavSheet";
 export default function Navigation() {
   const { guest } = useGuestStore();
 
-  if (!guest) {
-    return null;
-  }
-
   return (
     <>
-      <div className="md:hidden">
-        <NavSheet />
-      </div>
+      <div className="md:hidden">{!!guest && <NavSheet />}</div>
       <div className="w-full max-md:hidden">
-        <NavBar />
+        <NavBar disabled={!guest} />
       </div>
     </>
   );
