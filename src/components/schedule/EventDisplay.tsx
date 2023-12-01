@@ -17,7 +17,7 @@ const EventDisplay: React.FC<{ event: Event; order: number }> = ({
           {description?.map((descPar) => <p key={descPar}>{descPar}</p>)}
         </div>
       </div>
-      <div className="font-figtree col-span-5 flex w-full flex-col gap-2 text-foreground/80 md:col-span-2">
+      <div className="font-figtree col-span-5 flex w-full flex-col gap-2 text-foreground/80 md:col-span-2 md:pt-1">
         <div>
           <div className="flex gap-2 text-lg font-medium">
             <Clock height={20} className="mt-[1px]" />
@@ -50,7 +50,7 @@ const EventDisplay: React.FC<{ event: Event; order: number }> = ({
             <div className="leading-[1.3]">
               <div>{dressCode.primary}</div>
               {dressCode.note && (
-                <div className="text-md font-light">{dressCode.note}</div>
+                <div className="text-sm font-light">{dressCode.note}</div>
               )}
             </div>
           </div>
@@ -87,7 +87,7 @@ const AddressDisplay = ({
           >
             {title}
           </Link>
-          <div className="text-md font-light">
+          <div className="text-sm font-light">
             <div>{street}</div>
             <div>
               {city}, {state} {zipCode}

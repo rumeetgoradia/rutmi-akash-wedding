@@ -11,7 +11,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { RadioGroup } from "@/components/ui/radio-group";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { SignInInputSchema } from "@/server/api/routers/auth.schema";
@@ -82,18 +82,37 @@ const SignInForm = () => {
           case "WRONG_PASSWORD": {
             toast({
               variant: "destructive",
-              title: "Wrong password!",
-              description:
-                "You submitted an invalid password. Please try again! Note: the password is case-sensitive.",
+              description: (
+                <div className="font-figtree w-full">
+                  <div className="mb-4 text-lg font-medium">
+                    Wrong password!
+                  </div>
+                  <div>
+                    You submitted an invalid password. Please try again! Note:
+                    the password is case-sensitive.
+                  </div>
+                </div>
+              ),
             });
             break;
           }
           case "INTERNAL_SERVER_ERROR": {
             toast({
-              variant: "destructive",
-              title: "Something went wrong!",
-              description:
-                "We ran into some issues while looking you up. Please try again later, or contact Rutmi or Akash for extra assistance.",
+              description: (
+                <div className="font-figtree w-full">
+                  <div className="mb-4 text-lg font-medium">
+                    Something went wrong!
+                  </div>
+                  <div>
+                    We ran into some issues while looking you up. Please try
+                    again later, or{" "}
+                    <a href={`mailto:${EMAIL_ADDRESS}`} className="underline">
+                      contact us
+                    </a>{" "}
+                    for some extra help!
+                  </div>
+                </div>
+              ),
             });
             break;
           }
@@ -108,13 +127,17 @@ const SignInForm = () => {
                   We couldn&apos;t find you.
                 </div>
                 <div className="mb-3">
-                  There are not any registered guests with the information you
-                  entered. Please check your input or try again with the
+                  There are&apos;t any registered guests with the information
+                  you entered. Please check your input or try again with the
                   information of someone else in your party.
                 </div>
                 <div>
                   Please feel free to{" "}
-                  <a href={`mailto:${EMAIL_ADDRESS}`} className="underline">
+                  <a
+                    href={`mailto:${EMAIL_ADDRESS}`}
+                    className="underline"
+                    title="Contact Us"
+                  >
                     contact us
                   </a>{" "}
                   for some extra help!
@@ -202,6 +225,7 @@ const SignInForm = () => {
                   className="cursor-pointer text-primary hover:underline"
                   onClick={() => {
                     setMultipleFoundGuests(undefined);
+                    form.reset();
                   }}
                 >
                   Or, try again with a different name.
@@ -227,9 +251,7 @@ const SignInForm = () => {
                               className="col-span-2 flex w-full space-x-3 space-y-0 px-4 py-1 md:col-span-1"
                               key={guest.id}
                             >
-                              <FormControl>
-                                <RadioGroupItem value={guest.id.toString()} />
-                              </FormControl>
+                              <FormControl></FormControl>
                               <FormLabel
                                 className={cn(
                                   guest.id.toString() ===
@@ -270,7 +292,7 @@ const SignInForm = () => {
         >
           {loading ? (
             <div
-              className="inline-block h-6 w-6 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+              className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
               role="status"
             >
               <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
