@@ -13,10 +13,11 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
+  metadataBase: new URL("https://www.rutmiandakash.com"),
   openGraph: {
     title,
     description,
-    images: "https://www.rutmiandakash.com/home/landing.jpeg",
+    images: "/home/landing.jpeg",
   },
 };
 

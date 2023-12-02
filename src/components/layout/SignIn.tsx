@@ -11,7 +11,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { RadioGroup } from "@/components/ui/radio-group";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { SignInInputSchema } from "@/server/api/routers/auth.schema";
@@ -251,7 +251,9 @@ const SignInForm = () => {
                               className="col-span-2 flex w-full space-x-3 space-y-0 px-4 py-1 md:col-span-1"
                               key={guest.id}
                             >
-                              <FormControl></FormControl>
+                              <FormControl>
+                                <RadioGroupItem value={guest.id.toString()} />
+                              </FormControl>
                               <FormLabel
                                 className={cn(
                                   guest.id.toString() ===
