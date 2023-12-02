@@ -1,6 +1,7 @@
 "use client";
 
 import { EMAIL_ADDRESS } from "@/app/constants";
+import { scrollToTop } from "@/lib/utils";
 import { useGuestStore } from "@/store/guest";
 import { Mail } from "lucide-react";
 import Link from "next/link";
@@ -26,7 +27,10 @@ const Footer = () => {
           Not {guest.firstName} {guest.lastName}?{" "}
           <span
             className="cursor-pointer text-primary hover:underline"
-            onClick={() => signOut()}
+            onClick={() => {
+              signOut();
+              scrollToTop();
+            }}
             title="Log in again."
           >
             Log in again.

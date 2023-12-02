@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/components/ui/use-toast";
-import { cn } from "@/lib/utils";
+import { cn, scrollToTop } from "@/lib/utils";
 import { SignInInputSchema } from "@/server/api/routers/auth.schema";
 import { Guest, Party } from "@/server/db/schema";
 import { useGuestStore } from "@/store/guest";
@@ -154,6 +154,7 @@ const SignInForm = () => {
         }
 
         signIn(foundGuests[0].guest);
+        scrollToTop();
       }
     },
   });
