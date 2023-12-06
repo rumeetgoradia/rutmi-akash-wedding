@@ -1,0 +1,193 @@
+{
+  "id": "25d59eac-8567-4533-ac44-486fc8c0e2be",
+  "prevId": "5559a6e4-7771-4aa9-82e8-9619f7d4534a",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "events_parties": {
+      "name": "events_parties",
+      "schema": "",
+      "columns": {
+        "party_id": {
+          "name": "party_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "event": {
+          "name": "event",
+          "type": "event",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "events_parties_party_id_party_id_fk": {
+          "name": "events_parties_party_id_party_id_fk",
+          "tableFrom": "events_parties",
+          "tableTo": "party",
+          "columnsFrom": [
+            "party_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "events_parties_party_id_event_pk": {
+          "name": "events_parties_party_id_event_pk",
+          "columns": [
+            "party_id",
+            "event"
+          ]
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "guest": {
+      "name": "guest",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "first_name": {
+          "name": "first_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "last_name": {
+          "name": "last_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "suffix": {
+          "name": "suffix",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_admin": {
+          "name": "is_admin",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false,
+          "default": false
+        },
+        "party_id": {
+          "name": "party_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {
+        "first_name_idx": {
+          "name": "first_name_idx",
+          "columns": [
+            "first_name"
+          ],
+          "isUnique": false
+        },
+        "last_name_idx": {
+          "name": "last_name_idx",
+          "columns": [
+            "last_name"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "guest_party_id_party_id_fk": {
+          "name": "guest_party_id_party_id_fk",
+          "tableFrom": "guest",
+          "tableTo": "party",
+          "columnsFrom": [
+            "party_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "party": {
+      "name": "party",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "label": {
+          "name": "label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "phone": {
+          "name": "phone",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {
+    "event": {
+      "name": "event",
+      "values": {
+        "housewarming": "housewarming",
+        "bride-pre-wedding": "bride-pre-wedding",
+        "chandlo-matli": "chandlo-matli",
+        "bride-pre-wedding-2": "bride-pre-wedding-2",
+        "groom-pre-wedding": "groom-pre-wedding",
+        "mehndi": "mehndi",
+        "garba-sangeet": "garba-sangeet",
+        "haldi": "haldi",
+        "welcome-dinner": "welcome-dinner",
+        "wedding": "wedding",
+        "reception": "reception",
+        "post-wedding": "post-wedding"
+      }
+    }
+  },
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}

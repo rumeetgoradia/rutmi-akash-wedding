@@ -1,12 +1,18 @@
 "use client";
 
 import { Address, Event } from "@/app/schedule/content";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import dateFormat from "dateformat";
 import { Clock, MapPin, Shirt } from "lucide-react";
 import Link from "next/link";
 
 const EventDisplay: React.FC<{ event: Event; order: number }> = ({
-  event: { dressCode, location, time, title, description, subevents },
+  event: { dressCode, location, time, title, description },
   order,
 }) => {
   return (
@@ -14,7 +20,9 @@ const EventDisplay: React.FC<{ event: Event; order: number }> = ({
       <div className="col-span-5 flex w-full flex-col gap-6 md:col-span-3">
         <h3 className="font-noto text-2xl font-semibold">{title}</h3>
         <div className="font-figtree flex w-full flex-col gap-3 max-md:hidden">
-          {description?.map((descPar) => <p key={descPar}>{descPar}</p>)}
+          {description.primary.map((descPar) => (
+            <p key={descPar}>{descPar}</p>
+          ))}
         </div>
       </div>
       <div className="font-figtree col-span-5 flex w-full flex-col gap-2 text-foreground/80 md:col-span-2 md:pt-1">
@@ -56,9 +64,32 @@ const EventDisplay: React.FC<{ event: Event; order: number }> = ({
           </div>
         </div>
       </div>
+      {description.additional && (
+        <div className="font-figtree col-span-5 flex w-full flex-col gap-3 text-sm opacity-70 max-md:hidden">
+          {description.additional.map((descPar) => (
+            <p key={descPar}>{descPar}</p>
+          ))}
+        </div>
+      )}
       <div className="col-span-5 md:hidden">
         <div className="font-figtree flex w-full flex-col gap-3">
-          {description?.map((descPar) => <p key={descPar}>{descPar}</p>)}
+          {description.primary.map((descPar) => (
+            <p key={descPar}>{descPar}</p>
+          ))}
+          {description.additional && (
+            <>
+              <Accordion type="single" collapsible>
+                <AccordionItem value="item-1" className="border-b-0">
+                  <AccordionTrigger>More Info</AccordionTrigger>
+                  <AccordionContent>
+                    {description.additional.map((descPar) => (
+                      <p key={descPar}>{descPar}</p>
+                    ))}
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </>
+          )}
         </div>
       </div>
     </div>
