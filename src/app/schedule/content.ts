@@ -253,9 +253,9 @@ export const getGroupedEvents = (
   let groupedEvents: { [k: string]: { date: Date; events: Event[] } } = {};
 
   EVENTS.forEach((event) => {
-    // if (!eventIds.includes(event.id)) {
-    //   return;
-    // }
+    if (!eventIds.includes(event.id)) {
+      return;
+    }
 
     const time = event.time;
     const dateString = `${time.getDate()}-${time.getMonth()}-${time.getFullYear()}`;
