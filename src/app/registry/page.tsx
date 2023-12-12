@@ -27,7 +27,7 @@ export default function Registry() {
             anything you give!
           </p>
           <p className="font-noto mb-2 text-center font-light leading-[1.8]">
-            Please note: No boxed gifts.
+            Please note: <strong className="uppercase">No boxed gifts.</strong>
           </p>
         </div>
         <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2">
