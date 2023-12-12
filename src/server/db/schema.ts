@@ -39,7 +39,6 @@ export const guestRelations = relations(guests, ({ one }) => ({
 }));
 
 export const eventEnum = pgEnum("event", [
-  "housewarming",
   "bride-pre-wedding",
   "chandlo-matli",
   "bride-pre-wedding-2",

@@ -47,12 +47,12 @@ export const ADDRESSES: Record<string, Address> = {
     googleMaps: "https://maps.app.goo.gl/3a7x6wN37nYuMs446",
   },
   hotel: {
-    title: "Hanover Marriot",
-    street: ["1401 NJ-10 East"],
-    city: "Whippany",
+    title: "DoubleTree by Hilton, Fairfield",
+    street: ["690 US-46"],
+    city: "Fairfield",
     state: "NJ",
-    zipCode: "07891",
-    googleMaps: "https://maps.app.goo.gl/LBFys454JM3Dqgm86",
+    zipCode: "07004",
+    googleMaps: "https://maps.app.goo.gl/4mLyP7EPsSqKfo2r6",
   },
   legacy: {
     title: "The Legacy Castle",
@@ -221,7 +221,7 @@ export const EVENTS: Event[] = [
     id: "reception",
     title: "Reception",
     time: new Date("2024-05-25T18:30"),
-    location: { start: ADDRESSES.hotel },
+    location: { start: ADDRESSES.legacy },
     dressCode: {
       primary: "Indian or Western Formal",
     },
