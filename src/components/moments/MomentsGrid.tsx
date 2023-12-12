@@ -9,6 +9,9 @@ import MomentsSlideshow from "./MomentsSlideShow";
 const MomentsGrid: React.FC<{ images: StaticImageData[] }> = ({ images }) => {
   const [orderedImages, setOrderedImages] = useState<StaticImageData[]>(images);
 
+  // Useless for now
+  const [timesOpened, setTimesOpened] = useState<number>(0);
+
   const getAlt = (index: number) => {
     return `Our Moments - ${index + 1}`;
   };
@@ -25,6 +28,8 @@ const MomentsGrid: React.FC<{ images: StaticImageData[] }> = ({ images }) => {
                     ...images.slice(index),
                     ...images.slice(0, index),
                   ]);
+                } else {
+                  setTimesOpened((prev) => prev + 1);
                 }
               }}
             >
@@ -42,7 +47,7 @@ const MomentsGrid: React.FC<{ images: StaticImageData[] }> = ({ images }) => {
                 <Dialog.Content
                   className={cn(
                     "DialogContent",
-                    "fixed left-1/2 top-1/2 z-[10000] flex w-full max-w-[calc(100vw_-_3rem)] -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden outline-none md:max-w-screen-md",
+                    "fixed left-1/2 top-1/2 z-[10000] flex w-full max-w-[calc(100vw_-_3rem)] -translate-x-1/2 -translate-y-1/2 items-center justify-center outline-none md:max-w-screen-md",
                   )}
                 >
                   <MomentsSlideshow images={orderedImages} getAlt={getAlt} />
