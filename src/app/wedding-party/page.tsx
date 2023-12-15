@@ -1,7 +1,7 @@
 import { Content } from "@/components/layout/Content";
-import WeddingPartyTabs from "@/components/wedding-party/WeddingPartyTabs";
 import { Metadata } from "next";
 import LandingImage from "public/wedding-party/Landing.jpeg";
+import WeddingPartyTabs from "./WeddingPartyTabs";
 import { BRIDE_WEDDING_PARTY, GROOM_WEDDING_PARTY } from "./content";
 
 const TITLE = "The Wedding Party";

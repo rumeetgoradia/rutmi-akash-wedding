@@ -1,7 +1,7 @@
 import { Content } from "@/components/layout/Content";
-import { EventsList } from "@/components/schedule/EventsList";
 import { Metadata } from "next";
 import LandingImage from "public/schedule/Landing.png";
+import { EventsList } from "./EventsList";
 
 const TITLE = "Schedule of Events";
 

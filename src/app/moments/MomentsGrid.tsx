@@ -1,10 +1,15 @@
 "use client";
 
+import { animation } from "@/lib/animation";
 import { cn } from "@/lib/utils";
 import * as Dialog from "@radix-ui/react-dialog";
+import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
 import { useState } from "react";
+import Masonry from "react-smart-masonry";
 import MomentsSlideshow from "./MomentsSlideShow";
+
+const breakpoints = { base: 0, sm: 640 };
 
 const MomentsGrid: React.FC<{ images: StaticImageData[] }> = ({ images }) => {
   const [orderedImages, setOrderedImages] = useState<StaticImageData[]>(images);
@@ -17,7 +22,11 @@ const MomentsGrid: React.FC<{ images: StaticImageData[] }> = ({ images }) => {
   };
 
   return (
-    <div className="w-full columns-1 gap-4 sm:columns-2 md:gap-6 [&>.masonry-img:not(:first-child)]:mt-4 sm:[&>.masonry-img:not(:first-child)]:mt-6">
+    <Masonry
+      breakpoints={breakpoints}
+      columns={{ base: 1, sm: 2 }}
+      gap={{ base: 16, sm: 24 }}
+    >
       {images.map((image, index) => {
         return (
           <div className="masonry-img w-full" key={image.src}>
@@ -34,13 +43,15 @@ const MomentsGrid: React.FC<{ images: StaticImageData[] }> = ({ images }) => {
               }}
             >
               <Dialog.Trigger asChild>
-                <Image
-                  src={image}
-                  alt={getAlt(index)}
-                  placeholder="blur"
-                  sizes="300px"
-                  className="cursor-pointer"
-                />
+                <motion.div {...animation(index)}>
+                  <Image
+                    src={image}
+                    alt={getAlt(index)}
+                    placeholder="blur"
+                    sizes="300px"
+                    className="cursor-pointer"
+                  />
+                </motion.div>
               </Dialog.Trigger>
               <Dialog.Portal>
                 <Dialog.Overlay className="DialogOverlay fixed left-0 top-0 z-[9999] h-[100vh] w-[100vw] bg-foreground/50 " />
@@ -57,7 +68,7 @@ const MomentsGrid: React.FC<{ images: StaticImageData[] }> = ({ images }) => {
           </div>
         );
       })}
-    </div>
+    </Masonry>
   );
 };
 

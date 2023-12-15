@@ -4,8 +4,10 @@ import { PersonWithTagline, type PersonWithBio } from "@/components/people";
 import { PersonBioDialog } from "@/components/people/PersonBioDialog";
 import { PersonTaglineDisplay } from "@/components/people/PersonTaglineDisplay";
 import { Tabs } from "@/components/ui/tabs";
+import { animation } from "@/lib/animation";
 import { cn } from "@/lib/utils";
 import { TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 const values = ["bride", "groom"] as const;
@@ -56,11 +58,14 @@ const WeddingPartyTabs: React.FC<{
             stories!
           </p>
           <div className="grid w-full grid-cols-2 gap-4 md:gap-6">
-            {brideWeddingParty.map((weddingPartyMember) => (
-              <PersonBioDialog
-                {...weddingPartyMember}
+            {brideWeddingParty.map((weddingPartyMember, index) => (
+              <motion.div
+                className="w-full"
                 key={`bride-wedding-party-${weddingPartyMember.name}`}
-              />
+                {...animation(index)}
+              >
+                <PersonBioDialog {...weddingPartyMember} />
+              </motion.div>
             ))}
           </div>
         </TabsContent>
@@ -72,13 +77,14 @@ const WeddingPartyTabs: React.FC<{
             sure to ask them what their nicknames mean at the wedding!
           </p>
           <div className="grid w-full grid-cols-2 gap-4 md:gap-6">
-            {groomWeddingParty.map((weddingPartyMember) => (
-              <div
+            {groomWeddingParty.map((weddingPartyMember, index) => (
+              <motion.div
                 className="flex flex-col items-center"
                 key={`groom-wedding-party-${weddingPartyMember.name}`}
+                {...animation(index)}
               >
                 <PersonTaglineDisplay {...weddingPartyMember} />
-              </div>
+              </motion.div>
             ))}
           </div>
         </TabsContent>

@@ -1,4 +1,4 @@
-import Countdown from "@/components/home/countdown";
+import Countdown from "@/components/Countdown";
 import { Content } from "@/components/layout/Content";
 import { Metadata } from "next";
 import Image from "next/image";

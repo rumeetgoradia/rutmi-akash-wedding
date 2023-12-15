@@ -1,10 +1,12 @@
 "use client";
 
 import { getGroupedEvents } from "@/app/schedule/content";
-import EventDisplay from "@/components/schedule/EventDisplay";
+import EventDisplay from "@/app/schedule/EventDisplay";
+import { animation } from "@/lib/animation";
 import { cn } from "@/lib/utils";
 import { useGuestStore } from "@/store/guest";
 import { api } from "@/trpc/react";
+import { motion } from "framer-motion";
 
 export const EventsList = () => {
   const { guest } = useGuestStore();
@@ -34,7 +36,11 @@ export const EventsList = () => {
     <div className="-mb-4 -mt-4 grid w-full grid-cols-1 gap-4">
       {groupedEventsEntries.map(([key, { date, events }], index) => {
         return (
-          <div key={`${key}-grouped-events`} className="w-full px-2 ">
+          <motion.div
+            key={`${key}-grouped-events`}
+            className="w-full px-2 "
+            {...animation(index)}
+          >
             <div
               className={cn(
                 "w-full border-b-[1px] border-b-foreground/30 p-4",
@@ -68,7 +74,7 @@ export const EventsList = () => {
                 );
               })}
             </div>
-          </div>
+          </motion.div>
         );
       })}
     </div>
