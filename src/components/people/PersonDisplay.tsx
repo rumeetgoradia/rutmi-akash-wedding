@@ -1,22 +1,20 @@
 "use client";
 
-import { notoSerif } from "@/app/fonts";
-import { cn } from "@/lib/utils";
-import * as Dialog from "@radix-ui/react-dialog";
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 
 import { type Person } from ".";
 
 export const PersonDisplay: React.FC<Person> = ({ name, role, image }) => {
   return (
     <div className="flex w-full flex-col items-center">
-      <div className="relative aspect-square w-full">
+      <div className="relative aspect-square w-full overflow-hidden">
         <Image
           src={image}
           alt={`${name} - ${role}`}
           fill
           style={{ objectFit: "cover", objectPosition: "center" }}
           placeholder="blur"
+          className="transition-transform hover:scale-105"
         />
       </div>
       <div className={"font-noto mt-2 text-center md:text-lg"}>{name}</div>

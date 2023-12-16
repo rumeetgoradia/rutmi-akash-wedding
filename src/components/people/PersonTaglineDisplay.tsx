@@ -1,11 +1,7 @@
 "use client";
 
-import { notoSerif, meddon } from "@/app/fonts";
-import { cn } from "@/lib/utils";
-import * as Dialog from "@radix-ui/react-dialog";
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 
-import { type Person } from ".";
 import { PersonWithTagline } from "@/components/people/index";
 
 export const PersonTaglineDisplay: React.FC<PersonWithTagline> = ({
@@ -21,7 +17,7 @@ export const PersonTaglineDisplay: React.FC<PersonWithTagline> = ({
           src={image}
           alt={`${name} - ${role}`}
           fill
-          className="transition-[filter] group-hover:blur-sm"
+          className="transition-[filter,transform] group-hover:scale-105 group-hover:blur-sm"
           style={{ objectFit: "cover", objectPosition: "center" }}
           placeholder="blur"
         />
