@@ -1,5 +1,6 @@
 "use client";
 
+import { EMAIL_ADDRESS } from "@/app/constants";
 import { figtree, meddon, notoSerif } from "@/app/fonts";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,7 +16,6 @@ import { AlignJustify, Mail } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_ROUTES } from "./routes";
-import { EMAIL_ADDRESS } from "@/app/constants";
 
 const NavSheet = () => {
   const currentPath = usePathname();
@@ -41,6 +41,7 @@ const NavSheet = () => {
         </Button>
       </SheetTrigger>
       <SheetContent
+        onOpenAutoFocus={(event) => event.preventDefault()}
         className="z-[51] flex h-[100vh] w-[100vw] max-w-[400px] flex-col gap-6 p-8 pt-14"
         side="left"
       >

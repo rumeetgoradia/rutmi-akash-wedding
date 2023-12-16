@@ -29,7 +29,7 @@ const MomentsGrid: React.FC<{ images: StaticImageData[] }> = ({ images }) => {
     >
       {images.map((image, index) => {
         return (
-          <div className="masonry-img w-full" key={image.src}>
+          <div className="w-full" key={image.src}>
             <Dialog.Root
               onOpenChange={(open) => {
                 if (open) {
@@ -56,6 +56,7 @@ const MomentsGrid: React.FC<{ images: StaticImageData[] }> = ({ images }) => {
               <Dialog.Portal>
                 <Dialog.Overlay className="DialogOverlay fixed left-0 top-0 z-[9999] h-[100vh] w-[100vw] bg-foreground/50 " />
                 <Dialog.Content
+                  onOpenAutoFocus={(event) => event.preventDefault()}
                   className={cn(
                     "DialogContent",
                     "fixed left-1/2 top-1/2 z-[10000] flex w-full max-w-[calc(100vw_-_3rem)] -translate-x-1/2 -translate-y-1/2 items-center justify-center outline-none md:max-w-screen-md",
