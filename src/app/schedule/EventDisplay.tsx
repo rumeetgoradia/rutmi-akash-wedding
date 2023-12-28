@@ -81,7 +81,7 @@ const EventDisplay: React.FC<{ event: Event; order: number }> = ({
               <Accordion type="single" collapsible>
                 <AccordionItem value="item-1" className="border-b-0">
                   <AccordionTrigger>More Info</AccordionTrigger>
-                  <AccordionContent>
+                  <AccordionContent className="flex w-full flex-col gap-3">
                     {description.additional.map((descPar) => (
                       <p key={descPar}>{descPar}</p>
                     ))}
