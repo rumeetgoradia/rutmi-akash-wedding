@@ -52,8 +52,22 @@ import _40 from "public/moments/IMG_8844.jpeg";
 import _44 from "public/moments/IMG_9308.jpeg";
 import _48 from "public/moments/IMG_9918.jpeg";
 import _52 from "public/moments/ssimage.png";
+import _56 from "public/moments/006.jpeg";
+import _57 from "public/moments/046.jpeg";
+import _58 from "public/moments/069.jpeg";
+import _59 from "public/moments/149.jpeg";
+import _60 from "public/moments/411.jpeg";
+import _61 from "public/moments/756.jpeg";
+import _62 from "public/moments/1140.jpeg";
 
 export const IMAGES = [
+  _56,
+  _57,
+  _58,
+  _59,
+  _60,
+  _61,
+  _62,
   _1,
   _2,
   _3,
@@ -61,7 +75,6 @@ export const IMAGES = [
   _49,
   _50,
   _51,
-
   _54,
   _4,
   _5,

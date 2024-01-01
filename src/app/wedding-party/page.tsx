@@ -1,8 +1,5 @@
-import { Content } from "@/components/layout/Content";
 import { Metadata } from "next";
-import LandingImage from "public/wedding-party/Landing.jpeg";
-import WeddingPartyTabs from "./WeddingPartyTabs";
-import { BRIDE_WEDDING_PARTY, GROOM_WEDDING_PARTY } from "./content";
+import { WeddingPartyPage } from "./WeddingPartyPage";
 
 const TITLE = "The Wedding Party";
 
@@ -11,12 +8,5 @@ export const metadata: Metadata = {
 };
 
 export default function WeddingParty() {
-  return (
-    <Content hero={LandingImage} title={TITLE}>
-      <WeddingPartyTabs
-        brideWeddingParty={BRIDE_WEDDING_PARTY}
-        groomWeddingParty={GROOM_WEDDING_PARTY}
-      />
-    </Content>
-  );
+  return <WeddingPartyPage title={TITLE} />;
 }

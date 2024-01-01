@@ -7,6 +7,7 @@ import Image, { StaticImageData } from "next/image";
 
 const Content: React.FC<{
   hero: StaticImageData;
+  heroClassName?: string;
   title?: string;
   children: React.ReactNode;
 }> = ({ hero, title, children }) => {

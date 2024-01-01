@@ -1,5 +1,6 @@
 "use client";
 
+import { SIDES, Side } from "./content";
 import { PersonWithTagline, type PersonWithBio } from "@/components/people";
 import { PersonBioDialog } from "@/components/people/PersonBioDialog";
 import { PersonTaglineDisplay } from "@/components/people/PersonTaglineDisplay";
@@ -10,43 +11,45 @@ import { TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-const values = ["bride", "groom"] as const;
-
 const WeddingPartyTabs: React.FC<{
   brideWeddingParty: PersonWithBio[];
   groomWeddingParty: PersonWithTagline[];
-}> = ({ brideWeddingParty, groomWeddingParty }) => {
-  const [currentValue, setCurrentValue] =
-    useState<(typeof values)[number]>("bride");
-
+  currentSide: Side;
+  setCurrentSide: (v: Side) => void;
+}> = ({
+  brideWeddingParty,
+  groomWeddingParty,
+  currentSide,
+  setCurrentSide,
+}) => {
   return (
     <Tabs
-      defaultValue={values[0]}
+      defaultValue={SIDES[0]}
       className="w-full"
-      value={currentValue}
+      value={currentSide}
       onValueChange={(val) => {
         if (val !== "bride" && val !== "groom") {
           return;
         }
 
-        setCurrentValue(val);
+        setCurrentSide(val);
       }}
     >
       <div className="flex w-full flex-col gap-8">
         <TabsList className="flex w-full justify-between gap-4">
-          {values.map((value) => {
+          {SIDES.map((side) => {
             return (
               <TabsTrigger
-                value={value}
+                value={side}
                 className={cn(
                   "font-noto text-light w-full border-b-[2px] p-2 text-center text-lg font-light uppercase tracking-wider text-foreground/50 transition-[border-color,color,letter-spacing,font-weight]",
-                  currentValue === value
+                  currentSide === side
                     ? "border-b-primary font-medium tracking-widest text-primary"
                     : "border-b-foreground/10 hover:tracking-[0.075em] hover:text-primary",
                 )}
-                key={`wedding-party-tabs-${value}`}
+                key={`wedding-party-tabs-${side}`}
               >
-                {value}
+                {side}
               </TabsTrigger>
             );
           })}

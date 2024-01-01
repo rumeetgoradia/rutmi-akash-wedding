@@ -75,11 +75,11 @@ export const EVENTS: Event[] = [
       primary: [
         "This is a day full of religious pre-wedding prayer ceremonies (pujas) to prepare the bride for her new role as a wife. This day will invite the bride's close family to celebrate the following pujas: Grah Shanti, Ganesh Sthapna, Randal Puja, and the Goyni.",
       ],
-      additional: [
-        'Grah Shanti is a combination of the words "Grah" meaning planets and "Shanti" meaning peace, invoking peace of the planetary house of the bride and groom. It is a pre-wedding ritual performed separately by the bride and groom. The puja seeks the blessings and alignment of the nine "grah" (planets) to remove all obstacles and ensure a peaceful and happy married life for the newlyweds.',
-        "Ganesh Sthapna is one of the first and most important pre-wedding ceremonies. In this puja, Lord Ganesha, the remover of obstacles, is invoked and invited to bless the couple. We ask Lord Ganesha to help remove all obstacles in any and all events leading up to the wedding ceremony and bestow blessings on the couple for a happily married life.",
-        'Randal Puja and Goyni is a combination of pujas and rituals. Simultaneously, the goddess of marriage, "Randal Mata" is invoked and invited to bless the couple and ward off any evil eye on the couple up to the day of their wedding. All invited married women are thought to represent the humanly form of Randal Mataji on this day. Their toes are washed with milk and water as a sign of reverence to the goddess. They are then fed the goddess\'s favorite food: kheer and gol-papdi.',
-      ],
+      // additional: [
+      //   'Grah Shanti is a combination of the words "Grah" meaning planets and "Shanti" meaning peace, invoking peace of the planetary house of the bride and groom. It is a pre-wedding ritual performed separately by the bride and groom. The puja seeks the blessings and alignment of the nine "grah" (planets) to remove all obstacles and ensure a peaceful and happy married life for the newlyweds.',
+      //   "Ganesh Sthapna is one of the first and most important pre-wedding ceremonies. In this puja, Lord Ganesha, the remover of obstacles, is invoked and invited to bless the couple. We ask Lord Ganesha to help remove all obstacles in any and all events leading up to the wedding ceremony and bestow blessings on the couple for a happily married life.",
+      //   'Randal Puja and Goyni is a combination of pujas and rituals. Simultaneously, the goddess of marriage, "Randal Mata" is invoked and invited to bless the couple and ward off any evil eye on the couple up to the day of their wedding. All invited married women are thought to represent the humanly form of Randal Mataji on this day. Their toes are washed with milk and water as a sign of reverence to the goddess. They are then fed the goddess\'s favorite food: kheer and gol-papdi.',
+      // ],
     },
   },
   {
@@ -107,11 +107,11 @@ export const EVENTS: Event[] = [
       primary: [
         "This is another day full of religious pre-wedding prayer ceremonies (pujas) to prepare the bride for her new role as a wife. This day will invite the bride's close family to celebrate the following pujas: Mandap Murat and Mosalu and will end with the bride and groom's families joining to gift them with tools to start their married life in the Wadhamna.",
       ],
-      additional: [
-        "During the Mandap Murat, the bride's parents will ask for the blessings of Mother Earth to commence the wedding. This involves requesting permission to commence the mandap, or the altar at which the couple will be married.",
-        "Following the Mandap Murat, the bride's maternal uncle will present the bride with sweets and culturally significant trinkets in celebration of her upcoming nuptials.",
-        "Finally, following the Mandap Murat will commence the Wadhamna. The Wadhamna is a ceremony where the bride's family invites the groom's family and close relatives from both sides. The bride's family presents the \"kariyavar\", the gifts they are going to give their daughter and son-in-law for their married life (Aanu). The groom's family then reciprocates by bringing all the gifts they are going to give the bride and her family (Varnu). Gifts to each other's relatives are also exchanged during this time.",
-      ],
+      // additional: [
+      //   "During the Mandap Murat, the bride's parents will ask for the blessings of Mother Earth to commence the wedding. This involves requesting permission to commence the mandap, or the altar at which the couple will be married.",
+      //   "Following the Mandap Murat, the bride's maternal uncle will present the bride with sweets and culturally significant trinkets in celebration of her upcoming nuptials.",
+      //   "Finally, following the Mandap Murat will commence the Wadhamna. The Wadhamna is a ceremony where the bride's family invites the groom's family and close relatives from both sides. The bride's family presents the \"kariyavar\", the gifts they are going to give their daughter and son-in-law for their married life (Aanu). The groom's family then reciprocates by bringing all the gifts they are going to give the bride and her family (Varnu). Gifts to each other's relatives are also exchanged during this time.",
+      // ],
     },
   },
   {
@@ -126,13 +126,13 @@ export const EVENTS: Event[] = [
       primary: [
         "This is a day full of religious pre-wedding prayer ceremonies (pujas) to prepare the groom for his new role as a husband. This day will invite the groom's close family to celebrate the following pujas: Grah Shanti, Ganesh Sthapna, Mandap Murat, and Mosalu.",
       ],
-      additional: [
-        'Grah Shanti is a combination of the words "Grah" meaning planets and "Shanti" meaning peace, invoking peace of the planetary house of the bride and groom. It is a pre-wedding ritual performed separately by the bride and groom. The puja seeks the blessings and alignment of the nine "grah" (planets) to remove all obstacles and ensure a peaceful and happy married life for the newlyweds.',
-        "Ganesh Sthapna is one of the first and most important pre-wedding ceremonies. In this puja, Lord Ganesha, the remover of obstacles, is invoked and invited to bless the couple. We ask Lord Ganesha to help remove all obstacles in any and all events leading up to the wedding ceremony and bestow blessings on the couple for a happily married life.",
-        "During the Mandap Murat, the groom's parents will ask for the blessings of Mother Earth to commence the wedding. This involves requesting permission to commence the mandap, or the altar at which the couple will be married.",
-        "Following the Mandap Murat, the groom's maternal uncle will present the groom with sweets and culturally significant trinkets in celebration of his upcoming nuptials.",
-        "Finally, following the Mandap Murat will commence the Aanu-Varnu. The Aanu-Varnu is a ceremony where the bride's family invites the groom's family and close relatives from both sides. The bride's family presents the \"kariyavar\", the gifts they are going to give their daughter and son-in-law for their married life (Aanu). The groom's family then reciprocates by bringing all the gifts they are going to give the bride and her family (Varnu). Gifts to each other's relatives are also exchanged during this time.",
-      ],
+      // additional: [
+      //   'Grah Shanti is a combination of the words "Grah" meaning planets and "Shanti" meaning peace, invoking peace of the planetary house of the bride and groom. It is a pre-wedding ritual performed separately by the bride and groom. The puja seeks the blessings and alignment of the nine "grah" (planets) to remove all obstacles and ensure a peaceful and happy married life for the newlyweds.',
+      //   "Ganesh Sthapna is one of the first and most important pre-wedding ceremonies. In this puja, Lord Ganesha, the remover of obstacles, is invoked and invited to bless the couple. We ask Lord Ganesha to help remove all obstacles in any and all events leading up to the wedding ceremony and bestow blessings on the couple for a happily married life.",
+      //   "During the Mandap Murat, the groom's parents will ask for the blessings of Mother Earth to commence the wedding. This involves requesting permission to commence the mandap, or the altar at which the couple will be married.",
+      //   "Following the Mandap Murat, the groom's maternal uncle will present the groom with sweets and culturally significant trinkets in celebration of his upcoming nuptials.",
+      //   "Finally, following the Mandap Murat will commence the Aanu-Varnu. The Aanu-Varnu is a ceremony where the bride's family invites the groom's family and close relatives from both sides. The bride's family presents the \"kariyavar\", the gifts they are going to give their daughter and son-in-law for their married life (Aanu). The groom's family then reciprocates by bringing all the gifts they are going to give the bride and her family (Varnu). Gifts to each other's relatives are also exchanged during this time.",
+      // ],
     },
   },
   {
@@ -196,8 +196,7 @@ export const EVENTS: Event[] = [
     dressCode: { primary: "Business Casual" },
     description: {
       primary: [
-        "Dolor nisi magna est proident ea do aliquip. Cillum sunt duis enim commodo ipsum exercitation fugiat quis. Est veniam consequat consectetur tempor minim ea minim occaecat eiusmod pariatur cupidatat. Voluptate et adipisicing labore sint est minim minim. Dolore id exercitation anim esse. Ea sunt ullamco dolor ea reprehenderit labore consequat Lorem veniam tempor anim laborum deserunt mollit. Cupidatat proident nostrud laborum veniam sit dolor dolore adipisicing elit elit id non deserunt.",
-        "Ut ad sit dolore cupidatat consequat et in. Et dolor eiusmod mollit culpa veniam culpa quis culpa mollit enim incididunt. Dolor cillum sunt deserunt quis eu non eiusmod velit commodo.",
+        "Join us for food and fun at the pre-wedding welcome dinner. Kick your feet up, enjoy delicious food and drinks, and listen to heartfelt speeches from the couple's closest friends and family! This is meant to be a stress-free, casual way to mingle and enjoy each other's company before the fast-paced wedding day festivities.",
       ],
     },
   },

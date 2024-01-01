@@ -20,6 +20,9 @@ import Shivam from "public/wedding-party/Shivam.jpg";
 import Vikash from "public/wedding-party/Vikash.jpg";
 import Deepesh from "public/wedding-party/Deepesh.jpeg";
 
+export const SIDES = ["bride", "groom"] as const;
+export type Side = (typeof SIDES)[number];
+
 export const BRIDE_WEDDING_PARTY: PersonWithBio[] = [
   {
     name: "Shivani Patel",
