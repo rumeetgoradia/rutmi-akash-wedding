@@ -46,6 +46,7 @@ const RegistryPageContent = () => {
                 src={image}
                 alt={title}
                 fill
+                placeholder="blur"
                 className="transition-[filter] group-hover:blur-sm"
                 style={{ objectFit: "cover" }}
               />
