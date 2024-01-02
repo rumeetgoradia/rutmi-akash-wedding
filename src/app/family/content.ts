@@ -6,6 +6,7 @@ import Daarsh from "public/family/Daarsh.jpeg";
 import Umesh from "public/family/Umesh.jpeg";
 import Vikash from "public/family/Vikash.jpeg";
 import Rita from "public/family/Rita.jpeg";
+import Sparky from "public/family/Sparky.jpeg";
 
 export const FAMILY: Person[] = [
   {
@@ -37,6 +38,11 @@ export const FAMILY: Person[] = [
     name: "Rumeet Goradia",
     role: "Brother of the Bride",
     image: Rumeet,
+  },
+  {
+    name: "Sparky",
+    role: "Dog of the People",
+    image: Sparky,
   },
   {
     name: "Daarsh Goradia",
