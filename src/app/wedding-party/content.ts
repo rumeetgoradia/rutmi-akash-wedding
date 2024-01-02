@@ -38,7 +38,7 @@ export const BRIDE_WEDDING_PARTY: PersonWithBio[] = [
     role: "Bridesmaid",
     image: Anastasia,
     bio: [
-      "Hey everyone, I'm Anastasia. Rutmi and I are cowboys together at the infamous Barn. In layman's terms, we are co-residents at St. Barnabas. We have been trauma bonded since intern year, but it goes deeper than that. We understand each other and have each other's backs at all times. However, as a native Long Islander, I will never miss an opportunity to Jersey- shame Rutmi, and vice versa. I'm A Long Island Italian girl to the core, a huge Mets fan and I love music. I do not hike or run- another thing Rutmi and I do not have in common, but sometimes commonalities are overrated. I love my girl, and I am psyched to be part of this journey. Also excited to be part of a new group of friends. I'm easy to pick out, I'm the….one with the glasses.",
+      "Hey everyone, I'm Anastasia. Rutmi and I are cowboys together at the infamous Barn. In layman's terms, we are co-residents at St. Barnabas. We have been trauma bonded since intern year, but it goes deeper than that. We understand each other and have each other's backs at all times. However, as a native Long Islander, I will never miss an opportunity to Jersey- shame Rutmi, and vice versa. I'm a Long Island Italian girl to the core, a huge Mets fan and I love music. I do not hike or run - another thing Rutmi and I do not have in common, but sometimes commonalities are overrated. I love my girl, and I am psyched to be part of this journey. Also excited to be part of a new group of friends. I'm easy to pick out, I'm the… one with the glasses.",
     ],
   },
   {

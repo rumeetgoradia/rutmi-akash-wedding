@@ -54,7 +54,7 @@ const MomentsGrid: React.FC<{ images: StaticImageData[] }> = ({ images }) => {
                 </motion.div>
               </Dialog.Trigger>
               <Dialog.Portal>
-                <Dialog.Overlay className="DialogOverlay fixed left-0 top-0 z-[9999] h-[100vh] w-[100vw] bg-foreground/50 " />
+                <Dialog.Overlay className="DialogOverlay fixed left-0 top-0 z-[9999] h-[100vh] w-[100vw] bg-foreground/80 backdrop-blur-sm" />
                 <Dialog.Content
                   onOpenAutoFocus={(event) => event.preventDefault()}
                   className={cn(

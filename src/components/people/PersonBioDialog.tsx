@@ -22,7 +22,7 @@ export const PersonBioDialog: React.FC<PersonWithBio> = ({
         </div>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay className="DialogOverlay fixed left-0 top-0 z-[9999] h-[100vh] w-[100vw] bg-foreground/50" />
+        <Dialog.Overlay className="DialogOverlay fixed left-0 top-0 z-[9999] h-[100vh] w-[100vw] bg-foreground/80 backdrop-blur-sm" />
         <Dialog.Content className="DialogContent fixed left-1/2 top-1/2 z-[10000] max-h-[80vh] w-[90vw] max-w-screen-sm -translate-x-1/2 -translate-y-1/2 overflow-auto bg-background shadow-md shadow-black/50 sm:w-[400px]">
           <div className="relative flex w-full flex-col gap-3 bg-background p-6">
             <div className="flex w-full flex-col items-center">
@@ -37,7 +37,7 @@ export const PersonBioDialog: React.FC<PersonWithBio> = ({
               </div>
               <div
                 className={cn(
-                  "font-noto mt-2 text-center text-xl",
+                  "font-noto mt-2 text-center text-2xl font-medium",
                   notoSerif.className,
                 )}
               >
@@ -45,8 +45,8 @@ export const PersonBioDialog: React.FC<PersonWithBio> = ({
               </div>
               <div
                 className={cn(
-                  "font-figtree text-md text-center font-light",
-                  figtree.className,
+                  "text-center uppercase tracking-widest",
+                  notoSerif.className,
                 )}
               >
                 {role}
@@ -57,7 +57,7 @@ export const PersonBioDialog: React.FC<PersonWithBio> = ({
                 <p
                   key={`our-story-${name}-${bioPar}`}
                   className={cn(
-                    "sm:text-md font-figtree text-sm leading-[1.4]",
+                    " font-figtree font-light leading-[1.4] max-sm:text-sm",
                     figtree.className,
                   )}
                 >

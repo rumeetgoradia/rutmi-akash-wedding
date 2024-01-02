@@ -22,7 +22,7 @@ import { SignInInputs } from "@/trpc/shared";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import Flower from "public/flower.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function SignIn() {
@@ -50,11 +50,14 @@ export default function SignIn() {
 }
 
 const SignInForm = () => {
-  const { signIn } = useGuestStore();
+  const { signIn, guest } = useGuestStore();
 
   const { toast } = useToast();
 
-  const form = useForm<SignInInputs>({
+  const {
+    formState: { isDirty, isValid, isSubmitting, ...formState },
+    ...form
+  } = useForm<SignInInputs>({
     resolver: zodResolver(SignInInputSchema),
     defaultValues: {
       firstName: "",
@@ -127,7 +130,7 @@ const SignInForm = () => {
                   We couldn&apos;t find you.
                 </div>
                 <div className="mb-3">
-                  There are&apos;t any registered guests with the information
+                  There aren&apos;t any registered guests with the information
                   you entered. Please check your input or try again with the
                   information of someone else in your party.
                 </div>
@@ -153,8 +156,8 @@ const SignInForm = () => {
           return;
         }
 
-        signIn(foundGuests[0].guest);
         scrollToTop();
+        signIn(foundGuests[0].guest);
       }
     },
   });
@@ -164,7 +167,10 @@ const SignInForm = () => {
   };
 
   return (
-    <Form {...form}>
+    <Form
+      formState={{ isDirty, isSubmitting, isValid, ...formState }}
+      {...form}
+    >
       <form
         onSubmit={form.handleSubmit(handleSubmit)}
         className="font-figtree grid w-full grid-cols-6 gap-4 md:gap-6"
@@ -290,10 +296,10 @@ const SignInForm = () => {
         )}
         <Button
           type="submit"
-          disabled={loading}
-          className="font-figtree col-span-6 mt-2 rounded-sm bg-primary/70 text-sm uppercase tracking-widest text-background transition-[background-color,opacity] hover:bg-primary/100 "
+          disabled={loading || !isDirty || !isValid || isSubmitting}
+          className="font-figtree col-span-6 mt-2 rounded-sm bg-primary/80 text-sm uppercase tracking-widest text-background transition-[background-color,opacity] hover:bg-primary/100 "
         >
-          {loading ? (
+          {loading || isSubmitting ? (
             <div
               className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
               role="status"
