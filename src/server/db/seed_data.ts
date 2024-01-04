@@ -14,6 +14,46 @@ export type GuestList = {
 };
 
 export const GUESTS: GuestList = {
+  GoradiaMain: {
+    guests: [
+      {
+        firstName: "Umesh",
+        lastName: "Goradia",
+      },
+      {
+        firstName: "Rita",
+        lastName: "Goradia",
+      },
+      {
+        firstName: "Daarsh",
+        lastName: "Goradia",
+      },
+      {
+        firstName: "Rumeet",
+        lastName: "Goradia",
+      },
+      {
+        firstName: "Rutmi",
+        lastName: "Goradia",
+      },
+    ],
+    events: [
+      "bride-pre-wedding",
+      "chandlo-matli",
+      "bride-pre-wedding-2",
+      "groom-pre-wedding",
+      "housewarming",
+      "mehndi",
+      "garba-sangeet",
+      "haldi",
+      "welcome-dinner",
+      "wedding",
+      "reception",
+      "post-wedding",
+    ],
+    email: "rumeet.goradia@gmail.com",
+    phone: "7329865136",
+  },
   MatthewCuccaro0: {
     guests: [
       {

@@ -21,7 +21,7 @@ const HomePageContent = () => {
         className="flex w-full flex-col items-center gap-4 lg:gap-6 "
         {...animation(1)}
       >
-        <h2 className="font-meddon text-4xl [text-wrap:balance] ">
+        <h2 className="font-meddon text-4xl leading-[1.5] [text-wrap:balance] ">
           Saturday, May 25, 2024
         </h2>
         <Countdown date={WEDDING_DATE} />
