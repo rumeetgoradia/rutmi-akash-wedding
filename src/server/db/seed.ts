@@ -3,6 +3,22 @@ import { GUESTS } from "@/server/db/seed_data";
 import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 
+import { EVENT_IDS } from "@/app/schedule/content";
+
+export type GuestList = {
+  [k: string]: {
+    guests: {
+      firstName: string;
+      lastName: string;
+      title?: string;
+      suffix?: string;
+    }[];
+    events: (typeof EVENT_IDS)[number][];
+    email?: string;
+    phone?: string;
+  };
+};
+
 const main = async () => {
   const client = new Pool({
     connectionString: process.env.DATABASE_URL,
