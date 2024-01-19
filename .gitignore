@@ -1,5 +1,5 @@
 # seed data
-src/server/db/seed_data.ts
+src/server/db/seed*
 
 # dependencies
 /node_modules
