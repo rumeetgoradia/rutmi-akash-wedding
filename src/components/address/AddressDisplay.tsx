@@ -11,10 +11,9 @@ const AddressDisplay = ({
   city,
   state,
   zipCode,
-  mapImage,
-}: Address & { mapImage?: StaticImageData }) => {
+}: Address) => {
   return (
-    <div className={cn("flex gap-2 text-lg font-medium", mapImage && "mt-4")}>
+    <div className={cn("flex gap-2 text-lg font-medium")}>
       <MapPin height={20} className="mt-0.5" />
       <div className="leading-[1.3]">
         <Link
