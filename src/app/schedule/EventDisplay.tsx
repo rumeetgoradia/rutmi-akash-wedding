@@ -1,6 +1,7 @@
 "use client";
 
-import { Address, Event } from "@/app/schedule/content";
+import { Event } from "@/app/schedule/content";
+import AddressDisplay from "@/components/address/AddressDisplay";
 import {
   Accordion,
   AccordionContent,
@@ -8,8 +9,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import dateFormat from "dateformat";
-import { Clock, MapPin, Shirt } from "lucide-react";
-import Link from "next/link";
+import { Clock, Shirt } from "lucide-react";
 
 const EventDisplay: React.FC<{ event: Event; order: number }> = ({
   event: { dressCode, location, time, title, description },
@@ -97,36 +97,3 @@ const EventDisplay: React.FC<{ event: Event; order: number }> = ({
 };
 
 export default EventDisplay;
-
-const AddressDisplay = ({
-  googleMaps,
-  title,
-  street,
-  city,
-  state,
-  zipCode,
-}: Address) => {
-  return (
-    <div>
-      <div className="flex gap-2 text-lg font-medium">
-        <MapPin height={20} className="mt-0.5" />
-        <div className="leading-[1.3]">
-          <Link
-            href={googleMaps}
-            className="text-primary hover:underline "
-            title={title}
-          >
-            {title}
-          </Link>
-          <div className="text-sm font-light">
-            <div>{street}</div>
-            <div>
-              {city}, {state} {zipCode}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="pl-[30px]"></div>
-    </div>
-  );
-};
