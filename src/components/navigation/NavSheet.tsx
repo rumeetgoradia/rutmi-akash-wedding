@@ -11,7 +11,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { cn } from "@/lib/utils";
+import { cn, scrollToTop } from "@/lib/utils";
 import { AlignJustify, Mail } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -69,7 +69,9 @@ const NavSheet = () => {
                 )}
                 key={`navsheet-${title}`}
               >
-                <Link href={path}>{title}</Link>
+                <Link href={path} title={title} onClick={() => scrollToTop()}>
+                  {title}
+                </Link>
               </SheetClose>
             );
           })}

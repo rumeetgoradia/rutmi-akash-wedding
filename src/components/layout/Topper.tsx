@@ -1,7 +1,7 @@
 "use client";
 
-import TopBackground from "@/../public/background/top-removebg-preview.png";
-import { cn } from "@/lib/utils";
+import TopBackground from "public/background/top-removebg-preview.png";
+import { cn, scrollToTop } from "@/lib/utils";
 import { useGuestStore } from "@/store/guest";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,6 +26,7 @@ const Topper = () => {
         href="/"
         title="Home"
         className={cn(!guest && "pointer-events-none cursor-default")}
+        onClick={() => scrollToTop()}
       >
         <div className="font-meddon relative  z-[12] w-full px-8 md:text-foreground">
           <h1

@@ -83,7 +83,6 @@ const AccommodationsPageContent: React.FC = () => {
         </Link>
         <AddressDisplay {...address} />
       </motion.div>
-      <motion.div {...animation(2)}></motion.div>
     </div>
   );
 };
