@@ -1,8 +1,7 @@
 import { Address } from "@/app/constants";
-import Map from "@/components/address/Map";
 import { cn } from "@/lib/utils";
 import { MapPin } from "lucide-react";
-import Image, { StaticImageData } from "next/image";
+import { StaticImageData } from "next/image";
 import Link from "next/link";
 
 const AddressDisplay = ({
