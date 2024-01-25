@@ -46,9 +46,11 @@ const AccommodationsPageContent: React.FC = () => {
             </Link>{" "}
             and mention "Goradia & Patel Wedding" or visit{" "}
             <Link
-              href="https://doubletreefairfield.com"
+              href="https://www.hilton.com/en/hotels/ewrfjdt-doubletree-fairfield-hotel-and-suites/"
               title="DoubleTree by Hilton, Fairfield"
               className="text-primary hover:underline"
+              target="_blank"
+              rel="noreferrer noopener"
             >
               their website
             </Link>{" "}
