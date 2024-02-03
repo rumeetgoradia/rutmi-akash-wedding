@@ -44,21 +44,22 @@ const AccommodationsPageContent: React.FC = () => {
             >
               (844) 335-2364
             </Link>{" "}
-            and mention "Goradia & Patel Wedding" or visit{" "}
+            and mention "Goradia & Patel Wedding" or click
             <Link
-              href="https://www.hilton.com/en/hotels/ewrfjdt-doubletree-fairfield-hotel-and-suites/"
+              href="https://www.hilton.com/en/attend-my-event/akashandrutmi-wedding/"
               title="DoubleTree by Hilton, Fairfield"
               className="text-primary hover:underline"
               target="_blank"
               rel="noreferrer noopener"
             >
-              their website
+              here
             </Link>{" "}
-            and add the group code "90A" in the Special Rates box on checkout.
+            to book on their website with our special rate automatically
+            applied.
           </p>
           <p className={cn(paragraphClassName)}>
             If you are interested in staying at the hotel, please be sure to
-            book your room as soon as possible!
+            book your room by May 5!
           </p>
         </motion.div>
       </div>
