@@ -11,14 +11,14 @@ export const authRouter = createTRPCRouter({
     .mutation(
       async ({
         ctx: { db },
-        input: { firstName, lastName, id, password },
+        input: { firstName, lastName, id },
       }): Promise<
         | { error: SignInError; foundGuests?: never }
         | { error?: never; foundGuests: { guest: Guest; party: Party }[] }
       > => {
-        if (password.trim() !== env.SITE_PASSWORD) {
-          return { error: { code: "WRONG_PASSWORD" } };
-        }
+        // if (password.trim() !== env.SITE_PASSWORD) {
+        //   return { error: { code: "WRONG_PASSWORD" } };
+        // }
 
         let condition;
         if (id) {
