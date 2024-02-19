@@ -1,5 +1,5 @@
 import { Address } from "@/app/constants";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/styles";
 import { MapPin } from "lucide-react";
 import { StaticImageData } from "next/image";
 import Link from "next/link";

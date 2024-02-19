@@ -1,7 +1,7 @@
 "use client";
 
 import SignIn from "@/components/layout/SignIn";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/styles";
 import { useGuestStore, useHydration } from "@/store/guest";
 import Image, { StaticImageData } from "next/image";
 

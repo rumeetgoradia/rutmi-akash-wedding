@@ -4,7 +4,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { type PersonWithBio } from ".";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { PersonDisplay } from "./PersonDisplay";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/styles";
 import { figtree, meddon, notoSerif } from "@/app/fonts";
 import Image from "next/image";
 

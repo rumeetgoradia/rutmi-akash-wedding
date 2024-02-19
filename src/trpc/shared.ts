@@ -31,3 +31,5 @@ export type RouterOutputs = inferRouterOutputs<AppRouter>;
 
 export type SignInInputs = RouterInputs["auth"]["signIn"];
 export type SignInOutputs = RouterOutputs["auth"]["signIn"];
+
+export type RsvpInputs = RouterInputs["events"]["rsvp"];

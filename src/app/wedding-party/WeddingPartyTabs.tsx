@@ -6,7 +6,7 @@ import { PersonBioDialog } from "@/components/people/PersonBioDialog";
 import { PersonTaglineDisplay } from "@/components/people/PersonTaglineDisplay";
 import { Tabs } from "@/components/ui/tabs";
 import { animation } from "@/lib/animation";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/styles";
 import { TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { motion } from "framer-motion";
 import { useState } from "react";

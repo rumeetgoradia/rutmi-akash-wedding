@@ -1,7 +1,7 @@
 "use client";
 
 import { EMAIL_ADDRESS } from "@/app/constants";
-import { scrollToTop } from "@/lib/utils";
+import { scrollToTop } from "@/lib/styles";
 import { useGuestStore } from "@/store/guest";
 import { Mail } from "lucide-react";
 import Link from "next/link";

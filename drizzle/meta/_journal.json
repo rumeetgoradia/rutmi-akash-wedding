@@ -22,6 +22,27 @@
       "when": 1701899334340,
       "tag": "0002_flimsy_tomorrow_man",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1707529713332,
+      "tag": "0003_easy_malice",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1707530663142,
+      "tag": "0004_fluffy_hellfire_club",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1707962001029,
+      "tag": "0005_amusing_jazinda",
+      "breakpoints": true
     }
   ]
 }

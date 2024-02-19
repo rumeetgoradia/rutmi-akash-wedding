@@ -1,7 +1,7 @@
 "use client";
 
 import { figtree } from "@/app/fonts";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/styles";
 import { useEffect, useState } from "react";
 
 type TimeLeft = {

@@ -5,20 +5,9 @@ import Background from "@/components/background";
 import Footer from "@/components/layout/Footer";
 import Topper from "@/components/layout/Topper";
 import Navigation from "@/components/navigation";
-import { cn } from "@/lib/utils";
-import { useGuestStore, useHydration } from "@/store/guest";
-import { usePathname } from "next/navigation";
+import { cn } from "@/lib/styles";
 
 const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
-  const { guest } = useGuestStore();
-  const hydrated = useHydration();
-
-  const pathname = usePathname();
-
-  // if (hydrated && !guest && pathname !== "/login") {
-  //   redirect(`/login?pathname=${pathname}`);
-  // }
-
   return (
     <>
       <Background />
@@ -35,7 +24,6 @@ const Layout: React.FC<React.PropsWithChildren> = ({ children }) => {
           <Topper />
           <Navigation />
           <div className="w-full flex-grow bg-background">{children}</div>
-          {/* <SignOut /> */}
           <Footer />
         </div>
       </main>

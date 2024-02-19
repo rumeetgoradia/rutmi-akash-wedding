@@ -1,0 +1,1 @@
+ALTER TABLE "guest" ADD COLUMN "display_order" integer NOT NULL;

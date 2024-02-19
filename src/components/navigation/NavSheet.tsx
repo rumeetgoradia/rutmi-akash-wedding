@@ -11,7 +11,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { cn, scrollToTop } from "@/lib/utils";
+import { cn, scrollToTop } from "@/lib/styles";
 import { AlignJustify, Mail } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -30,9 +30,9 @@ const NavSheet = () => {
             "tracking-widest",
             "rounded-full px-6 py-2",
             "text-xs font-light uppercase",
-            "bg-background hover:shadow-md",
+            "bg-background hover:shadow-lg",
             "fixed left-6 top-6 z-50",
-            "shadow-sm",
+            "shadow-md",
             "transition-shadow",
           )}
         >

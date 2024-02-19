@@ -1,7 +1,7 @@
 "use client";
 
 import { animation } from "@/lib/animation";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/styles";
 import * as Dialog from "@radix-ui/react-dialog";
 import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";

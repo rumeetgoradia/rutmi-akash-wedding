@@ -3,7 +3,7 @@
 import { ADDRESSES } from "@/app/constants";
 import AddressDisplay from "@/components/address/AddressDisplay";
 import { animation } from "@/lib/animation";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/styles";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -44,7 +44,7 @@ const AccommodationsPageContent: React.FC = () => {
             >
               (844) 335-2364
             </Link>{" "}
-            and mention "Goradia & Patel Wedding" or click
+            and mention "Goradia & Patel Wedding" or click{" "}
             <Link
               href="https://www.hilton.com/en/attend-my-event/akashandrutmi-wedding/"
               title="DoubleTree by Hilton, Fairfield"

@@ -1,7 +1,7 @@
 "use client";
 
 import TopBackground from "public/background/top-removebg-preview.png";
-import { cn, scrollToTop } from "@/lib/utils";
+import { cn, scrollToTop } from "@/lib/styles";
 import { useGuestStore } from "@/store/guest";
 import Image from "next/image";
 import Link from "next/link";

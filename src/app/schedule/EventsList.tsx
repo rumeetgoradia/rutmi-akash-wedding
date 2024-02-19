@@ -1,9 +1,9 @@
 "use client";
 
-import { getGroupedEvents } from "@/app/schedule/content";
+import { EventId, getGroupedEvents } from "@/app/schedule/content";
 import EventDisplay from "@/app/schedule/EventDisplay";
 import { animation } from "@/lib/animation";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/styles";
 import { useGuestStore } from "@/store/guest";
 import { api } from "@/trpc/react";
 import { motion } from "framer-motion";
@@ -11,15 +11,15 @@ import { motion } from "framer-motion";
 export const EventsList = () => {
   const { guest } = useGuestStore();
 
-  const { data: allowedEvents, isLoading } = api.events.allowedEvents.useQuery({
+  const { data, isLoading, refetch } = api.events.eventsAndRsvps.useQuery({
     partyId: guest?.partyId,
   });
 
-  if (!guest || isLoading || !allowedEvents) {
+  if (!guest || isLoading || !data) {
     return (
       <div className="flex w-full justify-center">
         <div
-          className="inline-block h-44 w-44 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+          className="h-33 w-33 inline-block animate-spin rounded-full border-4 border-solid border-primary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] md:h-44 md:w-44"
           role="status"
         >
           <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
@@ -30,7 +30,17 @@ export const EventsList = () => {
     );
   }
 
-  const groupedEventsEntries = Object.entries(getGroupedEvents(allowedEvents));
+  const groupedEventsEntries = Object.entries(
+    getGroupedEvents(Object.keys(data) as EventId[]),
+  );
+
+  const mergeGuestsAndRsvps = (event: EventId) => {
+    const merged = data[event]!.map(({ guest, rsvp }) => {
+      return { guest, attending: rsvp?.attending };
+    });
+
+    return merged;
+  };
 
   return (
     <div className="-mb-4 -mt-4 grid w-full grid-cols-1 gap-4">
@@ -44,7 +54,6 @@ export const EventsList = () => {
             <div
               className={cn(
                 "w-full border-b-[1px] border-b-foreground/30 p-4",
-                // index !== groupedEventsEntries.length - 1 &&
                 "border-b-[1px] border-b-foreground/30",
               )}
             >
@@ -63,13 +72,14 @@ export const EventsList = () => {
                 return (
                   <div
                     key={`${event.title}-schedule-event`}
-                    className={cn(
-                      "w-full",
-                      // eventIndex !== events.length - 1 &&
-                      //   "border-b-[1px] border-b-foreground/30",
-                    )}
+                    className={cn("w-full")}
                   >
-                    <EventDisplay event={event} order={eventIndex + 1} />
+                    <EventDisplay
+                      event={event}
+                      order={eventIndex + 1}
+                      existingRsvps={mergeGuestsAndRsvps(event.id)}
+                      refetch={refetch}
+                    />
                   </div>
                 );
               })}

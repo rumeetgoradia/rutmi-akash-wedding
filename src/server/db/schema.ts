@@ -2,6 +2,7 @@ import { relations } from "drizzle-orm";
 import {
   boolean,
   index,
+  integer,
   pgEnum,
   pgTable,
   primaryKey,
@@ -17,6 +18,7 @@ export const guests = pgTable(
     lastName: text("last_name").notNull(),
     title: text("title"),
     suffix: text("suffix"),
+    displayOrder: integer("display_order").notNull(),
     isAdmin: boolean("is_admin").default(false),
     partyId: text("party_id")
       .notNull()
@@ -31,11 +33,12 @@ export const guests = pgTable(
 );
 export type Guest = typeof guests.$inferSelect;
 
-export const guestRelations = relations(guests, ({ one }) => ({
+export const guestRelations = relations(guests, ({ one, many }) => ({
   parties: one(parties, {
     fields: [guests.partyId],
     references: [parties.id],
   }),
+  rsvps: many(rsvps),
 }));
 
 export const eventEnum = pgEnum("event", [
@@ -89,3 +92,24 @@ export const allowedEventsForPartiesRelations = relations(
     }),
   }),
 );
+
+export const rsvps = pgTable(
+  "rsvp",
+  {
+    guestId: integer("guest_id")
+      .notNull()
+      .references(() => guests.id),
+    event: eventEnum("event").notNull(),
+    attending: boolean("attending").notNull(),
+  },
+  (rsvp) => ({
+    pk: primaryKey({ columns: [rsvp.guestId, rsvp.event] }),
+  }),
+);
+
+export const rsvpRelations = relations(rsvps, ({ one }) => ({
+  guest: one(guests, {
+    fields: [rsvps.guestId],
+    references: [guests.id],
+  }),
+}));
