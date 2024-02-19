@@ -36,8 +36,8 @@ export default function SignIn() {
           We can&apos;t wait to share our special day with you!
         </p>
         <p>
-          Please sign in with your information and the password provided to you
-          to navigate our website.
+          Please sign in with your name to navigate our website and unlock your
+          personalized schedule.
         </p>
       </div>
       <div className="flex w-full justify-center">
