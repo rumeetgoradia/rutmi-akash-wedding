@@ -13,7 +13,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useToast } from "@/components/ui/use-toast";
-import { cn, scrollToTop } from "@/lib/utils";
+import { cn, scrollToTop } from "@/lib/styles";
 import { SignInInputSchema } from "@/server/api/routers/auth.schema";
 import { Guest, Party } from "@/server/db/schema";
 import { useGuestStore } from "@/store/guest";
@@ -62,22 +62,14 @@ const SignInForm = () => {
     defaultValues: {
       firstName: "",
       lastName: "",
-      password: "",
+      // password: "",
     },
   });
 
   const [multipleFoundGuests, setMultipleFoundGuests] =
     useState<{ guest: Guest; party: Party }[]>();
 
-  const [loading, setLoading] = useState<boolean>(false);
-
   const findUser = api.auth.signIn.useMutation({
-    onMutate: () => {
-      setLoading(true);
-    },
-    onSettled: () => {
-      setLoading(false);
-    },
     onSuccess: (result) => {
       const { foundGuests, error } = result;
       if (error) {
@@ -207,7 +199,7 @@ const SignInForm = () => {
                 </FormItem>
               )}
             />
-            <FormField
+            {/* <FormField
               control={form.control}
               name="password"
               render={({ field }) => (
@@ -219,7 +211,7 @@ const SignInForm = () => {
                   <FormMessage />
                 </FormItem>
               )}
-            />
+            /> */}
           </>
         )}
         {multipleFoundGuests && multipleFoundGuests.length && (
@@ -252,7 +244,6 @@ const SignInForm = () => {
                         className="grid grid-cols-2 gap-4"
                       >
                         {multipleFoundGuests.map(({ guest, party }) => {
-                          // console.log({ guest: guest.id, field: field.value });
                           return (
                             <FormItem
                               className="col-span-2 flex w-full space-x-3 space-y-0 px-4 py-1 md:col-span-1"
@@ -296,10 +287,10 @@ const SignInForm = () => {
         )}
         <Button
           type="submit"
-          disabled={loading || !isDirty || !isValid || isSubmitting}
+          disabled={findUser.isLoading || !isDirty || !isValid || isSubmitting}
           className="font-figtree col-span-6 mt-2 rounded-sm bg-primary/80 text-sm uppercase tracking-widest text-background transition-[background-color,opacity] hover:bg-primary/100 "
         >
-          {loading || isSubmitting ? (
+          {findUser.isLoading || isSubmitting ? (
             <div
               className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
               role="status"
