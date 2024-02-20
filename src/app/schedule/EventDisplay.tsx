@@ -46,12 +46,11 @@ const EventDisplay: React.FC<{
   event: Event;
   order: number;
   existingRsvps: Rsvp[];
-  refetch: () => void;
-}> = ({ event, order, existingRsvps, refetch }) => {
+}> = ({ event, order, existingRsvps }) => {
   const { dressCode, location, time, title, description } = event;
 
   return (
-    <div className="grid w-full grid-cols-5 gap-6 px-4 py-6">
+    <div className="grid w-full grid-cols-5 gap-2 px-4 py-4 md:gap-6 md:py-6">
       <div className="col-span-5 flex w-full flex-col gap-6 md:col-span-3">
         <h3 className="font-noto text-2xl font-semibold">{title}</h3>
         <div className="font-figtree flex w-full flex-col gap-3 max-md:hidden">
@@ -69,7 +68,7 @@ const EventDisplay: React.FC<{
         </div>
         <div>
           {location.end ? (
-            <div className="flex w-full flex-col gap-3">
+            <div className="flex w-full flex-col gap-2 md:gap-3">
               <div className="w-full">
                 <div className="pl-[31px] text-sm font-bold uppercase tracking-tighter opacity-70">
                   START
@@ -99,12 +98,8 @@ const EventDisplay: React.FC<{
           </div>
         </div>
         {/* <div className="flex-grow" /> */}
-        <div className="mt-2 w-full">
-          <RSVPDialog
-            event={event}
-            existingRsvps={existingRsvps}
-            refetch={refetch}
-          />
+        <div className="mt-2 w-full max-md:mb-2">
+          <RSVPDialog event={event} existingRsvps={existingRsvps} />
         </div>
       </div>
       {description.additional && (
@@ -144,8 +139,7 @@ export default EventDisplay;
 const RSVPDialog: React.FC<{
   event: Event;
   existingRsvps: Rsvp[];
-  refetch: () => void;
-}> = ({ event: { title, time, id }, existingRsvps, refetch }) => {
+}> = ({ event: { title, time, id }, existingRsvps }) => {
   const [open, setOpen] = useState(false);
 
   const { toast } = useToast();
@@ -207,6 +201,7 @@ const RSVPDialog: React.FC<{
   const {
     control,
     register,
+    reset,
     formState: { errors, isSubmitting, isDirty, isValid, ...formState },
     ...form
   } = useForm<RsvpInputs>({
@@ -226,11 +221,15 @@ const RSVPDialog: React.FC<{
   });
 
   return (
-    <Dialog.Root open={open} onOpenChange={setOpen}>
+    <Dialog.Root
+      open={open}
+      onOpenChange={(isOpen) => {
+        reset();
+        setOpen(isOpen);
+      }}
+    >
       <Dialog.Trigger asChild>
-        <Button className="text-md w-full font-semibold uppercase tracking-wider text-background transition-[letter-spacing,background-color] hover:tracking-widest">
-          RSVP
-        </Button>
+        <Button variant="cta">RSVP</Button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay className="DialogOverlay fixed left-0 top-0 z-[9999] h-[100vh] w-[100vw] bg-foreground/80 backdrop-blur-sm" />
@@ -250,10 +249,13 @@ const RSVPDialog: React.FC<{
                   "mt-1 text-lg font-light md:text-xl",
                   figtree.className,
                 )}
-              ></h4>
+              >
+                {dateFormat(time, "mmmm d, yyyy · h:MM TT")}
+              </h4>
             </div>
             <Form
               {...form}
+              reset={reset}
               control={control}
               register={register}
               formState={{
@@ -337,8 +339,10 @@ const RSVPDialog: React.FC<{
                 <div className="mt-4 flex w-full flex-col items-center gap-1">
                   <Button
                     type="submit"
-                    className="text-md w-full uppercase tracking-wider text-background transition-[letter-spacing,background-color] hover:tracking-widest"
-                    disabled={isSubmitting || updateAttending.isLoading}
+                    variant="cta"
+                    disabled={
+                      isSubmitting || updateAttending.isLoading || !isValid
+                    }
                   >
                     {isSubmitting || updateAttending.isLoading ? (
                       <div
@@ -355,12 +359,7 @@ const RSVPDialog: React.FC<{
                   </Button>
                   <Dialog.Close
                     asChild
-                    disabled={
-                      !isDirty ||
-                      !isValid ||
-                      isSubmitting ||
-                      updateAttending.isLoading
-                    }
+                    disabled={isSubmitting || updateAttending.isLoading}
                   >
                     <Button
                       variant="unstyled"

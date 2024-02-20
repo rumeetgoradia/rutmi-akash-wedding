@@ -1,11 +1,12 @@
 "use client";
 
 import SignIn from "@/components/layout/SignIn";
+import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/styles";
 import { useGuestStore, useHydration } from "@/store/guest";
 import Image, { StaticImageData } from "next/image";
 
-const Content: React.FC<{
+const PageContent: React.FC<{
   hero: StaticImageData;
   heroClassName?: string;
   title?: string;
@@ -37,25 +38,10 @@ const Content: React.FC<{
         )}
       </div>
       <div className="mx-auto flex w-full max-w-screen-md flex-col items-center gap-8 bg-background pb-12 pt-20 max-md:px-8 md:pt-16">
-        {guest ? (
-          children
-        ) : hydrated ? (
-          <SignIn />
-        ) : (
-          <div className="flex w-full justify-center">
-            <div
-              className="inline-block h-44 w-44 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
-              role="status"
-            >
-              <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-                Loading...
-              </span>
-            </div>
-          </div>
-        )}
+        {guest ? children : hydrated ? <SignIn /> : <Spinner />}
       </div>
     </div>
   );
 };
 
-export { Content };
+export { PageContent as Content };

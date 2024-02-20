@@ -1,6 +1,6 @@
 "use client";
 
-import { Content } from "@/components/layout/Content";
+import { Content } from "@/components/layout/PageContent";
 import LandingImage_Bride from "public/wedding-party/Landing_Bride.jpeg";
 import LandingImage_Groom from "public/wedding-party/Landing_Groom.jpeg";
 import WeddingPartyTabs from "./WeddingPartyTabs";

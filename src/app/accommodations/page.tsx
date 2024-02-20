@@ -1,5 +1,5 @@
 import AccommodationsPageContent from "./AccommodationsPageContent";
-import { Content } from "@/components/layout/Content";
+import { Content } from "@/components/layout/PageContent";
 import { env } from "@/env.mjs";
 import { Metadata } from "next";
 import LandingImage from "public/accommodations/Landing.jpeg";

@@ -1,5 +1,5 @@
 import FamilyGrid from "@/app/family/FamilyGrid";
-import { Content } from "@/components/layout/Content";
+import { Content } from "@/components/layout/PageContent";
 import { Metadata } from "next";
 import LandingImage from "public/family/Landing.jpeg";
 

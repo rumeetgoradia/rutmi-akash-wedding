@@ -1,4 +1,4 @@
-import { Content } from "@/components/layout/Content";
+import { Content } from "@/components/layout/PageContent";
 import { Metadata } from "next";
 import LandingImage from "public/schedule/Landing.png";
 import { EventsList } from "./EventsList";

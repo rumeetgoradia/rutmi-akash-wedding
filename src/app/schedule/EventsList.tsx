@@ -2,6 +2,7 @@
 
 import { EventId, getGroupedEvents } from "@/app/schedule/content";
 import EventDisplay from "@/app/schedule/EventDisplay";
+import { Spinner } from "@/components/ui/spinner";
 import { animation } from "@/lib/animation";
 import { cn } from "@/lib/styles";
 import { useGuestStore } from "@/store/guest";
@@ -11,23 +12,12 @@ import { motion } from "framer-motion";
 export const EventsList = () => {
   const { guest } = useGuestStore();
 
-  const { data, isLoading, refetch } = api.events.eventsAndRsvps.useQuery({
+  const { data, isLoading } = api.events.eventsAndRsvps.useQuery({
     partyId: guest?.partyId,
   });
 
   if (!guest || isLoading || !data) {
-    return (
-      <div className="flex w-full justify-center">
-        <div
-          className="h-33 w-33 inline-block animate-spin rounded-full border-4 border-solid border-primary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite] md:h-44 md:w-44"
-          role="status"
-        >
-          <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-            Loading...
-          </span>
-        </div>
-      </div>
-    );
+    return <Spinner />;
   }
 
   const groupedEventsEntries = Object.entries(
@@ -78,7 +68,6 @@ export const EventsList = () => {
                       event={event}
                       order={eventIndex + 1}
                       existingRsvps={mergeGuestsAndRsvps(event.id)}
-                      refetch={refetch}
                     />
                   </div>
                 );

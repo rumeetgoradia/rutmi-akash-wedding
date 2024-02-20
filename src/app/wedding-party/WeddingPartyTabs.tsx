@@ -76,8 +76,9 @@ const WeddingPartyTabs: React.FC<{
           <p className="font-figtree mb-8">
             The groomsmen collectively decided to make their website bios
             tributes to theirs and Akash&apos;s friendships. Each moniker
-            represents an inside joke/special moment in their friendship! Be
-            sure to ask them what their nicknames mean at the wedding!
+            represents an inside joke/special moment in their friendship! Click
+            each groomsmen's picture to see his moniker. Be sure to ask them
+            what their nicknames mean at the wedding!
           </p>
           <div className="grid w-full grid-cols-2 gap-4 md:gap-6">
             {groomWeddingParty.map((weddingPartyMember, index) => (
