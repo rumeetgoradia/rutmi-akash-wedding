@@ -11,7 +11,8 @@
     "db:push": "drizzle-kit push:pg",
     "db:introspect": "drizzle-kit introspect:pg",
     "db:seed": "tsx ./src/server/db/seed.ts",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "email": "email dev --dir src/emails"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
@@ -26,6 +27,8 @@
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.5",
+    "@react-email/components": "0.0.14",
+    "@react-email/tailwind": "^0.0.14",
     "@react-google-maps/api": "^2.19.2",
     "@t3-oss/env-nextjs": "^0.9.2",
     "@tanstack/react-query": "^4.35.3",
@@ -50,10 +53,11 @@
     "postcss": "8.4.35",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-email": "2.0.0",
     "react-hook-form": "^7.50.1",
     "react-slick": "^0.30.1",
     "react-smart-masonry": "^2.0.2",
-    "sanity": "^3.28.0",
+    "resend": "^3.2.0",
     "server-only": "^0.0.1",
     "sharp": "^0.33.2",
     "slick-carousel": "^1.8.1",
@@ -67,7 +71,9 @@
     "zustand": "^4.5.0"
   },
   "devDependencies": {
+    "@mertasan/tailwindcss-variables": "^2.7.0",
     "@types/dateformat": "^5.0.2",
+    "@types/mertasan__tailwindcss-variables": "^2.6.4",
     "@types/react-responsive-masonry": "^2.1.3",
     "@types/react-slick": "^0.23.13",
     "dotenv": "^16.4.2",

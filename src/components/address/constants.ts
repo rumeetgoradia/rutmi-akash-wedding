@@ -1,5 +1,3 @@
-export const EMAIL_ADDRESS = "akash.and.rutmi@gmail.com";
-
 export type Address = {
   title: string;
   street: string[];

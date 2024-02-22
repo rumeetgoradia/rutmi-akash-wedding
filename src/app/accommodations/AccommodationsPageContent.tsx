@@ -1,6 +1,6 @@
 "use client";
 
-import { ADDRESSES } from "@/app/constants";
+import { ADDRESSES } from "@/components/address/constants";
 import AddressDisplay from "@/components/address/AddressDisplay";
 import { animation } from "@/lib/animation";
 import { cn } from "@/lib/styles";

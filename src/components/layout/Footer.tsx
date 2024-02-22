@@ -1,6 +1,6 @@
 "use client";
 
-import { EMAIL_ADDRESS } from "@/app/constants";
+import { EMAIL_ADDRESS } from "@/server/email/constants";
 import { scrollToTop } from "@/lib/styles";
 import { useGuestStore } from "@/store/guest";
 import { Mail } from "lucide-react";
@@ -13,7 +13,7 @@ const Footer = () => {
     <div className="flex w-full flex-col items-center justify-center gap-4 bg-background p-8">
       <div className="text-primary">
         <Link
-          href={`mailto::${EMAIL_ADDRESS}`}
+          href={`mailto:${EMAIL_ADDRESS}`}
           className="flex items-center justify-between gap-2"
         >
           <div className="flex items-center justify-center rounded-full bg-primary p-2">

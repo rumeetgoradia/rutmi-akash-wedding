@@ -2,7 +2,6 @@ import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { Guest, Party, guests, parties } from "@/server/db/schema";
 import { eq, sql } from "drizzle-orm";
 
-import { env } from "@/env.mjs";
 import { SignInInputSchema } from "@/server/api/routers/auth.schema";
 
 export const authRouter = createTRPCRouter({
@@ -16,10 +15,6 @@ export const authRouter = createTRPCRouter({
         | { error: SignInError; foundGuests?: never }
         | { error?: never; foundGuests: { guest: Guest; party: Party }[] }
       > => {
-        // if (password.trim() !== env.SITE_PASSWORD) {
-        //   return { error: { code: "WRONG_PASSWORD" } };
-        // }
-
         let condition;
         if (id) {
           condition = eq(guests.id, id);

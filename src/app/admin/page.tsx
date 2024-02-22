@@ -6,20 +6,14 @@ import { useGuestStore, useHydration } from "@/store/guest";
 import { redirect } from "next/navigation";
 
 import { env } from "@/env.mjs";
-import AdminContent from "./AdminContent";
+import AdminLayout from "./layout";
 
 const TITLE = "ADMIN";
-
-const { ADMIN_PARTIES } = env;
 
 export const metadata: Metadata = {
   title: `${TITLE} — Rutmi & Akash`,
 };
 
 export default function AdminPage() {
-  return (
-    <Content hero={LandingImage}>
-      <AdminContent adminParties={ADMIN_PARTIES} />
-    </Content>
-  );
+  return <div>From index!</div>;
 }

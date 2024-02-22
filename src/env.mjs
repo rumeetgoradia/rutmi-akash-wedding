@@ -16,6 +16,8 @@ export const env = createEnv({
       .string()
       .transform((str) => str.split(","))
       .pipe(z.array(z.string())),
+    ADMIN_PASSWORD: z.string(),
+    RESEND_API_KEY: z.string(),
   },
 
   /**
@@ -36,6 +38,8 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     SITE_PASSWORD: process.env.SITE_PASSWORD,
     ADMIN_PARTIES: process.env.ADMIN_PARTIES,
+    ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
+    RESEND_API_KEY: process.env.RESEND_API_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

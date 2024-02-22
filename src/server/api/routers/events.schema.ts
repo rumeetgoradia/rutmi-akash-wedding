@@ -1,7 +1,6 @@
-import { ZodError, ZodIssueCode, z } from "zod";
 import { EVENT_IDS } from "@/app/schedule/content";
-import { Optional } from "utility-types";
 import { rsvps } from "@/server/db/schema";
+import { z } from "zod";
 
 export const RsvpInputSchema = z.object({
   rsvpInput: z.array(

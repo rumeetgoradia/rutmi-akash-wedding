@@ -1,3 +1,4 @@
+import { emailClient } from "@/server/email";
 /**
  * YOU PROBABLY DON'T NEED TO EDIT THIS FILE, UNLESS:
  * 1. You want to modify request context (see Part 1).
@@ -40,6 +41,7 @@ export const createInnerTRPCContext = async (opts: CreateContextOptions) => {
   return {
     headers: opts.headers,
     db,
+    emailClient,
   };
 };
 

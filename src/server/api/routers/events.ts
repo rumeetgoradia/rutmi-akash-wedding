@@ -1,4 +1,4 @@
-import { EVENT_IDS, EventId } from "@/app/schedule/content";
+import { EventId } from "@/app/schedule/content";
 import { RsvpInputSchema } from "@/server/api/routers/events.schema";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { allowedEventsForParties, guests, rsvps } from "@/server/db/schema";

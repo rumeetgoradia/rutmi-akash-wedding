@@ -19,7 +19,6 @@ export const guests = pgTable(
     title: text("title"),
     suffix: text("suffix"),
     displayOrder: integer("display_order").notNull(),
-    isAdmin: boolean("is_admin").default(false),
     partyId: text("party_id")
       .notNull()
       .references(() => parties.id),

@@ -5,7 +5,9 @@ import { persist } from "zustand/middleware";
 
 type GuestStore = {
   guest?: Guest;
+  validatedAdmin?: boolean;
   signIn: (guest: Guest) => void;
+  setAdmin: () => void;
   signOut: () => void;
 };
 
@@ -14,7 +16,8 @@ export const useGuestStore = create<GuestStore>()(
     (set, get) => ({
       guest: undefined,
       signIn: (guest) => set({ guest }),
-      signOut: () => set({ guest: undefined }),
+      signOut: () => set({ guest: undefined, validatedAdmin: undefined }),
+      setAdmin: () => set({ validatedAdmin: true }),
     }),
     {
       name: "guest-storage",

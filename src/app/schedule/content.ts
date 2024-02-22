@@ -1,4 +1,4 @@
-import { ADDRESSES, Address } from "@/app/constants";
+import { ADDRESSES, Address } from "@/components/address/constants";
 import { eventEnum } from "@/server/db/schema";
 
 export const EVENT_IDS = [...eventEnum.enumValues] as const;

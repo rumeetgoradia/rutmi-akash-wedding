@@ -1,4 +1,4 @@
-import { Address } from "@/app/constants";
+import { Address } from "./constants";
 import { cn } from "@/lib/styles";
 import { MapPin } from "lucide-react";
 import { StaticImageData } from "next/image";

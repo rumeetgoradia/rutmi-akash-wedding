@@ -38,7 +38,7 @@ import { Clock, Shirt } from "lucide-react";
 import React, { useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
-import { EMAIL_ADDRESS } from "@/app/constants";
+import { EMAIL_ADDRESS } from "@/server/email/constants";
 
 type Rsvp = { guest: Guest; attending?: boolean };
 

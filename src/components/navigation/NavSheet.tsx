@@ -1,6 +1,6 @@
 "use client";
 
-import { EMAIL_ADDRESS } from "@/app/constants";
+import { EMAIL_ADDRESS } from "@/server/email/constants";
 import { figtree, meddon, notoSerif } from "@/app/fonts";
 import { Button } from "@/components/ui/button";
 import {
