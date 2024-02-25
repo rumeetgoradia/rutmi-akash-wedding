@@ -85,9 +85,9 @@ const Countdown = ({ date }: { date: Date }) => {
   return (
     <p className={cn(figtree.className, "text-sm uppercase tracking-widest")}>
       {timeLeft
-        ? `${timeLeft.days} Days ${timeLeft.hours} Hrs ${
+        ? `${timeLeft.days} Day${timeLeft.days === 1 ? "" : "s"} ${timeLeft.hours} Hr${timeLeft.hours === 1 ? "" : "s"} ${
             timeLeft.minutes
-          } Mins${timeLeft.past ? " Ago" : ""}`
+          } Min${timeLeft.minutes === 1 ? "" : "s"}${timeLeft.past ? " Ago" : ""}`
         : "..."}
     </p>
   );
