@@ -7,6 +7,7 @@ import { redirect } from "next/navigation";
 
 import { env } from "@/env.mjs";
 import AdminLayout from "./layout";
+import { AdminPageContent } from "@/app/admin/AdminPageContent";
 
 const TITLE = "ADMIN";
 
@@ -15,5 +16,9 @@ export const metadata: Metadata = {
 };
 
 export default function AdminPage() {
-  return <div>From index!</div>;
+  return (
+    <div>
+      <AdminPageContent />
+    </div>
+  );
 }

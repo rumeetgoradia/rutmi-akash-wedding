@@ -56,8 +56,8 @@ export const BaseEmail = ({ body, heading, preview }: BaseEmailProps) => {
               ))}
               <div className="border-1 mt-8 w-full border-solid border-transparent border-t-slate-200 pt-4">
                 <Link
-                  href={`mailto::${EMAIL_ADDRESS}`}
-                  className="mx-auto flex max-w-[232px] items-center justify-between gap-2"
+                  href={`mailto:${EMAIL_ADDRESS}`}
+                  className="mx-auto flex max-w-[232px] items-center gap-2"
                 >
                   <div className="flex items-center justify-center rounded-full bg-[#aebe94] p-2">
                     <Mail className="h-4 w-4 text-white" />

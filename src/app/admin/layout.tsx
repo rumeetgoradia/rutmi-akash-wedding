@@ -52,9 +52,9 @@ const AdminLayout: React.FC<{
   }, [guest, hydrated]);
 
   return (
-    <Content hero={LandingImage}>
+    <Content hero={LandingImage} title="Admin">
       <div className="flex w-full flex-col gap-8">
-        <div className="flex w-full items-center justify-center ">
+        <div className="flex w-full items-center justify-center">
           <Image src={Flower} alt="flower" className="h-20 w-auto" priority />
         </div>
         {guest && !validatedAdmin ? (
