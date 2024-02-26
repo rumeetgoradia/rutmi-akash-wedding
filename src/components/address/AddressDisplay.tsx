@@ -18,7 +18,7 @@ const AddressDisplay = ({
       <div className="leading-[1.3]">
         <Link
           href={googleMaps}
-          className="text-primary hover:underline"
+          className="text-primary underline-offset-4 hover:underline "
           title={title}
         >
           {title}

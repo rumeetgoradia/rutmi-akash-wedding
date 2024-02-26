@@ -143,7 +143,6 @@ const AdminForm: React.FC<{ handleSuccess: () => void; name: string }> = ({
         >
           Enter
         </Button>
-        {/* <div className="col-span-1 flex h-full w-full items-end"></div> */}
       </form>
     </Form>
   );

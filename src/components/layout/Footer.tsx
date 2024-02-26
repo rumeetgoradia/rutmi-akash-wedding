@@ -19,14 +19,16 @@ const Footer = () => {
           <div className="flex items-center justify-center rounded-full bg-primary p-2">
             <Mail className="h-4 w-4 text-background" />
           </div>
-          <p className="font-noto text-sm text-primary">{EMAIL_ADDRESS}</p>
+          <p className="font-noto text-sm italic tracking-wide text-primary">
+            {EMAIL_ADDRESS}
+          </p>
         </Link>
       </div>
       {guest ? (
         <div className="font-figtree select-none text-sm opacity-50 transition-opacity hover:opacity-100">
           Not {guest.firstName} {guest.lastName}?{" "}
           <span
-            className="cursor-pointer text-primary hover:underline"
+            className="cursor-pointer text-primary underline-offset-4 hover:underline "
             onClick={() => {
               signOut();
               scrollToTop();

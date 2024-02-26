@@ -20,7 +20,7 @@ export const AdminPageContent: React.FC = () => {
         <li>
           <Link
             href="/admin/email"
-            className="group flex items-center text-lg text-primary hover:underline"
+            className="group flex items-center text-lg text-primary underline-offset-4 hover:underline "
           >
             Send mass email{" "}
             <ArrowRight className="ml-1 transition-[margin] group-hover:ml-2" />

@@ -183,7 +183,10 @@ const RSVPDialog: React.FC<{
             <div>
               We ran into some issues while updating your party's RSVP. Please
               try again later, or{" "}
-              <a href={`mailto:${EMAIL_ADDRESS}`} className="underline">
+              <a
+                href={`mailto:${EMAIL_ADDRESS}`}
+                className="underline underline-offset-4 "
+              >
                 contact us
               </a>{" "}
               for some extra help!
@@ -363,7 +366,7 @@ const RSVPDialog: React.FC<{
                   >
                     <Button
                       variant="unstyled"
-                      className="cursor-pointer text-sm uppercase tracking-wider hover:underline hover:underline-offset-4 "
+                      className="cursor-pointer text-sm uppercase tracking-wider underline-offset-4 hover:underline "
                       disabled={isSubmitting || updateAttending.isLoading}
                     >
                       Cancel

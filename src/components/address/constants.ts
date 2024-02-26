@@ -48,4 +48,4 @@ export const ADDRESSES: Record<string, Address> = {
     zipCode: "07444",
     googleMaps: "https://maps.app.goo.gl/51iYeGQTduRmGfTW8",
   },
-};
+} as const;

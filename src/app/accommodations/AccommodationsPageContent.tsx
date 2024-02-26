@@ -40,7 +40,7 @@ const AccommodationsPageContent: React.FC = () => {
             <Link
               href="tel:8443554326"
               title="Call DoubleTree by Hilton, Fairfield"
-              className="text-primary hover:underline"
+              className="text-primary underline-offset-4 hover:underline"
             >
               (844) 335-2364
             </Link>{" "}
@@ -48,7 +48,7 @@ const AccommodationsPageContent: React.FC = () => {
             <Link
               href="https://www.hilton.com/en/attend-my-event/akashandrutmi-wedding/"
               title="DoubleTree by Hilton, Fairfield"
-              className="text-primary hover:underline"
+              className="text-primary underline-offset-4 hover:underline "
               target="_blank"
               rel="noreferrer noopener"
             >
