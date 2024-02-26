@@ -43,7 +43,7 @@ const AdminEmailContent: React.FC = () => {
   });
 
   const onSubmit = async (data: MassEmailSchema) => {
-    const result = massEmail.mutate(data);
+    const result = await massEmail.mutate(data);
     console.log({ result });
   };
 

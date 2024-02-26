@@ -5,6 +5,7 @@ import { z } from "zod";
 export const TEST_EMAILS = [
   EMAIL_ADDRESS.toLowerCase(),
   "rumeet.goradia@gmail.com",
+  "rutmi.goradia@gmail.com",
 ] as const;
 
 export const MassEmailSchema = z
