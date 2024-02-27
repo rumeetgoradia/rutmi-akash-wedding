@@ -29,11 +29,16 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/styles";
 import { EMAIL_ADDRESS } from "@/server/email/constants";
+import { useToast } from "@/components/ui/use-toast";
+import { figtree } from "@/app/fonts";
 
 const AdminEmailContent: React.FC = () => {
   const massEmail = api.admin.massEmail.useMutation();
 
-  const form = useForm<z.infer<typeof MassEmailSchema>>({
+  const {
+    formState: { isSubmitting, isValid, ...formState },
+    ...form
+  } = useForm<z.infer<typeof MassEmailSchema>>({
     defaultValues: {
       title: "Rutmi & Akash",
       test: true,
@@ -42,15 +47,58 @@ const AdminEmailContent: React.FC = () => {
     resolver: zodResolver(MassEmailSchema),
   });
 
+  const { toast } = useToast();
+
   const onSubmit = async (data: MassEmailSchema) => {
-    const result = await massEmail.mutate(data);
-    console.log({ result });
+    massEmail.mutate(data, {
+      onSuccess: (data) => {
+        if (data.error) {
+          toast({
+            variant: "destructive",
+            description: (
+              <div className={cn(figtree.className, "w-full")}>
+                <div className="mb-4 text-lg font-medium leading-[1.2]">
+                  Something went wrong.
+                </div>
+                <div>
+                  {data.error.name}: {data.error.message}.
+                </div>
+              </div>
+            ),
+          });
+        } else {
+          toast({
+            variant: "default",
+            description: (
+              <div className={cn(figtree.className, "w-full")}>
+                <div className="text-lg font-medium leading-[1.2]">
+                  Successfully sent email!
+                </div>
+              </div>
+            ),
+          });
+        }
+      },
+      onError(error, variables, context) {
+        toast({
+          variant: "destructive",
+          description: (
+            <div className={cn(figtree.className, "w-full")}>
+              <div className="mb-4 text-lg font-medium leading-[1.2]">
+                Something went wrong.
+              </div>
+              <div>{error.message}</div>
+            </div>
+          ),
+        });
+      },
+    });
   };
 
   const watchTest = form.watch("test");
 
   return (
-    <Form {...form}>
+    <Form {...form} formState={{ ...formState, isSubmitting, isValid }}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
         className="font-figtree grid w-full grid-cols-4 gap-4 md:gap-6"
@@ -152,7 +200,12 @@ const AdminEmailContent: React.FC = () => {
             )}
           />
         </div>
-        <Button type="submit" variant="cta" className="col-span-4">
+        <Button
+          type="submit"
+          variant="cta"
+          className="col-span-4"
+          disabled={isSubmitting || !isValid || massEmail.isLoading}
+        >
           Send
         </Button>
       </form>

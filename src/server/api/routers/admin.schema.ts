@@ -1,9 +1,10 @@
-import { EMAIL_ADDRESS } from "@/server/email/constants";
+import { EMAIL_ADDRESS, UGLY_EMAIL_ADDRESS } from "@/server/email/constants";
 import { split } from "postcss/lib/list";
 import { z } from "zod";
 
 export const TEST_EMAILS = [
   EMAIL_ADDRESS.toLowerCase(),
+  UGLY_EMAIL_ADDRESS.toLowerCase(),
   "rumeet.goradia@gmail.com",
   "rutmi.goradia@gmail.com",
 ] as const;

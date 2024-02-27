@@ -2,7 +2,10 @@ import MassEmail, { MassEmailProps } from "@/emails/mass";
 import { MassEmailSchema } from "@/server/api/routers/admin.schema";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
 import { parties } from "@/server/db/schema";
-import { FRIENDLY_EMAIL_ADDRESS } from "@/server/email/constants";
+import {
+  EMAIL_ADDRESS,
+  FRIENDLY_EMAIL_ADDRESS,
+} from "@/server/email/constants";
 import { z } from "zod";
 import { split } from "postcss/lib/list";
 
@@ -42,7 +45,7 @@ export const adminRouter = createTRPCRouter({
 
         const emailResult = await emailClient.emails.send({
           from: FRIENDLY_EMAIL_ADDRESS,
-          to: FRIENDLY_EMAIL_ADDRESS,
+          to: EMAIL_ADDRESS,
           bcc,
           subject,
           react: MassEmail({ body, title, preview }),
