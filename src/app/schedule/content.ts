@@ -47,14 +47,31 @@ export const EVENTS: Event[] = [
     },
   },
   {
-    id: "bride-pre-wedding-2",
+    id: "mandap-murat-mosalu",
     title: "Bride's Pre-Wedding Vidhis (cont.)",
     time: new Date("2024-05-18T09:00"),
     location: { start: ADDRESSES.goradia },
     dressCode: { primary: "Traditional Indian" },
     description: {
       primary: [
-        "This is another day full of religious pre-wedding prayer ceremonies (pujas) to prepare the bride for her new role as a wife. This day will invite the bride's close family to celebrate the following pujas: Mandap Murat and Mosalu and will end with the bride and groom's families joining to gift them with tools to start their married life in the Wadhamna.",
+        "This is another day full of religious pre-wedding prayer ceremonies (pujas) to prepare the bride for her new role as a wife. This day will invite the bride's close family to celebrate the following pujas: Mandap Murat and Mosalu. Lunch to follow.",
+      ],
+      // additional: [
+      //   "During the Mandap Murat, the bride's parents will ask for the blessings of Mother Earth to commence the wedding. This involves requesting permission to commence the mandap, or the altar at which the couple will be married.",
+      //   "Following the Mandap Murat, the bride's maternal uncle will present the bride with sweets and culturally significant trinkets in celebration of her upcoming nuptials.",
+      //   "Finally, following the Mandap Murat will commence the Wadhamna. The Wadhamna is a ceremony where the bride's family invites the groom's family and close relatives from both sides. The bride's family presents the \"kariyavar\", the gifts they are going to give their daughter and son-in-law for their married life (Aanu). The groom's family then reciprocates by bringing all the gifts they are going to give the bride and her family (Varnu). Gifts to each other's relatives are also exchanged during this time.",
+      // ],
+    },
+  },
+  {
+    id: "aanu-varnu",
+    title: "Aanu-Varnu (Wadhamna)",
+    time: new Date("2024-05-18T13:00"),
+    location: { start: ADDRESSES.goradia },
+    dressCode: { primary: "Traditional Indian" },
+    description: {
+      primary: [
+        "After lunch, the bride and groom will participate in the last ceremony of the day. In the Wadhamna, the bride and groom's families will shower the couple with blessings and gifts to start their married life together.",
       ],
       // additional: [
       //   "During the Mandap Murat, the bride's parents will ask for the blessings of Mother Earth to commence the wedding. This involves requesting permission to commence the mandap, or the altar at which the couple will be married.",
@@ -85,8 +102,8 @@ export const EVENTS: Event[] = [
     },
   },
   {
-    id: "housewarming",
-    title: "Vastu Pujan & Housewarming",
+    id: "vastu-pujan",
+    title: "Vastu Pujan",
     time: new Date("2024-05-19T09:00"),
     dressCode: { primary: "Indian Semi-formal" },
     location: { start: ADDRESSES.goradia },
@@ -94,6 +111,18 @@ export const EVENTS: Event[] = [
       primary: [
         'The Vastu puja is a religious ceremony that is undertaken to bestow a new home and, thereby, its occupants with health, happiness, prosperity and success. The puja invokes the five elements of nature which make up the "Vastu", or the "science of life": Earth, Water, Fire, Air, and Ether. The puja is meant to appease these five elements with the hopes that they always stay balanced and regulated so as to create and maintain a harmonious and peaceful environment with positive vibes and energy, while transferring out the bad/negative elements from within the new home and its surroundings.',
         "Following the Vastu puja is the Griha Pravesham, or the Housewarming puja. This consecrates a new living space to create an enhanced sense of life, positive energy, peace, and happiness while cleansing it of all negative energy or spirits. It is performed for the eternal well-being and prosperity of its new residents.",
+      ],
+    },
+  },
+  {
+    id: "housewarming",
+    title: "Housewarming",
+    time: new Date("2024-05-19T14:00"),
+    dressCode: { primary: "Indian/Western Semi-formal" },
+    location: { start: ADDRESSES.goradia },
+    description: {
+      primary: [
+        "Following the religious ceremonies, join us for a celebration in our new home! See the dream home Umesh & Rita created and help us kick off the wedding week with a bang!",
       ],
     },
   },
@@ -145,7 +174,7 @@ export const EVENTS: Event[] = [
     dressCode: { primary: "Business Casual" },
     description: {
       primary: [
-        "Join us for food and fun at the pre-wedding welcome dinner. Kick your feet up, enjoy delicious food and drinks, and listen to heartfelt speeches from the couple's closest friends and family! This is meant to be a stress-free, casual way to mingle and enjoy each other's company before the fast-paced wedding day festivities.",
+        "After checking into the hotel, join us for food and fun at the pre-wedding welcome dinner. Kick your feet up, enjoy delicious food and drinks, and listen to heartfelt speeches from the couple's closest friends and family! This is meant to be a stress-free, casual way to mingle and enjoy each other's company before the fast-paced wedding day festivities.",
       ],
     },
   },
