@@ -288,7 +288,8 @@ const SignInForm = () => {
         <Button
           type="submit"
           disabled={findUser.isLoading || !isDirty || !isValid || isSubmitting}
-          className="font-figtree col-span-6 mt-2 rounded-sm bg-primary/80 text-sm uppercase tracking-widest text-background transition-[background-color,opacity] hover:bg-primary/100 "
+          variant="cta"
+          className="col-span-6 mt-2 "
         >
           {findUser.isLoading || isSubmitting ? (
             <div

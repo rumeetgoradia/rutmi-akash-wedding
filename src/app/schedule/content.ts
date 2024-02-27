@@ -122,7 +122,7 @@ export const EVENTS: Event[] = [
     location: { start: ADDRESSES.goradia },
     description: {
       primary: [
-        "Following the religious ceremonies, join us for a celebration in our new home! See the dream home Umesh & Rita created and help us kick off the wedding week with a bang!",
+        "Following the religious ceremonies, join us for a celebration in our new home. See the dream home Umesh & Rita created and help us kick off the wedding week with a bang!",
       ],
     },
   },

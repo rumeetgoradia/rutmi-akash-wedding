@@ -20,6 +20,8 @@ export const EventsList = () => {
     return <Spinner />;
   }
 
+  console.log({ data });
+
   const groupedEventsEntries = Object.entries(
     getGroupedEvents(Object.keys(data) as EventId[]),
   );
