@@ -36,7 +36,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import {} from "@radix-ui/react-select";
 import dateFormat from "dateformat";
 import { Clock, Shirt } from "lucide-react";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
 import { EMAIL_ADDRESS } from "@/server/email/constants";
@@ -154,12 +154,10 @@ const RSVPDialog: React.FC<{
 
   const { toast } = useToast();
 
-  const orderedRsvps = existingRsvps.sort(
-    (a, b) => a.guest.displayOrder - b.guest.displayOrder,
-  );
-
   let guests: { [k: string]: Guest } = {};
-  orderedRsvps.forEach(({ guest }) => (guests[guest.id] = guest));
+  existingRsvps.forEach(({ guest }) => (guests[guest.id] = guest));
+
+  console.log({ where: "dialog", title, existingRsvps });
 
   const utils = api.useUtils();
 
@@ -283,7 +281,7 @@ const RSVPDialog: React.FC<{
     ...form
   } = useForm<RsvpInputs>({
     defaultValues: {
-      rsvpInput: orderedRsvps.map((rsvp) => ({
+      rsvpInput: existingRsvps.map((rsvp) => ({
         event: id,
         guestId: rsvp.guest.id,
         attending: rsvp.attending,
@@ -298,6 +296,18 @@ const RSVPDialog: React.FC<{
     control,
     name: "rsvpInput",
   });
+
+  useEffect(() => {
+    reset({
+      rsvpInput: existingRsvps.map((rsvp) => ({
+        event: id,
+        guestId: rsvp.guest.id,
+        attending: rsvp.attending,
+      })),
+      partyId,
+      email: false,
+    });
+  }, [existingRsvps, partyId]);
 
   return (
     <Dialog.Root
