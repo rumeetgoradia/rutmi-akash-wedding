@@ -8,6 +8,7 @@ import { cn } from "@/lib/styles";
 import { useGuestStore } from "@/store/guest";
 import { api } from "@/trpc/react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export const EventsList = () => {
   const { guest } = useGuestStore();
@@ -16,11 +17,11 @@ export const EventsList = () => {
     partyId: guest?.partyId,
   });
 
+  useEffect(() => console.log({ data }), [data]);
+
   if (!guest || isLoading || !data) {
     return <Spinner />;
   }
-
-  console.log({ data });
 
   const groupedEventsEntries = Object.entries(
     getGroupedEvents(Object.keys(data) as EventId[]),
@@ -70,6 +71,7 @@ export const EventsList = () => {
                       event={event}
                       order={eventIndex + 1}
                       existingRsvps={mergeGuestsAndRsvps(event.id)}
+                      partyId={guest.partyId}
                     />
                   </div>
                 );

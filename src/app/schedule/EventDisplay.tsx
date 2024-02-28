@@ -15,6 +15,7 @@ import {
   FormControl,
   FormField,
   FormItem,
+  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import {
@@ -35,10 +36,11 @@ import * as Dialog from "@radix-ui/react-dialog";
 import {} from "@radix-ui/react-select";
 import dateFormat from "dateformat";
 import { Clock, Shirt } from "lucide-react";
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { useToast } from "@/components/ui/use-toast";
 import { EMAIL_ADDRESS } from "@/server/email/constants";
+import { Checkbox } from "@/components/ui/checkbox";
 
 type Rsvp = { guest: Guest; attending?: boolean };
 
@@ -46,8 +48,11 @@ const EventDisplay: React.FC<{
   event: Event;
   order: number;
   existingRsvps: Rsvp[];
-}> = ({ event, order, existingRsvps }) => {
+  partyId: string;
+}> = ({ event, order, existingRsvps, partyId }) => {
   const { dressCode, location, time, title, description } = event;
+
+  console.log({ title, existingRsvps });
 
   return (
     <div className="grid w-full grid-cols-5 gap-2 px-4 py-4 md:gap-6 md:py-6">
@@ -99,7 +104,11 @@ const EventDisplay: React.FC<{
         </div>
         {/* <div className="flex-grow" /> */}
         <div className="mt-2 w-full max-md:mb-2">
-          <RSVPDialog event={event} existingRsvps={existingRsvps} />
+          <RSVPDialog
+            event={event}
+            existingRsvps={existingRsvps}
+            partyId={partyId}
+          />
         </div>
       </div>
       {description.additional && (
@@ -139,7 +148,8 @@ export default EventDisplay;
 const RSVPDialog: React.FC<{
   event: Event;
   existingRsvps: Rsvp[];
-}> = ({ event: { title, time, id }, existingRsvps }) => {
+  partyId: string;
+}> = ({ event: { title, time, id }, existingRsvps, partyId }) => {
   const [open, setOpen] = useState(false);
 
   const { toast } = useToast();
@@ -153,52 +163,116 @@ const RSVPDialog: React.FC<{
 
   const utils = api.useUtils();
 
-  const updateAttending = api.events.rsvp.useMutation({
-    onSuccess(data, variables, context) {
-      toast({
-        variant: "default",
-        description: (
-          <div className={cn(figtree.className, "w-full")}>
-            <div className="mb-4 text-lg font-medium leading-[1.2]">
-              Updated RSVP for {title}!
-            </div>
-            <div>
-              Thank you for submitting your party's RSVP for the {title} on{" "}
-              {dateFormat(time, "mmmm d, yyyy")}. Please update your RSVP if
-              anything changes!
-            </div>
-          </div>
-        ),
-      });
-      setOpen(false);
-      utils.events.eventsAndRsvps.invalidate();
-    },
-    onError(error, variables, context) {
-      toast({
-        description: (
-          <div className="font-figtree w-full">
-            <div className="mb-4 text-lg font-medium">
-              Something went wrong!
-            </div>
-            <div>
-              We ran into some issues while updating your party's RSVP. Please
-              try again later, or{" "}
-              <a
-                href={`mailto:${EMAIL_ADDRESS}`}
-                className="underline underline-offset-4 "
-              >
-                contact us
-              </a>{" "}
-              for some extra help!
-            </div>
-          </div>
-        ),
-      });
-    },
-  });
+  const updateAttending = api.events.rsvp.useMutation();
 
   const onSubmit = async (data: RsvpInputs) => {
-    await updateAttending.mutate(data);
+    await updateAttending.mutate(data, {
+      onSuccess(data, variables, context) {
+        toast({
+          variant: "default",
+          description: (
+            <div
+              className={cn(figtree.className, "flex w-full flex-col gap-4")}
+            >
+              <div className="text-lg font-medium leading-[1.2]">
+                Updated RSVP for the {title}!
+              </div>
+              <div>
+                Thank you for submitting your party's RSVP for the {title} on{" "}
+                {dateFormat(time, "mmmm d, yyyy")}. Please update your RSVP if
+                anything changes!
+              </div>
+              {data.emailResult?.emails && (
+                <div>
+                  Your RSVP details were sent to{" "}
+                  {data.emailResult.emails.join(", ")}.
+                </div>
+              )}
+            </div>
+          ),
+        });
+
+        if (data.emailResult?.error) {
+          let toastTitle = "";
+          let toastDescription: ReactNode;
+
+          switch (data.emailResult.error) {
+            case "NO_EMAIL": {
+              toastTitle = "No email on record!";
+              description: <div>
+                Your RSVP was saved, but we have no email for you on record to
+                which we can send your RSVP details. Please{" "}
+                <a
+                  href={`mailto:${EMAIL_ADDRESS}`}
+                  className="underline underline-offset-4 "
+                >
+                  contact us
+                </a>{" "}
+                so we can add your email!
+              </div>;
+              break;
+            }
+            default: {
+              toastTitle =
+                "Something went wrong when emailing your RSVP details.";
+              toastDescription = (
+                <div>
+                  Sorry, we couldn't send you an email with your RSVP details.
+                  Please try again later, or{" "}
+                  <a
+                    href={`mailto:${EMAIL_ADDRESS}`}
+                    className="underline underline-offset-4 "
+                  >
+                    contact us
+                  </a>{" "}
+                  for help.
+                </div>
+              );
+              break;
+            }
+          }
+
+          toast({
+            variant: "destructive",
+            description: (
+              <div
+                className={cn(figtree.className, "flex w-full flex-col gap-4")}
+              >
+                <div className="text-lg font-medium leading-[1.2]">
+                  {toastTitle}
+                </div>
+                {toastDescription}
+              </div>
+            ),
+          });
+        }
+
+        utils.events.eventsAndRsvps.invalidate({ partyId });
+        setOpen(false);
+      },
+      onError(error, variables, context) {
+        toast({
+          description: (
+            <div className="font-figtree w-full">
+              <div className="mb-4 text-lg font-medium">
+                Something went wrong!
+              </div>
+              <div>
+                We ran into some issues while updating your party's RSVP. Please
+                try again later, or{" "}
+                <a
+                  href={`mailto:${EMAIL_ADDRESS}`}
+                  className="underline underline-offset-4 "
+                >
+                  contact us
+                </a>{" "}
+                for some extra help!
+              </div>
+            </div>
+          ),
+        });
+      },
+    });
   };
 
   const {
@@ -214,6 +288,8 @@ const RSVPDialog: React.FC<{
         guestId: rsvp.guest.id,
         attending: rsvp.attending,
       })),
+      email: false,
+      partyId,
     },
     resolver: zodResolver(RsvpInputSchema),
   });
@@ -339,12 +415,33 @@ const RSVPDialog: React.FC<{
                     </div>
                   );
                 })}
+                <FormField
+                  control={control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem className="mt-2 flex w-full flex-row items-center justify-center space-x-3 space-y-0 py-4">
+                      <FormControl>
+                        <Checkbox
+                          className="sm:scale-125"
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                      <FormLabel className="cursor-pointer tracking-normal [text-transform:none] sm:text-[16px]">
+                        Send an email receipt with your responses.
+                      </FormLabel>
+                    </FormItem>
+                  )}
+                />
                 <div className="mt-4 flex w-full flex-col items-center gap-1">
                   <Button
                     type="submit"
                     variant="cta"
                     disabled={
-                      isSubmitting || updateAttending.isLoading || !isValid
+                      isSubmitting ||
+                      updateAttending.isLoading ||
+                      !isValid ||
+                      !isDirty
                     }
                   >
                     {isSubmitting || updateAttending.isLoading ? (

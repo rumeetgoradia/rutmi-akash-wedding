@@ -1,9 +1,24 @@
-import { EventId } from "@/app/schedule/content";
-import { RsvpInputSchema } from "@/server/api/routers/events.schema";
+import { EVENTS, EventId } from "@/app/schedule/content";
+import {
+  EmailResult,
+  RsvpInputSchema,
+} from "@/server/api/routers/events.schema";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import { allowedEventsForParties, guests, rsvps } from "@/server/db/schema";
-import { and, eq, sql } from "drizzle-orm";
+import {
+  allowedEventsForParties,
+  guestRelations,
+  guests,
+  parties,
+  rsvps,
+} from "@/server/db/schema";
+import { and, eq, isNotNull, sql } from "drizzle-orm";
 import { z } from "zod";
+import MassEmail from "@/emails/mass";
+import {
+  EMAIL_ADDRESS,
+  FRIENDLY_EMAIL_ADDRESS,
+} from "@/server/email/constants";
+import RsvpEmail, { EmailRsvps } from "@/emails/rsvp";
 
 export const eventsRouter = createTRPCRouter({
   eventsAndRsvps: publicProcedure
@@ -40,10 +55,19 @@ export const eventsRouter = createTRPCRouter({
 
       return groupedByEvents;
     }),
-  rsvp: publicProcedure
-    .input(RsvpInputSchema)
-    .mutation(async ({ ctx: { db }, input: { rsvpInput: input } }) => {
-      const guests = await db
+  rsvp: publicProcedure.input(RsvpInputSchema).mutation(
+    async ({
+      ctx: { db, emailClient },
+      input: { rsvpInput: input, email, partyId },
+    }): Promise<{
+      upserted: {
+        guestId: number;
+        event: EventId;
+        attending: boolean;
+      }[];
+      emailResult?: EmailResult;
+    }> => {
+      const upserted = await db
         .insert(rsvps)
         .values(input)
         .onConflictDoUpdate({
@@ -59,6 +83,61 @@ export const eventsRouter = createTRPCRouter({
           attending: rsvps.attending,
           event: rsvps.event,
         });
-      return guests;
-    }),
+
+      if (!email) {
+        return { upserted };
+      }
+
+      try {
+        const partyEmails = await db
+          .select({ partyEmail: parties.email, guest: { ...guests } })
+          .from(parties)
+          .innerJoin(guests, eq(parties.id, guests.partyId))
+          .where(eq(parties.id, partyId));
+
+        const nonNullPartyEmails = partyEmails.filter(
+          (pe) => pe.partyEmail !== null,
+        );
+        if (nonNullPartyEmails.length === 0) {
+          return { upserted, emailResult: { error: "NO_EMAIL" } };
+        }
+
+        const event = EVENTS.filter((event) => event.id === input[0].event)[0];
+
+        const emailRsvps: EmailRsvps = [];
+        nonNullPartyEmails.forEach((pe) => {
+          const attendingWrapped = upserted.filter(
+            (u) => u.guestId === pe.guest.id,
+          );
+          if (attendingWrapped.length === 0) return;
+          const rsvp = {
+            guest: pe.guest,
+            attending: attendingWrapped[0].attending,
+          };
+          emailRsvps.push(rsvp);
+        });
+
+        const emails = Array.from(
+          new Set(nonNullPartyEmails.map((pe) => pe.partyEmail!)),
+        );
+
+        // console.log({ emails, event, emailRsvps });
+
+        let emailClientResult = await emailClient.emails.send({
+          from: FRIENDLY_EMAIL_ADDRESS,
+          to: emails,
+          subject: `Your RSVP Details - ${event.title}`,
+          react: RsvpEmail({ event, rsvps: emailRsvps }),
+        });
+
+        if (emailClientResult.error) {
+          return { upserted, emailResult: { error: "EMAIL_CLIENT_ERROR" } };
+        } else {
+          return { upserted, emailResult: { emails } };
+        }
+      } catch (e: any) {
+        return { upserted, emailResult: { error: "SERVER_ERROR" } };
+      }
+    },
+  ),
 });
