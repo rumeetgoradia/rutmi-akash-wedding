@@ -57,13 +57,11 @@ export const RsvpEmail = ({ event, rsvps }: RsvpEmailProps) => {
                     textAlign: "center",
                   }}
                 >
-                  <span style={{ fontSize: 40, letterSpacing: 2 }}>
-                    Your RSVP Details
-                  </span>
+                  <span style={{ fontSize: 40 }}>Your RSVP Details</span>
                   <br />
                   <span
                     style={{
-                      fontSize: 34,
+                      fontSize: 32,
                       fontStyle: "italic",
                     }}
                   >
@@ -71,13 +69,13 @@ export const RsvpEmail = ({ event, rsvps }: RsvpEmailProps) => {
                   </span>
                   <br />
                   <div style={{ paddingTop: 20 }} />
-                  <span style={{ fontSize: 28 }}>
+                  <span style={{ fontSize: 24 }}>
                     {dateFormat(event.time, "mmmm d, yyyy · h:MM TT")}
                   </span>
                   <br />
                   <span
                     style={{
-                      fontSize: 28,
+                      fontSize: 24,
                     }}
                   >
                     <Link
