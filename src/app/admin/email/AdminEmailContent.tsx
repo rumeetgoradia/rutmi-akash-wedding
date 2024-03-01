@@ -1,5 +1,9 @@
 "use client";
 
+import "@uiw/react-md-editor/markdown-editor.css";
+import "@uiw/react-markdown-preview/markdown.css";
+import dynamic from "next/dynamic";
+
 import { Button } from "@/components/ui/button";
 import {
   MassEmailSchema,
@@ -7,7 +11,7 @@ import {
 } from "@/server/api/routers/admin.schema";
 import { api } from "@/trpc/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import {
   Form,
@@ -31,6 +35,7 @@ import { cn } from "@/lib/styles";
 import { EMAIL_ADDRESS } from "@/server/email/constants";
 import { useToast } from "@/components/ui/use-toast";
 import { figtree } from "@/app/fonts";
+import MDEditor from "@uiw/react-md-editor";
 
 const AdminEmailContent: React.FC = () => {
   const massEmail = api.admin.massEmail.useMutation();
@@ -52,8 +57,7 @@ const AdminEmailContent: React.FC = () => {
   const onSubmit = async (data: MassEmailSchema) => {
     massEmail.mutate(data, {
       onSuccess: (data) => {
-        const errored = data.filter((d) => d.error);
-        if (errored.length) {
+        if (data.error) {
           toast({
             variant: "destructive",
             description: (
@@ -61,17 +65,9 @@ const AdminEmailContent: React.FC = () => {
                 <div className="mb-4 text-lg font-medium leading-[1.2]">
                   Something went wrong.
                 </div>
-                <div className="mb-2">
-                  {errored.length} out of {data.length} emails failed to send.
-                  Here are the errors:
+                <div>
+                  {data.error.name}: {data.error.message}.
                 </div>
-                <ul>
-                  {errored.map((d) => (
-                    <li key={d.error!.name}>
-                      {d.error!.name}: {d.error!.message}.
-                    </li>
-                  ))}
-                </ul>
               </div>
             ),
           });
@@ -156,20 +152,25 @@ const AdminEmailContent: React.FC = () => {
           name="body"
           render={({ field }) => (
             <FormItem className="col-span-4 w-full">
-              <FormLabel className="text-sm font-light">Body</FormLabel>
+              <FormLabel>Body</FormLabel>
               <FormControl>
-                <Textarea placeholder="Body" {...field} className="min-h-40" />
+                <MDEditor
+                  {...field}
+                  minHeight={500}
+                  height={500}
+                  className="font-figtree mt-0 flex h-10 w-full flex-col rounded-sm border border-slate-200 bg-background text-[16px] ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <div className="col-span-4 flex w-full items-center gap-4">
+        <div className="col-span-4 flex w-full items-center gap-4 max-sm:flex-wrap">
           <FormField
             control={form.control}
             name="test"
             render={({ field }) => (
-              <FormItem className="flex items-center gap-4 ">
+              <FormItem className="flex items-center gap-4">
                 <FormLabel className="text-sm font-light">Test?</FormLabel>
                 <FormControl>
                   <Switch
@@ -185,7 +186,7 @@ const AdminEmailContent: React.FC = () => {
             control={form.control}
             name="testEmail"
             render={({ field }) => (
-              <FormItem className=" w-full flex-grow">
+              <FormItem className="w-full flex-grow max-sm:-mt-2">
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}

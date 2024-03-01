@@ -12,20 +12,21 @@ import { split } from "postcss/lib/list";
 export const adminRouter = createTRPCRouter({
   massEmail: publicProcedure
     .input(
-      MassEmailSchema.transform(({ body, ...val }, ctx) => {
-        const splitBody = body
-          .split("\n")
-          .map((b) => (b ? b.trim() : ""))
-          .filter((b) => b.length > 0);
-        if (splitBody.length === 0) {
-          ctx.addIssue({
-            code: z.ZodIssueCode.custom,
-            message: "Please enter the body of your mass email.",
-          });
-        }
+      MassEmailSchema,
+      // .transform(({ body, ...val }, ctx) => {
+      //   const splitBody = body
+      //     .split("\n")
+      //     .map((b) => (b ? b.trim() : ""))
+      //     .filter((b) => b.length > 0);
+      //   if (splitBody.length === 0) {
+      //     ctx.addIssue({
+      //       code: z.ZodIssueCode.custom,
+      //       message: "Please enter the body of your mass email.",
+      //     });
+      //   }
 
-        return { ...val, body: splitBody };
-      }),
+      //   return { ...val, body: splitBody };
+      // }),
     )
     .mutation(
       async ({
@@ -46,19 +47,27 @@ export const adminRouter = createTRPCRouter({
         }
 
         const chunks = chunkRecipients(recipients);
-        const emailResults = [];
+        const builtEmails = [];
         for (const chunk of chunks) {
-          const emailResult = await emailClient.emails.send({
-            from: FRIENDLY_EMAIL_ADDRESS,
-            to: test ? chunk : EMAIL_ADDRESS,
-            bcc: test ? [] : chunk,
-            subject,
-            react: MassEmail({ body, title, preview }),
-          });
-
-          emailResults.push(emailResult);
+          if (!test && chunk.length >= 50) {
+            builtEmails.push({
+              from: FRIENDLY_EMAIL_ADDRESS,
+              to: test ? chunk : FRIENDLY_EMAIL_ADDRESS,
+              bcc: test ? [] : chunk,
+              subject,
+              react: MassEmail({ body, title, preview }),
+            });
+          } else if (test) {
+            builtEmails.push({
+              from: FRIENDLY_EMAIL_ADDRESS,
+              to: chunk,
+              subject,
+              react: MassEmail({ body, title, preview }),
+            });
+          }
         }
 
+        const emailResults = await emailClient.batch.send(builtEmails);
         return emailResults;
       },
     ),

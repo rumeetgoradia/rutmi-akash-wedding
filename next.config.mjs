@@ -4,7 +4,16 @@
  */
 await import("./src/env.mjs");
 
-/** @type {import("next").NextConfig} */
-const config = {};
+import removeImports from "next-remove-imports";
 
-export default config;
+/** @type {import("next").NextConfig} */
+const removeImportsFun = removeImports({
+  // test: /node_modules([\s\S]*?)\.(tsx|ts|js|mjs|jsx)$/,
+  // matchImports: "\\.(less|css|scss|sass|styl)$"
+});
+
+export default removeImportsFun({
+  webpack(config, options) {
+    return config;
+  },
+});

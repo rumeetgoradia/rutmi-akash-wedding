@@ -17,11 +17,12 @@ import {
 import * as React from "react";
 import { EMAIL_ADDRESS } from "@/server/email/constants";
 import { Mail } from "lucide-react";
+import { Markdown } from "@react-email/markdown";
 
 export interface MassEmailProps {
   preview: string;
   title: string;
-  body: string[];
+  body: string;
 }
 
 const baseUrl = process.env.VERCEL_URL
@@ -51,11 +52,17 @@ export const MassEmail = ({ preview, title, body }: MassEmailProps) => {
                 <Heading style={{ ...heading, textAlign: "center" }}>
                   {title}
                 </Heading>
-                {body.map((b) => (
+                <Markdown
+                  markdownCustomStyles={{ p: paragraph, li: paragraph }}
+                >
+                  {body}
+                </Markdown>
+
+                {/* {body.map((b) => (
                   <Text style={paragraph} key={b}>
                     {b}
                   </Text>
-                ))}
+                ))} */}
               </Column>
             </Row>
             <Row
@@ -100,10 +107,7 @@ export const MassEmail = ({ preview, title, body }: MassEmailProps) => {
 };
 
 MassEmail.PreviewProps = {
-  body: [
-    "Amet fugiat sint officia mollit esse laboris pariatur ipsum reprehenderit enim consectetur officia. Magna proident do Lorem aliqua sunt ad ipsum proident do eiusmod. Tempor eu exercitation veniam irure ipsum voluptate. Non quis esse ad et duis dolore labore aliquip pariatur ut laborum irure. Sint culpa et amet amet minim ea. Ipsum Lorem aliqua minim voluptate non mollit ad veniam eiusmod minim irure cupidatat.",
-    "Sit aliquip ad tempor aliquip qui nisi anim esse cupidatat fugiat velit duis exercitation nostrud. Adipisicing anim ad elit reprehenderit voluptate culpa nisi commodo proident aliqua. Pariatur ullamco ullamco cillum ad fugiat velit. Sit in laborum ullamco proident incididunt mollit cupidatat. Exercitation voluptate enim qui laboris proident aliquip veniam. Velit est nisi nostrud id culpa nostrud anim aliqua fugiat et quis nisi consequat laborum.",
-  ],
+  body: "Anim ad quis laboris proident labore in.",
   title: "Rutmi & Akash",
   preview: "Rutmi & Akash",
 } as MassEmailProps;
