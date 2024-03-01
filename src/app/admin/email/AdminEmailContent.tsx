@@ -3,6 +3,11 @@
 import "@uiw/react-markdown-preview/markdown.css";
 import "@uiw/react-md-editor/markdown-editor.css";
 
+import dynamic from "next/dynamic";
+const MDEditor = dynamic(() => import("@uiw/react-md-editor"), {
+  ssr: false,
+});
+
 import { figtree } from "@/app/fonts";
 import { Button } from "@/components/ui/button";
 import {
@@ -31,7 +36,6 @@ import {
 import { EMAIL_ADDRESS } from "@/server/email/constants";
 import { api } from "@/trpc/react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import MDEditor from "@uiw/react-md-editor";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
