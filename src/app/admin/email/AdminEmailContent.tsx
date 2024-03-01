@@ -52,7 +52,8 @@ const AdminEmailContent: React.FC = () => {
   const onSubmit = async (data: MassEmailSchema) => {
     massEmail.mutate(data, {
       onSuccess: (data) => {
-        if (data.error) {
+        const errored = data.filter((d) => d.error);
+        if (errored.length) {
           toast({
             variant: "destructive",
             description: (
@@ -60,9 +61,17 @@ const AdminEmailContent: React.FC = () => {
                 <div className="mb-4 text-lg font-medium leading-[1.2]">
                   Something went wrong.
                 </div>
-                <div>
-                  {data.error.name}: {data.error.message}.
+                <div className="mb-2">
+                  {errored.length} out of {data.length} emails failed to send.
+                  Here are the errors:
                 </div>
+                <ul>
+                  {errored.map((d) => (
+                    <li key={d.error!.name}>
+                      {d.error!.name}: {d.error!.message}.
+                    </li>
+                  ))}
+                </ul>
               </div>
             ),
           });

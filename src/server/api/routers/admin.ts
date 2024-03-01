@@ -32,26 +32,45 @@ export const adminRouter = createTRPCRouter({
         ctx: { emailClient, db },
         input: { body, title, preview, subject, test, testEmail },
       }) => {
-        let bcc;
+        let recipients: string[] = [];
         if (test && testEmail) {
-          bcc = testEmail;
+          recipients.push(testEmail);
         } else {
           const wrappedEmails = await db
             .select({ email: parties.email })
             .from(parties);
-          bcc = [];
-          wrappedEmails.forEach((e) => e.email !== null && bcc.push(e.email));
+          recipients = [];
+          wrappedEmails.forEach(
+            (e) => e.email !== null && recipients.push(e.email),
+          );
         }
 
-        const emailResult = await emailClient.emails.send({
-          from: FRIENDLY_EMAIL_ADDRESS,
-          to: EMAIL_ADDRESS,
-          bcc,
-          subject,
-          react: MassEmail({ body, title, preview }),
-        });
+        const chunks = chunkRecipients(recipients);
+        const emailResults = [];
+        for (const chunk of chunks) {
+          const emailResult = await emailClient.emails.send({
+            from: FRIENDLY_EMAIL_ADDRESS,
+            to: test ? chunk : EMAIL_ADDRESS,
+            bcc: test ? [] : chunk,
+            subject,
+            react: MassEmail({ body, title, preview }),
+          });
 
-        return emailResult;
+          emailResults.push(emailResult);
+        }
+
+        return emailResults;
       },
     ),
 });
+
+const chunkRecipients = (recipients: string[]) => {
+  const chunkSize = 50;
+  const chunks: string[][] = [];
+  for (let i = 0; i < recipients.length; i += chunkSize) {
+    const chunk = recipients.slice(i, i + chunkSize);
+    chunks.push(chunk);
+  }
+
+  return chunks;
+};

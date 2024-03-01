@@ -44,6 +44,7 @@ export const RsvpEmail = ({ event, rsvps }: RsvpEmailProps) => {
               <Img
                 style={image}
                 width={950}
+                height={654}
                 src={`${baseUrl}/schedule/Landing.png`}
                 alt="Rutmi & Akash"
               />
@@ -57,7 +58,7 @@ export const RsvpEmail = ({ event, rsvps }: RsvpEmailProps) => {
                     textAlign: "center",
                   }}
                 >
-                  <span style={{ fontSize: 40 }}>Your RSVP Details</span>
+                  <span style={{ fontSize: 36 }}>Your RSVP Details</span>
                   <br />
                   <span
                     style={{
@@ -256,16 +257,10 @@ const content = {
 
 const image = {
   maxWidth: "100%",
+  height: "auto",
 };
 
 const boxInfos = {
   padding: "20px",
   paddingBottom: 10,
-};
-
-const emailLink = {
-  fontFamily:
-    '"Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif',
-
-  lineHeight: "10px",
 };

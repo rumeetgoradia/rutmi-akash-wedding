@@ -40,6 +40,7 @@ export const MassEmail = ({ preview, title, body }: MassEmailProps) => {
               <Img
                 style={image}
                 width={4568}
+                height={2740}
                 src={`${baseUrl}/home/landing.jpeg`}
                 alt="Rutmi & Akash"
               />
@@ -115,12 +116,16 @@ const main = {
     "'Open Sans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif",
 };
 
-const heading = {
+const fontSerif = {
   fontFamily:
     '"Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif',
+};
+
+const heading = {
+  ...fontSerif,
   fontWeight: 400,
   letterSpacing: 2,
-  fontSize: 40,
+  fontSize: 36,
 };
 
 const paragraph = {
@@ -128,14 +133,6 @@ const paragraph = {
   fontWeight: "300",
   color: "#404040",
   lineHeight: "26px",
-};
-
-const logo = {
-  padding: "30px 20px",
-};
-
-const containerButton = {
-  width: "100%",
 };
 
 const content = {
@@ -146,21 +143,10 @@ const content = {
 
 const image = {
   maxWidth: "100%",
+  height: "auto",
 };
 
 const boxInfos = {
   padding: "20px",
   paddingBottom: 10,
-};
-
-const emailLink = {
-  fontFamily:
-    '"Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif',
-
-  lineHeight: "10px",
-};
-
-const fontSerif = {
-  fontFamily:
-    '"Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif',
 };

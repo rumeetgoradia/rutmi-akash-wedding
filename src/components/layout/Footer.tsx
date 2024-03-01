@@ -19,7 +19,7 @@ const Footer = () => {
           <div className="flex items-center justify-center rounded-full bg-primary p-2">
             <Mail className="h-4 w-4 text-background" />
           </div>
-          <p className="font-noto text-sm italic tracking-wide text-primary">
+          <p className="font-noto text-sm italic tracking-wider text-primary">
             {EMAIL_ADDRESS}
           </p>
         </Link>
