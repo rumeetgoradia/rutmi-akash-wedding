@@ -4,16 +4,9 @@
  */
 await import("./src/env.mjs");
 
-import removeImports from "next-remove-imports";
-
 /** @type {import("next").NextConfig} */
-const removeImportsFun = removeImports({
-  // test: /node_modules([\s\S]*?)\.(tsx|ts|js|mjs|jsx)$/,
-  // matchImports: "\\.(less|css|scss|sass|styl)$"
-});
+const config = {
+  transpilePackages: ["react-md-editor"],
+};
 
-export default removeImportsFun({
-  webpack(config, options) {
-    return config;
-  },
-});
+export default config;

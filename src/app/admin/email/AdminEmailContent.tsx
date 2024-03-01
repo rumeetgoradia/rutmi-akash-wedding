@@ -1,18 +1,10 @@
 "use client";
 
-import "@uiw/react-md-editor/markdown-editor.css";
 import "@uiw/react-markdown-preview/markdown.css";
-import dynamic from "next/dynamic";
+import "@uiw/react-md-editor/markdown-editor.css";
 
+import { figtree } from "@/app/fonts";
 import { Button } from "@/components/ui/button";
-import {
-  MassEmailSchema,
-  TEST_EMAILS,
-} from "@/server/api/routers/admin.schema";
-import { api } from "@/trpc/react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
-import { z } from "zod";
 import {
   Form,
   FormControl,
@@ -22,20 +14,26 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Switch } from "@/components/ui/switch";
 import {
   Select,
-  SelectValue,
   SelectContent,
   SelectItem,
   SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
-import { cn } from "@/lib/styles";
-import { EMAIL_ADDRESS } from "@/server/email/constants";
+import { Switch } from "@/components/ui/switch";
 import { useToast } from "@/components/ui/use-toast";
-import { figtree } from "@/app/fonts";
+import { cn } from "@/lib/styles";
+import {
+  MassEmailSchema,
+  TEST_EMAILS,
+} from "@/server/api/routers/admin.schema";
+import { EMAIL_ADDRESS } from "@/server/email/constants";
+import { api } from "@/trpc/react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import MDEditor from "@uiw/react-md-editor";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 const AdminEmailContent: React.FC = () => {
   const massEmail = api.admin.massEmail.useMutation();

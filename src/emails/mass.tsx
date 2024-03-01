@@ -1,22 +1,18 @@
+import { EMAIL_ADDRESS } from "@/server/email/constants";
 import {
   Body,
-  Button,
-  Container,
   Column,
+  Container,
   Head,
   Heading,
   Html,
   Img,
+  Link,
   Preview,
   Row,
   Section,
   Text,
-  Hr,
-  Link,
 } from "@react-email/components";
-import * as React from "react";
-import { EMAIL_ADDRESS } from "@/server/email/constants";
-import { Mail } from "lucide-react";
 import { Markdown } from "@react-email/markdown";
 
 export interface MassEmailProps {
