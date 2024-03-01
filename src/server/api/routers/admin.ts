@@ -49,22 +49,13 @@ export const adminRouter = createTRPCRouter({
         const chunks = chunkRecipients(recipients);
         const builtEmails = [];
         for (const chunk of chunks) {
-          if (!test && chunk.length >= 50) {
-            builtEmails.push({
-              from: FRIENDLY_EMAIL_ADDRESS,
-              to: test ? chunk : FRIENDLY_EMAIL_ADDRESS,
-              bcc: test ? [] : chunk,
-              subject,
-              react: MassEmail({ body, title, preview }),
-            });
-          } else if (test) {
-            builtEmails.push({
-              from: FRIENDLY_EMAIL_ADDRESS,
-              to: chunk,
-              subject,
-              react: MassEmail({ body, title, preview }),
-            });
-          }
+          builtEmails.push({
+            from: FRIENDLY_EMAIL_ADDRESS,
+            to: test ? chunk : FRIENDLY_EMAIL_ADDRESS,
+            bcc: test ? [] : chunk,
+            subject,
+            react: MassEmail({ body, title, preview }),
+          });
         }
 
         const emailResults = await emailClient.batch.send(builtEmails);

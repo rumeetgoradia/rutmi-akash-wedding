@@ -17,8 +17,6 @@ export const EventsList = () => {
     partyId: guest?.partyId,
   });
 
-  useEffect(() => console.log({ data }), [data]);
-
   if (!guest || isLoading || !data) {
     return <Spinner />;
   }

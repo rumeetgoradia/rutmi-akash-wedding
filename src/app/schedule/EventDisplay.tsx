@@ -52,8 +52,6 @@ const EventDisplay: React.FC<{
 }> = ({ event, order, existingRsvps, partyId }) => {
   const { dressCode, location, time, title, description } = event;
 
-  console.log({ title, existingRsvps });
-
   return (
     <div className="grid w-full grid-cols-5 gap-2 px-4 py-4 md:gap-6 md:py-6">
       <div className="col-span-5 flex w-full flex-col gap-6 md:col-span-3">
@@ -156,8 +154,6 @@ const RSVPDialog: React.FC<{
 
   let guests: { [k: string]: Guest } = {};
   existingRsvps.forEach(({ guest }) => (guests[guest.id] = guest));
-
-  console.log({ where: "dialog", title, existingRsvps });
 
   const utils = api.useUtils();
 

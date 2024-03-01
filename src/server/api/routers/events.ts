@@ -121,8 +121,6 @@ export const eventsRouter = createTRPCRouter({
           new Set(nonNullPartyEmails.map((pe) => pe.partyEmail!)),
         );
 
-        // console.log({ emails, event, emailRsvps });
-
         let emailClientResult = await emailClient.emails.send({
           from: FRIENDLY_EMAIL_ADDRESS,
           to: emails,
