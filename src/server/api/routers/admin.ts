@@ -5,6 +5,7 @@ import { parties } from "@/server/db/schema";
 import {
   EMAIL_ADDRESS,
   FRIENDLY_EMAIL_ADDRESS,
+  TO_EMAIL_ADDRESS,
 } from "@/server/email/constants";
 import { z } from "zod";
 import { split } from "postcss/lib/list";
@@ -51,7 +52,7 @@ export const adminRouter = createTRPCRouter({
         for (const chunk of chunks) {
           builtEmails.push({
             from: FRIENDLY_EMAIL_ADDRESS,
-            to: test ? chunk : FRIENDLY_EMAIL_ADDRESS,
+            to: test ? chunk : TO_EMAIL_ADDRESS,
             bcc: test ? [] : chunk,
             subject,
             react: MassEmail({ body, title, preview }),

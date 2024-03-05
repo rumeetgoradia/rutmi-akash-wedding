@@ -4,6 +4,7 @@ import "@uiw/react-markdown-preview/markdown.css";
 import "@uiw/react-md-editor/markdown-editor.css";
 
 import dynamic from "next/dynamic";
+
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), {
   ssr: false,
 });
@@ -33,7 +34,7 @@ import {
   MassEmailSchema,
   TEST_EMAILS,
 } from "@/server/api/routers/admin.schema";
-import { EMAIL_ADDRESS } from "@/server/email/constants";
+import { EMAIL_ADDRESS, UGLY_EMAIL_ADDRESS } from "@/server/email/constants";
 import { api } from "@/trpc/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -49,7 +50,7 @@ const AdminEmailContent: React.FC = () => {
     defaultValues: {
       title: "Rutmi & Akash",
       test: true,
-      testEmail: EMAIL_ADDRESS,
+      testEmail: UGLY_EMAIL_ADDRESS,
     },
     resolver: zodResolver(MassEmailSchema),
   });
@@ -84,6 +85,7 @@ const AdminEmailContent: React.FC = () => {
               </div>
             ),
           });
+          form.reset();
         }
       },
       onError(error, variables, context) {
@@ -160,7 +162,8 @@ const AdminEmailContent: React.FC = () => {
                   {...field}
                   minHeight={500}
                   height={500}
-                  className="font-figtree mt-0 flex h-10 w-full flex-col rounded-sm border border-slate-200 bg-background text-[16px] ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  data-color-mode="light"
+                  // className="font-figtree mt-0 flex h-10 w-full flex-col rounded-sm border border-slate-200 bg-background bg-white text-[16px] ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 />
               </FormControl>
               <FormMessage />
