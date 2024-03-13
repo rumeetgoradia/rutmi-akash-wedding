@@ -10,6 +10,31 @@ import {
 import { z } from "zod";
 import { split } from "postcss/lib/list";
 
+const alreadySent = [
+  "antonioasanchez691@gmail.com",
+  "jschwarzbaum@gmail.com",
+  "savanshah.0@gmail.com",
+  "esheils@sbhny.org",
+  "kjsousou@gmail.com",
+  "dspencer@sbhny.org",
+  "ptai@sbhny.org",
+  "jaeet319@gmail.com",
+  "hterala26@gmail.com",
+  "tjtherattil@gmail.com",
+  "ashley.voroba@gmail.com",
+  "amb.wajid@gmail.com",
+  "hwermuth@sbhny.org",
+  "cvwynter@gmail.com",
+  "aambrosio@sbhny.org",
+  "animaanwar@gmail.com",
+  "disha.aya@gmail.com",
+  "kanikagupta82294@gmail.com",
+  "jer.b.robison@gmail.com",
+  "monarahimi23@gmail.com",
+  "rumeet.goradia@gmail.com",
+  "rumeet.goradia@gmail.com",
+];
+
 export const adminRouter = createTRPCRouter({
   massEmail: publicProcedure
     .input(
@@ -47,29 +72,42 @@ export const adminRouter = createTRPCRouter({
           );
         }
 
-        const chunks = chunkRecipients(recipients);
-        const builtEmails = [];
-        for (const chunk of chunks) {
-          builtEmails.push({
+        const builtEmails = recipients
+          .filter((r) => !alreadySent.includes(r.toLowerCase()))
+          .map((r) => ({
             from: FRIENDLY_EMAIL_ADDRESS,
-            to: test ? chunk : TO_EMAIL_ADDRESS,
-            bcc: test ? [] : chunk,
+            to: r,
+            cc: FRIENDLY_EMAIL_ADDRESS,
             subject,
             react: MassEmail({ body, title, preview }),
-          });
+          }));
+
+        const chunks = chunk(builtEmails, 100);
+
+        let result: {
+          data?: unknown;
+          error?: { name: string; message: string };
+        } = {};
+
+        for (const chunk of chunks) {
+          let emailResult = await emailClient.batch.send(chunk);
+          if (emailResult.error) {
+            result = { error: emailResult.error };
+            break;
+          } else if (!result) {
+            result = { data: emailResult.data };
+          }
         }
 
-        const emailResults = await emailClient.batch.send(builtEmails);
-        return emailResults;
+        return result;
       },
     ),
 });
 
-const chunkRecipients = (recipients: string[]) => {
-  const chunkSize = 50;
-  const chunks: string[][] = [];
-  for (let i = 0; i < recipients.length; i += chunkSize) {
-    const chunk = recipients.slice(i, i + chunkSize);
+const chunk = <T>(objects: T[], chunkSize: number) => {
+  const chunks: T[][] = [];
+  for (let i = 0; i < objects.length; i += chunkSize) {
+    const chunk = objects.slice(i, i + chunkSize);
     chunks.push(chunk);
   }
 

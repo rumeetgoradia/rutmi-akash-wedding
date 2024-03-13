@@ -1,6 +1,9 @@
 # seed data
 src/server/db/seed*
 
+# debugging
+src/**/debug/
+
 # dependencies
 /node_modules
 /.pnp

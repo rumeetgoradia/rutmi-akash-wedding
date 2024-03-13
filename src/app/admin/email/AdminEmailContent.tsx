@@ -51,14 +51,16 @@ const AdminEmailContent: React.FC = () => {
       title: "Rutmi & Akash",
       test: true,
       testEmail: UGLY_EMAIL_ADDRESS,
+      subject: "",
+      preview: "",
     },
     resolver: zodResolver(MassEmailSchema),
   });
 
   const { toast } = useToast();
 
-  const onSubmit = async (data: MassEmailSchema) => {
-    massEmail.mutate(data, {
+  const onSubmit = async (submission: MassEmailSchema) => {
+    massEmail.mutate(submission, {
       onSuccess: (data) => {
         if (data.error) {
           toast({
@@ -85,7 +87,9 @@ const AdminEmailContent: React.FC = () => {
               </div>
             ),
           });
-          form.reset();
+          if (!submission.test) {
+            form.reset();
+          }
         }
       },
       onError(error, variables, context) {
@@ -163,6 +167,9 @@ const AdminEmailContent: React.FC = () => {
                   minHeight={500}
                   height={500}
                   data-color-mode="light"
+                  style={{
+                    listStyle: "inherit",
+                  }}
                   // className="font-figtree mt-0 flex h-10 w-full flex-col rounded-sm border border-slate-200 bg-background bg-white text-[16px] ring-offset-white file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-slate-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 />
               </FormControl>
