@@ -87,7 +87,7 @@ export const EVENTS: Event[] = [
       primary: "Traditional Indian",
     },
     location: { start: ADDRESSES.patel },
-    time: new Date("2024-05-18T08:00"),
+    time: new Date("2024-05-23T09:00"),
     description: {
       primary: [
         "This is a day full of religious pre-wedding prayer ceremonies (pujas) to prepare the groom for his new role as a husband. This day will invite the groom's close family to celebrate the following pujas: Grah Shanti, Ganesh Sthapna, Mandap Murat, and Mosalu.",
