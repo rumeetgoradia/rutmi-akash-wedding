@@ -13,7 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Spinner } from "@/components/ui/spinner";
+import { PageSpinner } from "@/components/ui/spinner";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/styles";
 import { useGuestStore, useHydration } from "@/store/guest";

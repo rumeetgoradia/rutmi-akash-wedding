@@ -1,59 +1,24 @@
+import { Event, EventId } from "@/app/schedule/content";
 import MassEmail, { MassEmailProps } from "@/emails/mass";
 import { MassEmailSchema } from "@/server/api/routers/admin.schema";
 import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
-import { parties } from "@/server/db/schema";
+import {
+  Guest,
+  allowedEventsForParties,
+  guests,
+  parties,
+  rsvps,
+} from "@/server/db/schema";
 import {
   EMAIL_ADDRESS,
   FRIENDLY_EMAIL_ADDRESS,
   TO_EMAIL_ADDRESS,
 } from "@/server/email/constants";
-import { z } from "zod";
-import { split } from "postcss/lib/list";
-
-const alreadySent = [
-  "antonioasanchez691@gmail.com",
-  "jschwarzbaum@gmail.com",
-  "savanshah.0@gmail.com",
-  "esheils@sbhny.org",
-  "kjsousou@gmail.com",
-  "dspencer@sbhny.org",
-  "ptai@sbhny.org",
-  "jaeet319@gmail.com",
-  "hterala26@gmail.com",
-  "tjtherattil@gmail.com",
-  "ashley.voroba@gmail.com",
-  "amb.wajid@gmail.com",
-  "hwermuth@sbhny.org",
-  "cvwynter@gmail.com",
-  "aambrosio@sbhny.org",
-  "animaanwar@gmail.com",
-  "disha.aya@gmail.com",
-  "kanikagupta82294@gmail.com",
-  "jer.b.robison@gmail.com",
-  "monarahimi23@gmail.com",
-  "rumeet.goradia@gmail.com",
-  "rumeet.goradia@gmail.com",
-];
+import { eq } from "drizzle-orm";
 
 export const adminRouter = createTRPCRouter({
   massEmail: publicProcedure
-    .input(
-      MassEmailSchema,
-      // .transform(({ body, ...val }, ctx) => {
-      //   const splitBody = body
-      //     .split("\n")
-      //     .map((b) => (b ? b.trim() : ""))
-      //     .filter((b) => b.length > 0);
-      //   if (splitBody.length === 0) {
-      //     ctx.addIssue({
-      //       code: z.ZodIssueCode.custom,
-      //       message: "Please enter the body of your mass email.",
-      //     });
-      //   }
-
-      //   return { ...val, body: splitBody };
-      // }),
-    )
+    .input(MassEmailSchema)
     .mutation(
       async ({
         ctx: { emailClient, db },
@@ -72,15 +37,13 @@ export const adminRouter = createTRPCRouter({
           );
         }
 
-        const builtEmails = recipients
-          .filter((r) => !alreadySent.includes(r.toLowerCase()))
-          .map((r) => ({
-            from: FRIENDLY_EMAIL_ADDRESS,
-            to: r,
-            cc: FRIENDLY_EMAIL_ADDRESS,
-            subject,
-            react: MassEmail({ body, title, preview }),
-          }));
+        const builtEmails = recipients.map((r) => ({
+          from: FRIENDLY_EMAIL_ADDRESS,
+          to: r,
+          cc: FRIENDLY_EMAIL_ADDRESS,
+          subject,
+          react: MassEmail({ body, title, preview }),
+        }));
 
         const chunks = chunk(builtEmails, 100);
 

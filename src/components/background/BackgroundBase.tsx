@@ -1,5 +1,3 @@
-"use client";
-
 import BackgroundImage from "public/background/background.png";
 import Image from "next/image";
 

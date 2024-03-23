@@ -1,5 +1,3 @@
-"use client";
-
 import { figtree, meddon, notoSerif } from "@/app/fonts";
 import Background from "@/components/background";
 import Footer from "@/components/layout/Footer";

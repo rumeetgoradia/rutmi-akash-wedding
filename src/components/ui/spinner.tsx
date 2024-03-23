@@ -1,4 +1,4 @@
-export const Spinner = () => {
+export const PageSpinner = () => {
   return (
     <div className="flex w-full justify-center">
       <div

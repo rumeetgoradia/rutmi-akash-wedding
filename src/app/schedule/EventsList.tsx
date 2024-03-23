@@ -2,7 +2,7 @@
 
 import { EventId, getGroupedEvents } from "@/app/schedule/content";
 import EventDisplay from "@/app/schedule/EventDisplay";
-import { Spinner } from "@/components/ui/spinner";
+import { PageSpinner } from "@/components/ui/spinner";
 import { animation } from "@/lib/animation";
 import { cn } from "@/lib/styles";
 import { useGuestStore } from "@/store/guest";
@@ -18,7 +18,7 @@ export const EventsList = () => {
   });
 
   if (!guest || isLoading || !data) {
-    return <Spinner />;
+    return <PageSpinner />;
   }
 
   const groupedEventsEntries = Object.entries(

@@ -2,7 +2,7 @@
 
 import SignIn from "@/components/layout/SignIn";
 import { Button } from "@/components/ui/button";
-import { Spinner } from "@/components/ui/spinner";
+import { PageSpinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/styles";
 import { useGuestStore, useHydration } from "@/store/guest";
 import Image, { StaticImageData } from "next/image";
@@ -40,7 +40,7 @@ const PageContent: React.FC<{
         )}
       </div>
       <div className="mx-auto flex w-full max-w-screen-md flex-col items-center gap-8 bg-background pb-12 pt-20 max-md:px-8 md:pt-16">
-        {guest ? children : hydrated ? <SignIn /> : <Spinner />}
+        {guest ? children : hydrated ? <SignIn /> : <PageSpinner />}
       </div>
       {validatedAdmin && (
         <Button

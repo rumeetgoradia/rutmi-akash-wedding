@@ -1,5 +1,3 @@
-"use client";
-
 import BackgroundAdornments from "./BackgroundAdornments";
 import BackgroundBase from "./BackgroundBase";
 

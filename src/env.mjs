@@ -18,6 +18,8 @@ export const env = createEnv({
       .pipe(z.array(z.string())),
     ADMIN_PASSWORD: z.string(),
     RESEND_API_KEY: z.string(),
+    REFRESH_RSVPS_LAMBDA: z.string().url(),
+    GOOGLE_SHEETS_KEY: z.string(),
   },
 
   /**
@@ -40,6 +42,8 @@ export const env = createEnv({
     ADMIN_PARTIES: process.env.ADMIN_PARTIES,
     ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
+    REFRESH_RSVPS_LAMBDA: process.env.REFRESH_RSVPS_LAMBDA,
+    GOOGLE_SHEETS_KEY: process.env.GOOGLE_SHEETS_KEY,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
