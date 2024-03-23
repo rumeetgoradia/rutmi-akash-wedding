@@ -32,21 +32,6 @@ export const EVENTS: Event[] = [
     },
   },
   {
-    id: "chandlo-matli",
-    title: "Chandlo Matli",
-    time: new Date("2024-05-15T15:00"),
-    location: {
-      start: ADDRESSES.goradia,
-      end: ADDRESSES.patel,
-    },
-    dressCode: { primary: "Traditional Indian" },
-    description: {
-      primary: [
-        "During this ceremony, the father of the bride along with four male relatives visits the groom's place with a steel container (\"matli\") full of sweets and gifts for the groom and his family. He then applies a chandlo to the center of the groom's forehead and gives him the matli and monetary gifts. This acknowledges the formal seal of acceptance of the relationship between both the families.",
-      ],
-    },
-  },
-  {
     id: "mandap-murat-mosalu",
     title: "Bride's Pre-Wedding Vidhis (cont.)",
     time: new Date("2024-05-18T09:00"),
