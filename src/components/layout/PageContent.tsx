@@ -32,8 +32,8 @@ const PageContent: React.FC<{
           style={{ objectFit: "cover" }}
         />
         {title && (
-          <div className="absolute left-0 top-0 flex h-full w-full select-none items-center justify-center bg-foreground/70 p-6 text-background transition-opacity group-hover:opacity-0 md:opacity-100">
-            <h2 className="font-meddon text-3xl !leading-[1.3] [text-wrap:balance] sm:text-5xl">
+          <div className="absolute left-0 top-0 flex h-full w-full select-none items-center justify-center bg-foreground/80 px-8 py-6 text-background transition-[opacity,transform] group-hover:scale-150 group-hover:opacity-0 md:opacity-100">
+            <h2 className="font-noto text-center text-[min(10.5vw,75px)] font-light italic !leading-[1.3] tracking-wide [text-wrap:balance]">
               {title}
             </h2>
           </div>

@@ -5,7 +5,7 @@ import { animation } from "@/lib/animation";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const StoryDisplay = () => {
+const StoryPageContent = () => {
   return (
     <div className="flex w-full flex-col gap-12">
       {STORY_CONTENT.map(({ title, image, description }, index) => (
@@ -14,7 +14,9 @@ const StoryDisplay = () => {
           key={`our-story-${title}`}
           {...animation(index)}
         >
-          <h2 className="font-meddon text-3xl md:text-4xl">{title}</h2>
+          <h2 className="font-noto text-center text-[min(6vw,40px)] font-light">
+            {title}
+          </h2>
           <div className="relative h-[460px] w-full">
             <Image
               src={image}
@@ -29,7 +31,7 @@ const StoryDisplay = () => {
             {description.map((desc) => (
               <p
                 key={`our-story-${title}-${desc}`}
-                className="font-noto md:text-md text-sm font-light leading-[1.8]"
+                className="font-figtree font-light leading-[1.8] md:text-lg"
               >
                 {desc}
               </p>
@@ -46,4 +48,4 @@ const StoryDisplay = () => {
   );
 };
 
-export default StoryDisplay;
+export default StoryPageContent;

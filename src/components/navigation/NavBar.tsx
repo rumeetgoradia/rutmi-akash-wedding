@@ -23,7 +23,7 @@ const NavBar: React.FC<{ disabled?: boolean }> = ({ disabled }) => {
           <Link
             href={path}
             className={cn(
-              "rounded-sm px-2 py-1 text-sm tracking-wide",
+              "rounded-sm px-2 py-1 text-sm",
               currentPath === path && "bg-foreground-ghost",
               "hover:bg-foreground-ghost transition-[color,background-color,opacity]",
               disabled && "pointer-events-none opacity-30",

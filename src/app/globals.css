@@ -48,6 +48,7 @@
 
   .font-figtree {
     font-family: var(--font-figtree);
+    @apply md:text-lg;
   }
 
 

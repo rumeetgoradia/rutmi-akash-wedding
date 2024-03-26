@@ -42,7 +42,7 @@ const NavSheet = () => {
       </SheetTrigger>
       <SheetContent
         onOpenAutoFocus={(event) => event.preventDefault()}
-        className="z-[51] flex h-[100vh] w-[100vw] max-w-[400px] flex-col gap-6 p-8 pt-14"
+        className="z-[51] flex h-[100%] w-[100vw] max-w-[400px] flex-col gap-6 p-8 pt-14"
         side="left"
       >
         <SheetHeader>
@@ -83,7 +83,12 @@ const NavSheet = () => {
           <div className="flex items-center justify-center rounded-full bg-primary p-2">
             <Mail className="h-4 w-4 text-background" />
           </div>
-          <p className={cn(notoSerif.className, "text-xs text-primary")}>
+          <p
+            className={cn(
+              notoSerif.className,
+              "text-xs italic tracking-widest text-primary",
+            )}
+          >
             {EMAIL_ADDRESS}
           </p>
         </Link>

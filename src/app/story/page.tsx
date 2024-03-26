@@ -1,7 +1,7 @@
 import { Content } from "@/components/layout/PageContent";
 import { Metadata } from "next";
 import LandingImage from "public/story/Landing.jpeg";
-import StoryDisplay from "./StoryDisplay";
+import StoryPageContent from "./StoryDisplay";
 
 const TITLE = "Our Story";
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function Story() {
   return (
     <Content hero={LandingImage} title={TITLE}>
-      <StoryDisplay />
+      <StoryPageContent />
     </Content>
   );
 }

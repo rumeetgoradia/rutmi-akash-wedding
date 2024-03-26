@@ -37,6 +37,11 @@ export const NAV_ROUTES: NavRoute[] = [
     path: "/schedule",
   },
   {
+    shortName: "FAQ",
+    longName: "Frequently Asked Questions",
+    path: "/faq",
+  },
+  {
     longName: "Travel Accommodations",
     shortName: "Accommodations",
     path: "/accommodations",

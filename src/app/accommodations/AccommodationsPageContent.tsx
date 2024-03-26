@@ -14,7 +14,7 @@ const AccommodationsPageContent: React.FC = () => {
   const address = ADDRESSES.hotel;
 
   const paragraphClassName =
-    "font-noto text-center font-light leading-[1.8] [text-wrap:balance]";
+    "font-figtree text-center font-light leading-[1.8] [text-wrap:balance]";
 
   return (
     <div className="flex w-full flex-col gap-8">
@@ -48,7 +48,7 @@ const AccommodationsPageContent: React.FC = () => {
             <Link
               href="https://www.hilton.com/en/attend-my-event/akashandrutmi-wedding/"
               title="DoubleTree by Hilton, Fairfield"
-              className="text-primary underline-offset-4 hover:underline "
+              className="text-primary underline-offset-4 hover:underline"
               target="_blank"
               rel="noreferrer noopener"
             >

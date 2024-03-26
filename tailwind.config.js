@@ -14,6 +14,9 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        md: "800px",
+      },
       colors: {
         background: "rgb(var(--background))",
         foreground: "rgb(var(--foreground))",
